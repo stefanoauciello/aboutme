@@ -8,7 +8,6 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
 dist-ssr
 *.local
 
@@ -32,14 +31,12 @@ node_modules/
 
 # Build files
 /build
-/dist
 /out
 
 # Caching
 .cache/
 .next/
 .nuxt/
-dist/
 
 # Static files
 public/static/
