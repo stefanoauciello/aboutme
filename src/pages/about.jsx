@@ -14,16 +14,9 @@ const About = () => {
       <BackButton />
       <h2 className="text-4xl font-semibold text-blue-300">About Me</h2>
       <p className="text-gray-300 mt-6 text-lg">
-        I'm a dedicated Software Engineer with a strong passion for end-to-end
-        software delivery, from writing code to deploying robust solutions into
-        production. My interest in data has deepened over recent years,
-        particularly through my work at Vodafone, where I've been immersed in
-        Big Data and the management of Real-Time architectures. In parallel, I'm
-        pursuing a university degree and continuously advancing my knowledge
-        with new certifications. I strive to be a trusted point of reference
-        within my team, offering both technical and business insights. My goal
-        is to help guide the team toward optimal solutions, from technical
-        analysis through architectural design and implementation.
+        I'm a passionate Software Engineer who thrives on delivering end-to-end solutions from crafting clean, efficient code to deploying scalable systems in production. Over the years, my interest in data has grown significantly, especially through my experience at Vodafone, where I've been deeply involved in Big Data and Real-Time architecture.
+
+        Beyond my professional journey, I'm also pursuing a university degree while continuously expanding my expertise through certifications. I aim to be a reliable reference point for my team, bridging technical and business perspectives to drive well-informed decisions. My mission is to guide the team toward the best possible solutions, from technical analysis to architectural design and seamless implementation.
       </p>
     </motion.section>
   );
