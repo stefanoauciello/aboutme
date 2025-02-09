@@ -84,7 +84,7 @@ function Home() {
     >
       <div className="flex flex-col items-center space-y-6">
         <img
-          src="/profile.jpg"
+          src={`${import.meta.env.BASE_URL}profile.jpg`}
           alt="Stefano Auciello"
           className="w-60 h-auto border-4 border-blue-300 shadow-lg rounded-lg"
         />
@@ -206,7 +206,7 @@ const Experience = () => {
               {job.images.map((img, i) => (
                 <img
                   key={i}
-                  src={`/${img}`}
+                  src={`${import.meta.env.BASE_URL}${img}`}
                   alt={img.split(".")[0]}
                   className="w-20 sm:w-24 md:w-32 lg:w-40 h-auto object-contain rounded-lg shadow-lg"
                 />
@@ -251,7 +251,7 @@ const Certifications = () => {
         ].map((item, index) => (
           <div key={index} className="flex flex-col items-center text-center">
             <img
-              src={item.src}
+              src={import.meta.env.BASE_URL + item.src}
               alt={item.alt}
               className="w-auto max-w-[80px] md:max-w-[120px] lg:max-w-[150px] h-auto object-contain"
             />
@@ -287,7 +287,7 @@ const Skills = () => {
             className="flex flex-col items-center text-center min-h-[180px] w-[120px] sm:w-[150px] md:w-[180px] lg:w-[200px] bg-gray-700 rounded-lg shadow-lg p-4"
           >
             <img
-              src={item.src}
+              src={import.meta.env.BASE_URL + item.src}
               alt={item.alt}
               className="w-auto h-16 md:h-20 lg:h-24 object-contain"
             />
