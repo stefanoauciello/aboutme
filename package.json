@@ -1,5 +1,6 @@
 {
   "name": "aboutme",
+  "homepage": "https://stefanoauciello.github.io/aboutme",
   "private": true,
   "version": "0.0.0",
   "type": "module",
