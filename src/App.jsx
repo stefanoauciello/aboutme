@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaLinkedin, FaEnvelope, FaMapMarkerAlt, FaBars } from "react-icons/fa";
 import { motion } from "framer-motion";
