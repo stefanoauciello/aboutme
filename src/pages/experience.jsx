@@ -1,18 +1,17 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import BackButton from "../components/button";
 import containerVariants from "../components/utils";
 
 const Experience = () => {
   return (
     <motion.section
-      className="p-12 text-white bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl shadow-lg max-w-4xl mx-auto"
+      className="p-12 text-blue-900 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-lg text-center max-w-4xl mx-auto"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
       <BackButton />
-      <h2 className="text-4xl font-semibold text-blue-300 text-center">
+      <h2 className="text-4xl font-semibold text-blue-600 text-center">
         Experience
       </h2>
       <div className="mt-8 space-y-6">
@@ -23,13 +22,7 @@ const Experience = () => {
             description: `Currently working at DXL as a Java/Node.js Backend Developer and Data Engineer, focusing on consumer data. I’ve led the migration of our Java Spring Boot microservices stack from OpenShift to AWS EKS, including data migration from MongoDB to MongoDB Atlas and optimizing Kafka systems. I prioritize performance, scalability, and capacity planning to support millions of active customers. Recently, I reengineered the real-time Change Data Capture (CDC) architecture, using Node.js Lambda and Java microservices to ensure data updates with minimal latency.`,
             secondrole: "",
             seconddescription: "",
-            images: [
-              "java.png",
-              "kafka.png",
-              "node.png",
-              "aws.png",
-              "mongo.png",
-            ],
+            images: ["java.png", "kafka.png", "node.png", "aws.png", "mongo.png"],
           },
           {
             company: "Bandyer/Kaleyra",
@@ -51,10 +44,8 @@ const Experience = () => {
             company: "ThinkOpen",
             role: "Software Developer, consultant at Arlanis Reply (June 2018 - March 2019) ",
             description: `Developed backend applications using Node.js, deploying them on Heroku to ensure seamless scalability and accessibility. Emphasized Test-Driven Development (TDD) to maintain high code quality and reliability. Additionally, utilized Git and a pull request workflow to collaborate effectively and manage code versioning.`,
-            secondrole:
-              "Software Developer, consultant at Unicredit Services Spa (July 2017 - June 2018) ",
-            seconddescription:
-              "Developed Java Spring applications within Docker environments, utilizing CI/CD pipelines via Go Server to automate deployment. Managed virtual machines using Vagrant and Ansible for efficient automation, and followed Test-Driven Development (TDD) practices to uphold code quality. Collaborated in an Agile setting, leveraging Git and a pull request workflow for seamless version control and team coordination.",
+            secondrole: "Software Developer, consultant at Unicredit Services Spa (July 2017 - June 2018) ",
+            seconddescription: "Developed Java Spring applications within Docker environments, utilizing CI/CD pipelines via Go Server to automate deployment. Managed virtual machines using Vagrant and Ansible for efficient automation, and followed Test-Driven Development (TDD) practices to uphold code quality. Collaborated in an Agile setting, leveraging Git and a pull request workflow for seamless version control and team coordination.",
             images: ["spring.png", "node.png", "docker.png", "heroku.png"],
           },
           {
@@ -68,16 +59,20 @@ const Experience = () => {
         ].map((job, index) => (
           <div
             key={index}
-            className="flex flex-col bg-gray-700 p-4 md:p-6 rounded-lg shadow-md"
+            className="flex flex-col bg-white p-6 rounded-lg shadow-md"
           >
-            <div className="flex-1 text-center">
-              <h3 className="text-xl md:text-2xl font-bold text-blue-200">
+            <div className="flex-1 text-left">
+              <h3 className="text-xl md:text-2xl font-bold text-blue-600">
                 {job.company}
               </h3>
-              <p className="text-gray-400 mt-2">{job.role}</p>
-              <p className="mt-2">{job.description}</p>
-              <p className="text-gray-400 mt-2">{job.secondrole}</p>
-              <p className="mt-2">{job.seconddescription}</p>
+              <p className="text-blue-700 mt-2 font-semibold">{job.role}</p>
+              <p className="mt-2 text-blue-700">{job.description}</p>
+              {job.secondrole && (
+                <>
+                  <p className="text-blue-700 mt-4 font-semibold">{job.secondrole}</p>
+                  <p className="mt-2 text-blue-700">{job.seconddescription}</p>
+                </>
+              )}
             </div>
             <div className="flex flex-wrap justify-center gap-4 mt-6">
               {job.images.map((img, i) => (
@@ -85,7 +80,7 @@ const Experience = () => {
                   key={i}
                   src={`${import.meta.env.BASE_URL}${img}`}
                   alt={img.split(".")[0]}
-                  className="w-20 sm:w-24 md:w-32 lg:w-40 h-auto object-contain rounded-lg shadow-lg"
+                  className="w-20 sm:w-24 md:w-32 lg:w-40 h-auto object-contain rounded-lg shadow-md"
                 />
               ))}
             </div>

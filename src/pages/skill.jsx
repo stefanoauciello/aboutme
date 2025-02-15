@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import BackButton from "../components/button";
 import containerVariants from "../components/utils";
 
@@ -16,7 +15,7 @@ const skills = [
 const Skill = () => {
   return (
     <motion.section
-      className="p-12 text-white bg-gradient-to-r from-gray-800 to-gray-900 rounded-xl shadow-lg text-center"
+      className="p-12 text-blue-900 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-lg text-center max-w-4xl mx-auto"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -26,7 +25,7 @@ const Skill = () => {
         {skills.map((item, index) => (
           <div
             key={index}
-            className="flex flex-row items-center justify-center gap-8 w-full max-w-4xl mb-6"
+            className="flex flex-row items-center justify-center gap-8 w-full max-w-3xl mb-6 p-4 bg-white shadow-md rounded-lg"
           >
             <img
               src={import.meta.env.BASE_URL + item.src}
@@ -34,8 +33,8 @@ const Skill = () => {
               className="w-16 h-16 object-contain flex-shrink-0"
             />
             <div className="flex-1">
-              <span className="text-gray-400 text-lg font-bold block text-left">{item.label}</span>
-              <p className="text-gray-300 text-sm mt-1 leading-relaxed text-left">
+              <span className="text-blue-600 text-lg font-bold block text-left">{item.label}</span>
+              <p className="text-blue-700 text-sm mt-1 leading-relaxed text-left">
                 {item.description}
               </p>
             </div>
