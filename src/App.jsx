@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, Link } from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -9,9 +9,17 @@ import About from "./pages/about";
 import Experience from "./pages/experience";
 import Certification from "./pages/certification";
 import Contact from "./pages/contact";
+import Devcorner from "./pages/devcorner";
+import CDC from "./pages/cdc";
+import EventDrivenArchitecture from "./pages/event-driven-architecture";
+import DataPlatform from "./pages/data-platform";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    document.documentElement.style.overflow = isOpen ? "hidden" : "auto";
+  }, [isOpen]);
 
   return (
     <div className="relative w-full">
@@ -21,10 +29,16 @@ function Navbar() {
       >
         {isOpen ? <FaTimes /> : <FaBars />}
       </button>
+
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
+          onClick={() => setIsOpen(false)}
+        ></div>
+      )}
+
       <nav
-        className={`absolute top-14 left-0 bg-white shadow-lg w-full p-4 md:static md:flex md:justify-center md:space-x-8 md:p-0 transition-all ${
-          isOpen ? "block" : "hidden"
-        } md:flex rounded-lg`}
+        className={`fixed top-0 left-0 w-full h-screen bg-gradient-to-b from-blue-100 to-white shadow-xl transform ${isOpen ? "translate-x-0" : "-translate-x-full"} transition-transform md:static md:h-auto md:translate-x-0 md:flex md:justify-center md:space-x-8 p-6 md:p-0 z-50 rounded-lg`}
       >
         <ul className="flex flex-col md:flex-row md:space-x-6 w-full md:w-auto text-center">
           {[
@@ -32,10 +46,11 @@ function Navbar() {
             { path: "/experience", label: "Experience" },
             { path: "/certification", label: "Certification" },
             { path: "/skill", label: "Skills" },
-            { path: "/contact", label: "Contact" }
+            { path: "/contact", label: "Contact" },
+            { path: "/devcorner", label: "Dev Corner" }
           ].map((item) => (
-            <li key={item.path} className="py-2 md:py-0">
-              <Link to={item.path} className="block text-blue-600 hover:text-blue-900 transition px-4 py-2 rounded-md hover:bg-blue-100">
+            <li key={item.path} className="py-4 md:py-0">
+              <Link to={item.path} className="block text-blue-700 font-semibold hover:text-blue-900 transition px-6 py-3 md:px-4 md:py-2 rounded-lg hover:bg-blue-200 shadow-md md:shadow-none">
                 {item.label}
               </Link>
             </li>
@@ -81,6 +96,10 @@ export default function Portfolio() {
           <Route path="/certification" element={<Certification />} />
           <Route path="/skill" element={<Skill />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/devcorner" element={<Devcorner />} />
+          <Route path="/devcorner/cdc" element={<CDC />} />
+          <Route path="/devcorner/event-driven-architecture" element={<EventDrivenArchitecture />} />
+          <Route path="/devcorner/data-platform" element={<DataPlatform />} />
         </Routes>
       </div>
     </Router>
