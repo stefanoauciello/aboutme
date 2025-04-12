@@ -12,6 +12,7 @@ import Devcorner from "./pages/devcorner";
 import CDC from "./pages/cdc";
 import EventDrivenArchitecture from "./pages/event-driven-architecture";
 import DataPlatform from "./pages/data-platform";
+import DatabaseVersioning from "./pages/database-versioning";
 
 const navLinks = [
   { path: "/about", label: "About" },
@@ -106,11 +107,9 @@ export default function Portfolio() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/devcorner" element={<Devcorner />} />
           <Route path="/devcorner/cdc" element={<CDC />} />
-          <Route
-            path="/devcorner/event-driven-architecture"
-            element={<EventDrivenArchitecture />}
-          />
+          <Route path="/devcorner/event-driven-architecture" element={<EventDrivenArchitecture />} />
           <Route path="/devcorner/data-platform" element={<DataPlatform />} />
+          <Route path="/devcorner/database-versioning" element={<DatabaseVersioning />} />
         </Routes>
       </div>
     </Router>

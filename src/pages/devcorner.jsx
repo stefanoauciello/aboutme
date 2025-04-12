@@ -29,6 +29,14 @@ const topics = [
     iconClass: "text-green-500 text-4xl",
     link: "/devcorner/data-platform",
   },
+  {
+    title: "DataBase Versioning",
+    description:
+      "The practice of tracking and managing changes to a database schema over time in a controlled and repeatable way",
+    icon: FaServer,
+    iconClass: "text-indigo-600 text-4xl",
+    link: "/devcorner/database-versioning",
+  },
 ];
 
 const Devcorner = () => {
