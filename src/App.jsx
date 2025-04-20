@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Route, Routes, Link, HashRouter as Router } from "react-router-dom";
-import { motion } from "framer-motion";
-import { FaBars, FaTimes } from "react-icons/fa";
+import React, {useEffect, useState} from "react";
+import {HashRouter as Router, Link, NavLink, Route, Routes, useLocation,} from "react-router-dom";
+import {AnimatePresence, motion} from "framer-motion";
+import {FaBars, FaTimes} from "react-icons/fa";
+
 import containerVariants from "./components/utils";
-import Skill from "./pages/skill";
+
 import About from "./pages/about";
 import Experience from "./pages/experience";
 import Certification from "./pages/certification";
+import Skill from "./pages/skill";
 import Contact from "./pages/contact";
 import Devcorner from "./pages/devcorner";
 import CDC from "./pages/cdc";
@@ -15,103 +17,183 @@ import DataPlatform from "./pages/data-platform";
 import DatabaseVersioning from "./pages/database-versioning";
 
 const navLinks = [
-  { path: "/about", label: "About" },
-  { path: "/experience", label: "Experience" },
-  { path: "/certification", label: "Certification" },
-  { path: "/skill", label: "Skills" },
-  { path: "/contact", label: "Contact" },
-  { path: "/devcorner", label: "Dev Corner" },
+    {to: "/", label: "Home"},       // NEW
+    {to: "/about", label: "About"},
+    {to: "/experience", label: "Experience"},
+    {to: "/certification", label: "Certification"},
+    {to: "/skill", label: "Skills"},
+    {to: "/contact", label: "Contact"},
+    {to: "/devcorner", label: "Dev Corner"},
 ];
 
 function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+    const [open, setOpen] = useState(false);
+    const location = useLocation();
 
-  useEffect(() => {
-    document.documentElement.style.overflow = isOpen ? "hidden" : "auto";
-  }, [isOpen]);
+    useEffect(() => setOpen(false), [location.pathname]);
+    useEffect(() => {
+        document.body.classList.toggle("overflow-hidden", open);
+    }, [open]);
 
-  return (
-    <div className="relative w-full">
-      <button
-        className="text-blue-700 text-2xl md:hidden focus:outline-none p-2"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <FaTimes /> : <FaBars />}
-      </button>
+    return (
+        <header className="fixed top-0 left-0 w-full z-50 box-border">
+            <div className="mx-auto max-w-5xl flex items-center justify-between
+                      px-4 py-3 md:px-6">
+                <Link to="/" className="text-xl font-bold text-blue-700">SA</Link>
 
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm z-40"
-          onClick={() => setIsOpen(false)}
-        ></div>
-      )}
+                <button
+                    aria-label="Toggle navigation"
+                    onClick={() => setOpen(!open)}
+                    className="md:hidden text-blue-700 text-2xl"
+                >
+                    {open ? <FaTimes/> : <FaBars/>}
+                </button>
+                <nav className="hidden md:block">
+                    <ul className="flex space-x-4 lg:space-x-6">
+                        {navLinks.map(l => (
+                            <li key={l.to}>
+                                <NavLink
+                                    to={l.to}
+                                    end={l.to === "/"}
+                                    className={({isActive}) =>
+                                        `px-3 py-2 rounded-lg font-semibold transition whitespace-nowrap ${
+                                            isActive
+                                                ? "bg-blue-200 text-blue-900"
+                                                : "text-blue-700 hover:bg-blue-100"
+                                        }`
+                                    }
+                                >
+                                    {l.label}
+                                </NavLink>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </div>
 
-      <nav
-        className={`fixed top-0 left-0 w-full h-screen bg-gradient-to-b from-blue-100 to-white shadow-xl transform ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform md:static md:h-auto md:translate-x-0 md:flex md:justify-center md:space-x-8 p-6 md:p-0 z-50 rounded-lg`}
-      >
-        <ul className="flex flex-col md:flex-row md:space-x-6 w-full md:w-auto text-center">
-          {navLinks.map((item) => (
-            <li key={item.path} className="py-4 md:py-0">
-              <Link
-                to={item.path}
-                className="block text-blue-700 font-semibold hover:text-blue-900 transition px-6 py-3 md:px-4 md:py-2 rounded-lg hover:bg-blue-200 shadow-md md:shadow-none"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </div>
-  );
+            <AnimatePresence>
+                {open && (
+                    <>
+                        <motion.div
+                            key="backdrop"
+                            className="fixed inset-0 bg-black backdrop-blur-sm"
+                            initial={{opacity: 0}}
+                            animate={{opacity: 0.4}}
+                            exit={{opacity: 0}}
+                        />
+                        <motion.nav
+                            key="drawer"
+                            className="fixed inset-y-0 left-0 w-[80vw] sm:w-64
+                         bg-gradient-to-b from-blue-100 to-white
+                         shadow-xl p-8 overflow-y-auto"
+                            initial={{x: "-100%"}}
+                            animate={{x: 0}}
+                            exit={{x: "-100%"}}
+                            transition={{type: "tween", duration: 0.3}}
+                        >
+                            <ul className="space-y-6">
+                                {navLinks.map(l => (
+                                    <li key={l.to}>
+                                        <NavLink
+                                            to={l.to}
+                                            end={l.to === "/"}
+                                            className={({isActive}) =>
+                                                `block rounded-lg px-4 py-2 font-semibold ${
+                                                    isActive
+                                                        ? "bg-blue-200 text-blue-900"
+                                                        : "text-blue-700 hover:bg-blue-100"
+                                                }`
+                                            }
+                                        >
+                                            {l.label}
+                                        </NavLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </motion.nav>
+                    </>
+                )}
+            </AnimatePresence>
+        </header>
+    );
 }
 
 function Home() {
-  return (
-    <motion.div
-      className="max-w-5xl w-full bg-gradient-to-r from-blue-50 via-white to-blue-50 shadow-xl rounded-2xl p-12 text-blue-900 text-center space-y-8"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <div className="flex flex-col items-center space-y-6">
-        <img
-          src={`${import.meta.env.BASE_URL}profile.jpg`}
-          alt="Stefano Auciello"
-          className="w-60 h-auto border-4 border-blue-300 shadow-lg rounded-lg"
-        />
-        <div className="space-y-4">
-          <h1 className="text-6xl font-extrabold text-blue-600">
-            Stefano Auciello
-          </h1>
-          <p className="text-xl text-blue-600">Senior Software Engineer</p>
-        </div>
-      </div>
-      <Navbar />
-    </motion.div>
-  );
+    const photo = `${import.meta.env.BASE_URL}profile.jpg`;
+
+    return (
+        <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="w-full"
+        >
+
+            <div className="sm:hidden w-full min-h-[100dvh] flex flex-col">
+                <img src={photo} alt="Stefano Auciello"
+                     className="w-full h-2/3 object-cover"/>
+                <div className="flex-1 flex flex-col justify-center items-center bg-blue-50">
+                    <h1 className="text-4xl font-extrabold text-blue-600">
+                        Stefano Auciello
+                    </h1>
+                    <p className="text-lg text-blue-600">Senior Software Engineer</p>
+                </div>
+            </div>
+
+            <div className="hidden sm:block">
+                <div
+                    className="mx-auto sm:max-w-2xl lg:max-w-4xl
+                     bg-gradient-to-r from-blue-50 via-white to-blue-50
+                     shadow-xl rounded-2xl px-8 py-10 lg:p-12
+                     text-blue-900 text-center space-y-6"
+                >
+                    <img
+                        src={photo}
+                        alt="Stefano Auciello"
+                        className="w-40 lg:w-60 h-auto border-4 border-blue-300
+                       shadow-lg rounded-lg mx-auto"
+                    />
+                    <div className="space-y-2">
+                        <h1 className="text-5xl lg:text-6xl font-extrabold text-blue-600">
+                            Stefano Auciello
+                        </h1>
+                        <p className="text-xl text-blue-600">Senior Software Engineer</p>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+}
+
+function AnimatedRoutes() {
+    const location = useLocation();
+    return (
+        <AnimatePresence mode="wait">
+            <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<Home/>}/>
+
+                <Route path="/about" element={<About/>}/>
+                <Route path="/experience" element={<Experience/>}/>
+                <Route path="/certification" element={<Certification/>}/>
+                <Route path="/skill" element={<Skill/>}/>
+                <Route path="/contact" element={<Contact/>}/>
+                <Route path="/devcorner" element={<Devcorner/>}/>
+                <Route path="/devcorner/cdc" element={<CDC/>}/>
+                <Route path="/devcorner/event-driven-architecture" element={<EventDrivenArchitecture/>}/>
+                <Route path="/devcorner/data-platform" element={<DataPlatform/>}/>
+                <Route path="/devcorner/database-versioning" element={<DatabaseVersioning/>}/>
+            </Routes>
+        </AnimatePresence>
+    );
 }
 
 export default function Portfolio() {
-  return (
-    <Router>
-      <div className="min-h-screen bg-blue-100 flex flex-col items-center justify-center space-y-12 p-6">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/experience" element={<Experience />} />
-          <Route path="/certification" element={<Certification />} />
-          <Route path="/skill" element={<Skill />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/devcorner" element={<Devcorner />} />
-          <Route path="/devcorner/cdc" element={<CDC />} />
-          <Route path="/devcorner/event-driven-architecture" element={<EventDrivenArchitecture />} />
-          <Route path="/devcorner/data-platform" element={<DataPlatform />} />
-          <Route path="/devcorner/database-versioning" element={<DatabaseVersioning />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+    return (
+        <Router>
+            <Navbar/>
+            <main className="pt-16 sm:pt-24 min-h-screen bg-blue-100">
+                <AnimatedRoutes/>
+            </main>
+        </Router>
+    );
 }

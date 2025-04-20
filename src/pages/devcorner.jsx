@@ -1,79 +1,117 @@
-import { motion } from "framer-motion";
-import { FaDatabase, FaBolt, FaServer } from "react-icons/fa";
-import BackButton from "../components/button";
+// src/pages/Devcorner.jsx
+import {motion} from "framer-motion";
+import {FaBolt, FaDatabase, FaServer} from "react-icons/fa";
+import {Link} from "react-router-dom";
 import containerVariants from "../components/utils";
-import { Link } from "react-router-dom";
 
+/* -------------
+   Topic cards
+   ------------- */
 const topics = [
-  {
-    title: "Change Data Capture",
-    description:
-      "Capture real-time changes in your database and stream them efficiently.",
-    icon: FaDatabase,
-    iconClass: "text-blue-500 text-4xl",
-    link: "/devcorner/cdc",
-  },
-  {
-    title: "Event-Driven Architecture",
-    description:
-      "Design scalable and decoupled systems using event-based communication.",
-    icon: FaBolt,
-    iconClass: "text-yellow-500 text-4xl",
-    link: "/devcorner/event-driven-architecture",
-  },
-  {
-    title: "Data Platform",
-    description:
-      "Build a robust and scalable infrastructure to manage and process data efficiently.",
-    icon: FaServer,
-    iconClass: "text-green-500 text-4xl",
-    link: "/devcorner/data-platform",
-  },
-  {
-    title: "DataBase Versioning",
-    description:
-      "The practice of tracking and managing changes to a database schema over time in a controlled and repeatable way",
-    icon: FaServer,
-    iconClass: "text-indigo-600 text-4xl",
-    link: "/devcorner/database-versioning",
-  },
+    {
+        title: "Change Data Capture",
+        description:
+            "Capture real‑time changes in your database and stream them reliably.",
+        icon: FaDatabase,
+        color: "text-blue-500",
+        link: "/devcorner/cdc",
+    },
+    {
+        title: "Event‑Driven Architecture",
+        description:
+            "Design scalable, loosely‑coupled systems with event‑based communication.",
+        icon: FaBolt,
+        color: "text-yellow-500",
+        link: "/devcorner/event-driven-architecture",
+    },
+    {
+        title: "Data Platform",
+        description:
+            "Build a robust infrastructure for ingesting, processing and serving data.",
+        icon: FaServer,
+        color: "text-green-500",
+        link: "/devcorner/data-platform",
+    },
+    {
+        title: "Database Versioning",
+        description:
+            "Version your schema safely and repeatably across multiple environments.",
+        icon: FaServer,
+        color: "text-indigo-600",
+        link: "/devcorner/database-versioning",
+    },
 ];
 
-const Devcorner = () => {
-  return (
-    <motion.section
-      className="p-6 md:p-12 text-blue-900 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-lg text-center max-w-4xl mx-auto overflow-y-auto h-screen flex flex-col"
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      <BackButton />
-      <div className="flex-grow overflow-y-auto px-4 md:px-8">
-        <h2 className="text-4xl font-semibold text-blue-600">Dev Corner</h2>
-        <p className="text-blue-700 mt-6 text-lg">
-          Welcome to Dev Corner – a dedicated space where I explore and discuss
-          technology, software architecture, best practices, and fundamental
-          concepts.
-        </p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-          {topics.map((topic, index) => (
-            <Link
-              to={topic.link}
-              key={index}
-              className="p-6 bg-white shadow-md rounded-lg hover:shadow-lg transition flex flex-col items-center text-center"
-            >
-              <topic.icon className={topic.iconClass} />
-              <h3 className="text-xl font-semibold text-blue-600 mt-4">
-                {topic.title}
-              </h3>
-              <p className="text-blue-700 text-sm mt-2">{topic.description}</p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </motion.section>
-  );
+/* ----------------------------------
+   Motion variants for topic cards
+   ---------------------------------- */
+const gridVariants = {
+    hidden: {},
+    visible: {transition: {staggerChildren: 0.12}},
 };
+
+const cardVariants = {
+    hidden: {opacity: 0, y: 30},
+    visible: {opacity: 1, y: 0, transition: {duration: 0.4}},
+};
+
+function Devcorner() {
+    return (
+        <motion.section
+            className="h-[100dvh] md:h-auto overflow-y-auto
+                 p-6 md:p-12 text-blue-900
+                 bg-gradient-to-r from-blue-50 to-white
+                 rounded-xl shadow-lg max-w-4xl mx-auto flex flex-col"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+        >
+
+            <div className="flex-grow px-4 md:px-8">
+                <h2 className="text-4xl font-semibold text-blue-600 text-center">
+                    Dev Corner
+                </h2>
+                <p className="text-blue-700 mt-6 text-lg text-center">
+                    A space where I break down software architecture patterns, best
+                    practices and core tech concepts.
+                </p>
+
+                <motion.ul
+                    className="mt-10 grid gap-6 sm:grid-cols-2"
+                    variants={gridVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    {topics.map(topic => {
+                        const Icon = topic.icon;
+                        return (
+                            <motion.li key={topic.title} variants={cardVariants}>
+                                <Link
+                                    to={topic.link}
+                                    className="group block h-full px-6 py-8 rounded-lg
+                             bg-white/70 backdrop-blur shadow-md transition
+                             hover:shadow-lg focus:outline-none
+                             focus-visible:ring-2 focus-visible:ring-blue-600"
+                                >
+                                    <Icon
+                                        className={`${topic.color} text-4xl mx-auto mb-4 transition
+                               group-hover:scale-110`}
+                                        aria-hidden
+                                    />
+                                    <h3 className="text-xl font-semibold text-blue-700 mb-2">
+                                        {topic.title}
+                                    </h3>
+                                    <p className="text-sm text-blue-800 leading-relaxed">
+                                        {topic.description}
+                                    </p>
+                                </Link>
+                            </motion.li>
+                        );
+                    })}
+                </motion.ul>
+            </div>
+        </motion.section>
+    );
+}
 
 export default Devcorner;
