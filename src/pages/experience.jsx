@@ -1,4 +1,4 @@
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import containerVariants from "../components/utils";
 
 const experiences = [
@@ -46,47 +46,87 @@ const experiences = [
     },
 ];
 
-const Experience = () => {
+const listVariants = { visible: { transition: { staggerChildren: 0.15 } } };
+const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+};
+
+function Experience() {
     return (
         <motion.section
-            className="p-6 md:p-12 text-blue-900 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-lg text-center max-w-4xl mx-auto overflow-y-auto h-screen flex flex-col"
+            className="h-[100dvh] md:h-auto overflow-y-auto
+                 p-6 md:p-12 text-blue-900
+                 bg-gradient-to-r from-blue-50 to-white
+                 rounded-xl shadow-lg max-w-4xl mx-auto flex flex-col"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
         >
-            <div className="flex-grow overflow-y-auto px-4 md:px-8">
+
+            <div className="flex-grow px-4 md:px-8">
                 <h2 className="text-4xl font-semibold text-blue-600 text-center">
                     Experience
                 </h2>
-                <div className="mt-8 space-y-6">
-                    {experiences.map((job, index) => (
-                        <div
-                            key={index}
-                            className="flex flex-col bg-white p-6 rounded-lg shadow-md"
-                        >
-                            <div className="flex-1 text-left">
-                                <h3 className="text-xl md:text-2xl font-bold text-blue-600">
-                                    {job.company}
-                                </h3>
-                                <p className="text-blue-700 mt-2 font-semibold">{job.role}</p>
-                                <p className="mt-2 text-blue-700">{job.description}</p>
+
+                <motion.ul
+                    className="mt-10 relative border-l-4 border-blue-200 pl-6 space-y-10"
+                    initial="hidden"
+                    animate="visible"
+                    variants={listVariants}
+                >
+                    {experiences.map((job, idx) => (
+                        <motion.li key={job.company + idx} variants={itemVariants}>
+                            {/* dot */}
+                            <span className="absolute -left-3 top-2 w-5 h-5 rounded-full bg-blue-500"></span>
+
+                            {/* card */}
+                            <div
+                                className="bg-white/70 backdrop-blur px-6 py-6 rounded-lg
+                           shadow-md space-y-4"
+                            >
+                                <div>
+                                    <h3 className="text-xl md:text-2xl font-bold text-blue-700">
+                                        {job.company}
+                                    </h3>
+                                    <p className="text-blue-700 font-semibold mt-1">
+                                        {job.role}
+                                    </p>
+                                    <p className="text-blue-800 mt-2 leading-relaxed">
+                                        {job.description}
+                                    </p>
+
+                                    {job.secondrole && (
+                                        <>
+                                            <p className="text-blue-700 font-semibold mt-4">
+                                                {job.secondrole}
+                                            </p>
+                                            <p className="text-blue-800 mt-1 leading-relaxed">
+                                                {job.seconddescription}
+                                            </p>
+                                        </>
+                                    )}
+                                </div>
+
+                                <div className="flex flex-wrap justify-start gap-4">
+                                    {job.images.map((img) => (
+                                        <img
+                                            key={img}
+                                            src={`${import.meta.env.BASE_URL}${img}`}
+                                            alt={img.split(".")[0]}
+                                            className="w-14 sm:w-16 md:w-20 h-auto object-contain
+                                 rounded-md shadow"
+                                            loading="lazy"
+                                        />
+                                    ))}
+                                </div>
                             </div>
-                            <div className="flex flex-wrap justify-center gap-4 mt-6">
-                                {job.images.map((img, i) => (
-                                    <img
-                                        key={i}
-                                        src={`${import.meta.env.BASE_URL}${img}`}
-                                        alt={img.split(".")[0]}
-                                        className="w-20 sm:w-24 md:w-32 lg:w-40 h-auto object-contain rounded-lg shadow-md"
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                        </motion.li>
                     ))}
-                </div>
+                </motion.ul>
             </div>
         </motion.section>
     );
-};
+}
 
 export default Experience;
