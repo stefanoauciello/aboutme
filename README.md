@@ -3,6 +3,8 @@
 Questo è il mio sito web personale, sviluppato con **React.js** e **Tailwind CSS**, con animazioni di **Framer Motion**.
 Il sito presenta la mia esperienza, le certificazioni e i contatti.
 
+Link: https://stefanoauciello.github.io/aboutme
+
 ## 🎨 **Tecnologie Utilizzate**
 
 - ⚛️ **React.js** – Framework per la UI
