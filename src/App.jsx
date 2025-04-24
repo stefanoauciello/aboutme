@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import {HashRouter as Router, Link, NavLink, Route, Routes, useLocation,} from "react-router-dom";
 import {AnimatePresence, motion} from "framer-motion";
 import {FaBars, FaTimes} from "react-icons/fa";
+import {createPortal} from "react-dom";
 
 import containerVariants from "./components/utils";
 
@@ -17,13 +18,13 @@ import DataPlatform from "./pages/data-platform";
 import DatabaseVersioning from "./pages/database-versioning";
 
 const navLinks = [
-    {to: "/", label: "Home"},       // NEW
+    {to: "/", label: "Home"},
     {to: "/about", label: "About"},
     {to: "/experience", label: "Experience"},
     {to: "/certification", label: "Certification"},
     {to: "/skill", label: "Skills"},
     {to: "/contact", label: "Contact"},
-    {to: "/devcorner", label: "Dev Corner"},
+    {to: "/devcorner", label: "Dev Corner"},
 ];
 
 function Navbar() {
@@ -31,90 +32,99 @@ function Navbar() {
     const location = useLocation();
 
     useEffect(() => setOpen(false), [location.pathname]);
+
     useEffect(() => {
+        document.documentElement.classList.toggle("overflow-hidden", open);
         document.body.classList.toggle("overflow-hidden", open);
     }, [open]);
 
+    const drawer = (
+        <AnimatePresence>
+            {open && (
+                <>
+                    <motion.div
+                        key="backdrop"
+                        className="fixed inset-0 z-[120] bg-black/40 backdrop-blur-sm"
+                        initial={{opacity: 0}}
+                        animate={{opacity: 1}}
+                        exit={{opacity: 0}}
+                    />
+
+                    <motion.nav
+                        key="drawer"
+                        className="fixed inset-y-0 left-0 z-[130] w-[80vw] sm:w-64 bg-gradient-to-b from-blue-100 to-white shadow-xl p-8 overflow-y-auto"
+                        initial={{x: "-100%"}}
+                        animate={{x: 0}}
+                        exit={{x: "-100%"}}
+                        transition={{type: "tween", duration: 0.3}}
+                    >
+                        <ul className="space-y-6">
+                            {navLinks.map((l) => (
+                                <li key={l.to}>
+                                    <NavLink
+                                        to={l.to}
+                                        end={l.to === "/"}
+                                        className={({isActive}) =>
+                                            `block rounded-lg px-4 py-2 font-semibold ${
+                                                isActive
+                                                    ? "bg-blue-200 text-blue-900"
+                                                    : "text-blue-700 hover:bg-blue-100"
+                                            }`
+                                        }
+                                    >
+                                        {l.label}
+                                    </NavLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </motion.nav>
+                </>
+            )}
+        </AnimatePresence>
+    );
+
     return (
-        <header className="fixed top-0 left-0 w-full z-50 box-border">
-            <div className="mx-auto max-w-5xl flex items-center justify-between
-                      px-4 py-3 md:px-6">
-                <Link to="/" className="text-xl font-bold text-blue-700">SA</Link>
+        <>
+            <header className="fixed top-0 left-0 w-full z-[100] box-border backdrop-blur-sm bg-white/70">
+                <div className="mx-auto max-w-5xl flex items-center justify-between px-4 py-3 md:px-6">
+                    <Link to="/" className="text-xl font-bold text-blue-700">
+                        SA
+                    </Link>
 
-                <button
-                    aria-label="Toggle navigation"
-                    onClick={() => setOpen(!open)}
-                    className="md:hidden text-blue-700 text-2xl"
-                >
-                    {open ? <FaTimes/> : <FaBars/>}
-                </button>
-                <nav className="hidden md:block">
-                    <ul className="flex space-x-4 lg:space-x-6">
-                        {navLinks.map(l => (
-                            <li key={l.to}>
-                                <NavLink
-                                    to={l.to}
-                                    end={l.to === "/"}
-                                    className={({isActive}) =>
-                                        `px-3 py-2 rounded-lg font-semibold transition whitespace-nowrap ${
-                                            isActive
-                                                ? "bg-blue-200 text-blue-900"
-                                                : "text-blue-700 hover:bg-blue-100"
-                                        }`
-                                    }
-                                >
-                                    {l.label}
-                                </NavLink>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-            </div>
+                    <button
+                        aria-label="Toggle navigation"
+                        onClick={() => setOpen((prev) => !prev)}
+                        className="md:hidden text-blue-700 text-2xl"
+                    >
+                        {open ? <FaTimes/> : <FaBars/>}
+                    </button>
 
-            <AnimatePresence>
-                {open && (
-                    <>
-                        <motion.div
-                            key="backdrop"
-                            className="fixed inset-0 bg-black backdrop-blur-sm"
-                            initial={{opacity: 0}}
-                            animate={{opacity: 0.4}}
-                            exit={{opacity: 0}}
-                        />
-                        <motion.nav
-                            key="drawer"
-                            className="fixed inset-y-0 left-0 w-[80vw] sm:w-64
-                         bg-gradient-to-b from-blue-100 to-white
-                         shadow-xl p-8 overflow-y-auto"
-                            initial={{x: "-100%"}}
-                            animate={{x: 0}}
-                            exit={{x: "-100%"}}
-                            transition={{type: "tween", duration: 0.3}}
-                        >
-                            <ul className="space-y-6">
-                                {navLinks.map(l => (
-                                    <li key={l.to}>
-                                        <NavLink
-                                            to={l.to}
-                                            end={l.to === "/"}
-                                            className={({isActive}) =>
-                                                `block rounded-lg px-4 py-2 font-semibold ${
-                                                    isActive
-                                                        ? "bg-blue-200 text-blue-900"
-                                                        : "text-blue-700 hover:bg-blue-100"
-                                                }`
-                                            }
-                                        >
-                                            {l.label}
-                                        </NavLink>
-                                    </li>
-                                ))}
-                            </ul>
-                        </motion.nav>
-                    </>
-                )}
-            </AnimatePresence>
-        </header>
+                    <nav className="hidden md:block">
+                        <ul className="flex space-x-4 lg:space-x-6">
+                            {navLinks.map((l) => (
+                                <li key={l.to}>
+                                    <NavLink
+                                        to={l.to}
+                                        end={l.to === "/"}
+                                        className={({isActive}) =>
+                                            `px-3 py-2 rounded-lg font-semibold transition whitespace-nowrap ${
+                                                isActive
+                                                    ? "bg-blue-200 text-blue-900"
+                                                    : "text-blue-700 hover:bg-blue-100"
+                                            }`
+                                        }
+                                    >
+                                        {l.label}
+                                    </NavLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            {createPortal(drawer, document.body)}
+        </>
     );
 }
 
@@ -128,10 +138,12 @@ function Home() {
             animate="visible"
             className="w-full"
         >
-
             <div className="sm:hidden w-full min-h-[100dvh] flex flex-col">
-                <img src={photo} alt="Stefano Auciello"
-                     className="w-full h-2/3 object-cover"/>
+                <img
+                    src={photo}
+                    alt="Stefano Auciello"
+                    className="w-full h-2/3 object-cover"
+                />
                 <div className="flex-1 flex flex-col justify-center items-center bg-blue-50">
                     <h1 className="text-4xl font-extrabold text-blue-600">
                         Stefano Auciello
@@ -139,19 +151,13 @@ function Home() {
                     <p className="text-lg text-blue-600">Senior Software Engineer</p>
                 </div>
             </div>
-
             <div className="hidden sm:block">
                 <div
-                    className="mx-auto sm:max-w-2xl lg:max-w-4xl
-                     bg-gradient-to-r from-blue-50 via-white to-blue-50
-                     shadow-xl rounded-2xl px-8 py-10 lg:p-12
-                     text-blue-900 text-center space-y-6"
-                >
+                    className="mx-auto sm:max-w-2xl lg:max-w-4xl bg-gradient-to-r from-blue-50 via-white to-blue-50 shadow-xl rounded-2xl px-8 py-10 lg:p-12 text-blue-900 text-center space-y-6">
                     <img
                         src={photo}
                         alt="Stefano Auciello"
-                        className="w-40 lg:w-60 h-auto border-4 border-blue-300
-                       shadow-lg rounded-lg mx-auto"
+                        className="w-40 lg:w-60 h-auto border-4 border-blue-300 shadow-lg rounded-lg mx-auto"
                     />
                     <div className="space-y-2">
                         <h1 className="text-5xl lg:text-6xl font-extrabold text-blue-600">
@@ -171,7 +177,6 @@ function AnimatedRoutes() {
         <AnimatePresence mode="wait">
             <Routes location={location} key={location.pathname}>
                 <Route path="/" element={<Home/>}/>
-
                 <Route path="/about" element={<About/>}/>
                 <Route path="/experience" element={<Experience/>}/>
                 <Route path="/certification" element={<Certification/>}/>
