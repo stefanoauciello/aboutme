@@ -62,7 +62,7 @@ const DatabaseVersioning = () => {
 
                 <div className="my-6 flex justify-center">
                     <img
-                        src={`${import.meta.env.BASE_URL}liquid_base.png`}
+                        src={`${import.meta.env.BASE_URL}liqui_base.png`}
                         alt="Liquibase Workflow Diagram"
                         className="w-full max-w-xs sm:max-w-sm md:max-w-md border-4 border-blue-300 shadow-lg rounded-lg"
                     />

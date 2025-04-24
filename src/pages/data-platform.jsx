@@ -54,6 +54,14 @@ const DataPlatform = () => {
                     Data Platform
                 </h2>
 
+                <div className="my-6 flex justify-center">
+                    <img
+                        src={`${import.meta.env.BASE_URL}data-platform.png`}
+                        alt="Liquibase Workflow Diagram"
+                        className="w-full max-w-xs sm:max-w-sm md:max-w-md border-4 border-blue-300 shadow-lg rounded-lg"
+                    />
+                </div>
+
                 <p className="mt-6 text-base sm:text-lg">
                     A Data Platform is a unified infrastructure that allows organizations
                     to ingest, store, process, govern, and analyze data efficiently. It
