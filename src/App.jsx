@@ -16,6 +16,7 @@ import CDC from "./pages/cdc";
 import EventDrivenArchitecture from "./pages/event-driven-architecture";
 import DataPlatform from "./pages/data-platform";
 import DatabaseVersioning from "./pages/database-versioning";
+import Auth from "./pages/auth";
 
 const navLinks = [
     {to: "/", label: "Home"},
@@ -187,6 +188,7 @@ function AnimatedRoutes() {
                 <Route path="/devcorner/event-driven-architecture" element={<EventDrivenArchitecture/>}/>
                 <Route path="/devcorner/data-platform" element={<DataPlatform/>}/>
                 <Route path="/devcorner/database-versioning" element={<DatabaseVersioning/>}/>
+                <Route path="/devcorner/auth" element={<Auth/>}/>
             </Routes>
         </AnimatePresence>
     );
