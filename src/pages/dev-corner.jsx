@@ -52,7 +52,7 @@ const cardVariants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
 };
 
-function Devcorner() {
+function DevCorner() {
     return (
         <motion.section
             className="h-[100dvh] md:h-auto overflow-y-auto p-6 md:p-12 text-blue-900 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-lg max-w-4xl mx-auto flex flex-col"
@@ -96,4 +96,4 @@ function Devcorner() {
     );
 }
 
-export default Devcorner;
+export default DevCorner;

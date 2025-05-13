@@ -3,6 +3,13 @@ import {useNavigate} from "react-router-dom";
 import {FaArrowLeft} from "react-icons/fa";
 import PropTypes from "prop-types";
 
+/**
+ * A reusable back button component for navigation
+ * @param {Object} props - Component props
+ * @param {string} props.label - Button label text
+ * @param {string} props.fallbackTo - Fallback route if history is empty
+ * @param {string} props.className - Additional CSS classes
+ */
 function BackButton({label = "Back", fallbackTo = "/", className = ""}) {
     const navigate = useNavigate();
 
