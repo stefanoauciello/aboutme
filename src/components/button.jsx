@@ -1,4 +1,4 @@
-// src/components/back-button.jsx
+// src/components/button.jsx
 import {useNavigate} from "react-router-dom";
 import {FaArrowLeft} from "react-icons/fa";
 import PropTypes from "prop-types";
