@@ -57,7 +57,7 @@ const DataPlatform = () => {
                 <div className="my-6 flex justify-center">
                     <img
                         src={`${import.meta.env.BASE_URL}data-platform.png`}
-                        alt="Liquibase Workflow Diagram"
+                        alt="Data Platform Diagram"
                         className="w-full max-w-xs sm:max-w-sm md:max-w-md border-4 border-blue-300 shadow-lg rounded-lg"
                     />
                 </div>
