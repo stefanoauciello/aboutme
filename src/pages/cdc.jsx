@@ -115,21 +115,6 @@ const CDC = () => {
                     </ul>
                 </div>
 
-                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
-                    <h3 className="text-2xl font-semibold text-blue-600">
-                        Real-World Use Case
-                    </h3>
-                    <p>
-                        In my professional experience, I've implemented log-based CDC using{" "}
-                        <strong>Oracle GoldenGate</strong> to extract changes from
-                        transactional systems. These changes were streamed to{" "}
-                        <strong>Apache Kafka</strong> topics, enabling downstream consumers
-                        such as analytics services and microservices on{" "}
-                        <strong>Kubernetes</strong> to react in near real-time. This
-                        significantly reduced latency and modernized our ETL pipeline.
-                    </p>
-                </div>
-
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">
                         Recommended Technologies
