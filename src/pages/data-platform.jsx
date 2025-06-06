@@ -1,28 +1,41 @@
 import {motion} from "framer-motion";
+import {
+    FaCloudUploadAlt,
+    FaDatabase,
+    FaCogs,
+    FaShieldAlt,
+    FaChartLine,
+    FaCheckCircle,
+} from "react-icons/fa";
 import containerVariants from "../components/utils";
 
 const keyComponents = [
     {
+        icon: FaCloudUploadAlt,
         title: "Data Ingestion",
         description:
             "Efficiently collect data from various sources such as APIs, databases, streaming services, and files.",
     },
     {
+        icon: FaDatabase,
         title: "Data Storage",
         description:
             "Securely store structured, semi-structured, and unstructured data using scalable storage solutions.",
     },
     {
+        icon: FaCogs,
         title: "Data Processing",
         description:
             "Transform, clean, and enrich data through batch and real-time processing pipelines.",
     },
     {
+        icon: FaShieldAlt,
         title: "Data Governance",
         description:
             "Maintain data quality, enforce security policies, and ensure regulatory compliance.",
     },
     {
+        icon: FaChartLine,
         title: "Data Access & Analytics",
         description:
             "Enable self-service analytics, dashboards, and insights for business users and data scientists.",
@@ -73,25 +86,37 @@ const DataPlatform = () => {
                     <h3 className="text-2xl font-semibold text-blue-600">
                         Key Components
                     </h3>
-                    <ul className="list-disc list-inside space-y-2">
-                        {keyComponents.map((component, index) => (
-                            <li key={index}>
-                                <strong>{component.title}:</strong> {component.description}
-                            </li>
-                        ))}
+                    <ul className="grid gap-4 sm:grid-cols-2">
+                        {keyComponents.map((component) => {
+                            const Icon = component.icon;
+                            return (
+                                <li
+                                    key={component.title}
+                                    className="flex items-start bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm"
+                                >
+                                    <Icon className="text-xl text-primary-600 mr-3 mt-1" />
+                                    <span>
+                                        <strong>{component.title}:</strong> {component.description}
+                                    </span>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
 
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Benefits</h3>
-                    <ul className="list-disc list-inside space-y-2">
-                        {benefits.map((benefit, index) => (
-                            <li key={index}>{benefit}</li>
+                    <ul className="space-y-2">
+                        {benefits.map((benefit) => (
+                            <li key={benefit} className="flex items-start">
+                                <FaCheckCircle className="text-green-600 mr-2 mt-1" />
+                                <span>{benefit}</span>
+                            </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mt-8 space-y-4">
+                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
                     <h3 className="text-2xl font-semibold text-blue-600">
                         Real-World Use Case
                     </h3>
