@@ -1,4 +1,9 @@
 import { motion } from "framer-motion";
+import {
+    FaUser,
+    FaServer,
+    FaCheckCircle,
+} from "react-icons/fa";
 import containerVariants from "../components/utils";
 
 const HERO_IMAGE = `${import.meta.env.BASE_URL}auth.png`;
@@ -63,8 +68,12 @@ const Auth = () => {
                         <thead>
                         <tr className="bg-blue-100">
                             <th className="p-2 border border-blue-200"></th>
-                            <th className="p-2 border border-blue-200">User Auth (OIDC)</th>
-                            <th className="p-2 border border-blue-200">M2M Auth</th>
+                            <th className="p-2 border border-blue-200">
+                                <FaUser className="inline-block mr-1" /> User Auth (OIDC)
+                            </th>
+                            <th className="p-2 border border-blue-200">
+                                <FaServer className="inline-block mr-1" /> M2M Auth
+                            </th>
                         </tr>
                         </thead>
                         <tbody>
@@ -91,24 +100,27 @@ const Auth = () => {
                     </ol>
                 </div>
 
-                <div className="mt-8 space-y-4">
+                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
                     <h3 className="text-2xl font-semibold text-blue-600">M2M flow: Token Exchange</h3>
                     <p><strong>Scenario:</strong> Service A receives a user JWT but needs a token limited to <kbd>service‑B</kbd>.</p>
                     <pre className="bg-blue-50 p-4 rounded-md overflow-x-auto text-sm whitespace-pre-wrap"><code>{tokenExchange}</code></pre>
                     <p>Authorization Server returns a new JWT with:</p>
-                    <ul className="list-disc list-inside space-y-1">
-                        <li><code>sub = user‑123</code></li>
-                        <li><code>act = service‑a</code> (actor claim)</li>
-                        <li><code>aud = service‑b</code></li>
-                        <li><code>scope = payments.read</code></li>
+                    <ul className="space-y-1">
+                        <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>sub = user‑123</code></span></li>
+                        <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>act = service‑a</code> (actor claim)</span></li>
+                        <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>aud = service‑b</code></span></li>
+                        <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>scope = payments.read</code></span></li>
                     </ul>
                 </div>
 
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Best practices</h3>
-                    <ul className="list-disc list-inside space-y-2">
+                    <ul className="space-y-2">
                         {bestPractices.map((item) => (
-                            <li key={item}>{item}</li>
+                            <li key={item} className="flex items-start">
+                                <FaCheckCircle className="text-green-600 mr-2 mt-1" />
+                                <span>{item}</span>
+                            </li>
                         ))}
                     </ul>
                 </div>
