@@ -1,38 +1,54 @@
 import {motion} from "framer-motion";
+import {
+    FaBolt,
+    FaBroadcastTower,
+    FaBoxOpen,
+    FaFileAlt,
+    FaProjectDiagram,
+    FaDatabase,
+    FaCheckCircle,
+} from "react-icons/fa";
 import containerVariants from "../components/utils";
 
 const keyConcepts = [
     {
+        icon: FaBolt,
         title: "Event Producers",
         description:
             "Services that detect a change or user action and publish an event (e.g., via Amazon SNS).",
     },
     {
+        icon: FaBroadcastTower,
         title: "Event Brokers",
         description:
             "Systems like Amazon SNS (publish-subscribe) or Amazon SQS (message queues) that route and deliver events.",
     },
     {
+        icon: FaBoxOpen,
         title: "Event Consumers",
         description:
             "Services that subscribe to queues or notifications and perform actions in response to events.",
     },
     {
+        icon: FaFileAlt,
         title: "Event",
         description:
             "An immutable message that describes something that happened in the system.",
     },
     {
+        icon: FaProjectDiagram,
         title: "Event Channel",
         description:
             "A medium like an SNS topic or an SQS queue used to transmit events.",
     },
     {
+        icon: FaDatabase,
         title: "Event Store",
         description:
             "A storage system for persisting events, useful for replay or audit purposes.",
     },
     {
+        icon: FaFileAlt,
         title: "Event Schema",
         description:
             "Defines the structure and required fields of an event message, typically in JSON.",
@@ -80,25 +96,37 @@ const EventDrivenArchitecture = () => {
 
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Key Concepts</h3>
-                    <ul className="list-disc list-inside space-y-2">
-                        {keyConcepts.map((concept, index) => (
-                            <li key={index}>
-                                <strong>{concept.title}:</strong> {concept.description}
-                            </li>
-                        ))}
+                    <ul className="grid gap-4 sm:grid-cols-2">
+                        {keyConcepts.map((concept) => {
+                            const Icon = concept.icon;
+                            return (
+                                <li
+                                    key={concept.title}
+                                    className="flex items-start bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm"
+                                >
+                                    <Icon className="text-xl text-primary-600 mr-3 mt-1" />
+                                    <span>
+                                        <strong>{concept.title}:</strong> {concept.description}
+                                    </span>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
 
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Benefits</h3>
-                    <ul className="list-disc list-inside space-y-2">
-                        {benefits.map((benefit, index) => (
-                            <li key={index}>{benefit}</li>
+                    <ul className="space-y-2">
+                        {benefits.map((benefit) => (
+                            <li key={benefit} className="flex items-start">
+                                <FaCheckCircle className="text-green-600 mr-2 mt-1" />
+                                <span>{benefit}</span>
+                            </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mt-8 space-y-4">
+                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
                     <h3 className="text-2xl font-semibold text-blue-600">
                         Practical Example: User Registration Flow
                     </h3>
