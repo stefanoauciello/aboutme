@@ -1,5 +1,60 @@
 import {motion} from "framer-motion";
+import {
+    FaFileAlt,
+    FaBroadcastTower,
+    FaProjectDiagram,
+    FaCheckCircle,
+    FaDatabase,
+} from "react-icons/fa";
 import containerVariants from "../components/utils";
+
+const keyConcepts = [
+    {
+        icon: FaFileAlt,
+        title: "Transaction Logs",
+        description:
+            "Monitor low-level operations directly from database logs.",
+    },
+    {
+        icon: FaBroadcastTower,
+        title: "Event Streaming",
+        description:
+            "Stream detected changes using tools like Debezium or GoldenGate.",
+    },
+    {
+        icon: FaProjectDiagram,
+        title: "Downstream Processing",
+        description:
+            "Real-time reactions to changes for analytics, replication or alerting.",
+    },
+];
+
+const benefits = [
+    "Real-time data synchronization across multiple systems.",
+    "Minimized impact on source databases compared to polling.",
+    "Improved responsiveness and scalability of data pipelines.",
+];
+
+const technologies = [
+    {
+        label: "Oracle GoldenGate",
+        description: "Enterprise-grade, log-based CDC solution.",
+    },
+    {label: "Debezium", description: "Open-source, Kafka-native CDC engine."},
+    {
+        label: "Apache Kafka",
+        description: "Distributed event streaming platform.",
+    },
+    {
+        label: "Kafka Connect",
+        description: "Integrates CDC sources with Kafka topics.",
+    },
+    {label: "AWS DMS", description: "Managed service supporting CDC in AWS environments."},
+    {
+        label: "Apache Spark Structured Streaming",
+        description: "Real-time analytics and transformation of CDC streams.",
+    },
+];
 
 const CDC = () => {
     return (
@@ -30,32 +85,37 @@ const CDC = () => {
 
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Key Concepts</h3>
-                    <ul className="list-disc list-inside space-y-2">
-                        <li>
-                            <strong>Transaction Logs:</strong> Monitor low-level operations
-                            directly from database logs.
-                        </li>
-                        <li>
-                            <strong>Event Streaming:</strong> Stream detected changes using
-                            tools like Debezium or GoldenGate.
-                        </li>
-                        <li>
-                            <strong>Downstream Processing:</strong> Real-time reactions to
-                            changes for analytics, replication or alerting.
-                        </li>
+                    <ul className="grid gap-4 sm:grid-cols-2">
+                        {keyConcepts.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                                <li
+                                    key={item.title}
+                                    className="flex items-start bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm"
+                                >
+                                    <Icon className="text-xl text-primary-600 mr-3 mt-1" />
+                                    <span>
+                                        <strong>{item.title}:</strong> {item.description}
+                                    </span>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
 
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Benefits</h3>
-                    <ul className="list-disc list-inside space-y-2">
-                        <li>Real-time data synchronization across multiple systems.</li>
-                        <li>Minimized impact on source databases compared to polling.</li>
-                        <li>Improved responsiveness and scalability of data pipelines.</li>
+                    <ul className="space-y-2">
+                        {benefits.map((benefit) => (
+                            <li key={benefit} className="flex items-start">
+                                <FaCheckCircle className="text-green-600 mr-2 mt-1" />
+                                <span>{benefit}</span>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
-                <div className="mt-8 space-y-4">
+                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
                     <h3 className="text-2xl font-semibold text-blue-600">
                         Real-World Use Case
                     </h3>
@@ -74,30 +134,15 @@ const CDC = () => {
                     <h3 className="text-2xl font-semibold text-blue-600">
                         Recommended Technologies
                     </h3>
-                    <ul className="list-disc list-inside space-y-2">
-                        <li>
-                            <strong>Oracle GoldenGate</strong>: Enterprise-grade, log-based
-                            CDC solution.
-                        </li>
-                        <li>
-                            <strong>Debezium</strong>: Open-source, Kafka-native CDC engine.
-                        </li>
-                        <li>
-                            <strong>Apache Kafka</strong>: Distributed event streaming
-                            platform.
-                        </li>
-                        <li>
-                            <strong>Kafka Connect</strong>: Integrates CDC sources with Kafka
-                            topics.
-                        </li>
-                        <li>
-                            <strong>AWS DMS</strong>: Managed service supporting CDC in AWS
-                            environments.
-                        </li>
-                        <li>
-                            <strong>Apache Spark Structured Streaming</strong>: Real-time
-                            analytics and transformation of CDC streams.
-                        </li>
+                    <ul className="grid gap-2 sm:grid-cols-2">
+                        {technologies.map((tech) => (
+                            <li key={tech.label} className="flex items-start">
+                                <FaDatabase className="text-primary-600 mr-2 mt-1" />
+                                <span>
+                                    <strong>{tech.label}</strong>: {tech.description}
+                                </span>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>
