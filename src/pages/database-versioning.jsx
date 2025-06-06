@@ -1,33 +1,48 @@
 import {motion} from "framer-motion";
+import {
+    FaFileAlt,
+    FaCodeBranch,
+    FaTable,
+    FaUndo,
+    FaSearch,
+    FaCogs,
+    FaCheckCircle,
+} from "react-icons/fa";
 import containerVariants from "../components/utils";
 
 const keyConcepts = [
     {
+        icon: FaFileAlt,
         title: "Changelog",
         description:
             "A file that defines a sequence of database changes (changesets) to be applied in order.",
     },
     {
+        icon: FaCodeBranch,
         title: "Changeset",
         description:
             "A single unit of change, such as creating a table or adding a column, identified by an ID and author.",
     },
     {
+        icon: FaTable,
         title: "DATABASECHANGELOG Table",
         description:
             "A table maintained by Liquibase to track which changesets have been applied to the database.",
     },
     {
+        icon: FaUndo,
         title: "Rollback",
         description:
             "The ability to undo changes by reverting to a previous state defined in the changelog.",
     },
     {
+        icon: FaSearch,
         title: "Diff & Drift Detection",
         description:
             "Liquibase can compare database schemas to detect differences and generate changelogs accordingly.",
     },
     {
+        icon: FaCogs,
         title: "CI/CD Integration",
         description:
             "Liquibase can be integrated into CI/CD pipelines to automate database migrations alongside application deployments.",
@@ -77,25 +92,37 @@ const DatabaseVersioning = () => {
 
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Key Concepts</h3>
-                    <ul className="list-disc list-inside space-y-2">
-                        {keyConcepts.map((item, index) => (
-                            <li key={index}>
-                                <strong>{item.title}:</strong> {item.description}
-                            </li>
-                        ))}
+                    <ul className="grid gap-4 sm:grid-cols-2">
+                        {keyConcepts.map((item) => {
+                            const Icon = item.icon;
+                            return (
+                                <li
+                                    key={item.title}
+                                    className="flex items-start bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm"
+                                >
+                                    <Icon className="text-xl text-primary-600 mr-3 mt-1" />
+                                    <span>
+                                        <strong>{item.title}:</strong> {item.description}
+                                    </span>
+                                </li>
+                            );
+                        })}
                     </ul>
                 </div>
 
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Benefits</h3>
-                    <ul className="list-disc list-inside space-y-2">
-                        {benefits.map((benefit, index) => (
-                            <li key={index}>{benefit}</li>
+                    <ul className="space-y-2">
+                        {benefits.map((benefit) => (
+                            <li key={benefit} className="flex items-start">
+                                <FaCheckCircle className="text-green-600 mr-2 mt-1" />
+                                <span>{benefit}</span>
+                            </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mt-8 space-y-4">
+                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
                     <h3 className="text-2xl font-semibold text-blue-600">
                         Practical Example: Adding a New Table
                     </h3>
