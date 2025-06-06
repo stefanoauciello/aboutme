@@ -21,7 +21,7 @@ const experiences = [
     {
         company: "Dechit",
         role: "Software Developer, consultant at Sky (March 2019 - May 2021)",
-        description: `Led the complete re-architecture of Sky Sport’s system on AWS to enable real-time responsiveness to events through an event-driven architecture. Leveraged AWS components such as AppSync, Lambda, and other best-practice tools to design a highly scalable, decoupled, serverless, and reliable microservices architecture. My role involved extensive work with Node.js, TypeScript, Java, Jenkins, and Amazon Aurora MySQL, adhering to Agile methodologies and emphasizing Test-Driven Development (TDD) to ensure robust code quality. I also managed code versioning and collaborative development through Git and a pull request workflow.`,
+        description: `At Sky, I contributed to modernizing the backend systems powering Sky Sport, focusing on scalability, real-time responsiveness, and reliability through an event-driven, serverless architecture on AWS. I worked with technologies such as AWS Lambda, AppSync, Node.js, TypeScript, Java, and Amazon Aurora, while embracing Agile practices and Test-Driven Development (TDD) to ensure clean, maintainable code. My responsibilities included CI/CD with Jenkins and collaborative development via Git and pull request workflows.`,
         secondrole: "",
         seconddescription: "",
         images: ["java.png", "node.png", "aws.png", "lambda.png"],
