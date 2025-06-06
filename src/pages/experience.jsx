@@ -5,7 +5,7 @@ const experiences = [
     {
         company: "Vodafone",
         role: "Senior Software Engineer (May 2022 - Present)",
-        description: `Currently working at DXL as a Java/Node.js Backend Developer and Data Engineer, focusing on consumer data. I’ve led the migration of our Java Spring Boot microservices stack from OpenShift to AWS EKS, including data migration from MongoDB to MongoDB Atlas and optimizing Kafka systems. I prioritize performance, scalability, and capacity planning to support millions of active customers. Recently, I reengineered the real-time Change Data Capture (CDC) architecture, using Node.js Lambda and Java microservices to ensure data updates with minimal latency.`,
+        description: `Currently working at DXL as a Backend Developer and Data Engineer, focusing on consumer data systems. I work with Java, Node.js, Spring Boot, AWS, MongoDB Atlas, and Apache Kafka to build scalable and high-performance microservices. Recently, I improved our real-time Change Data Capture (CDC) architecture using AWS Lambda and event-driven microservices, enhancing data consistency and minimizing latency across systems that serve millions of users.`,
         secondrole: "",
         seconddescription: "",
         images: ["java.png", "kafka.png", "node.png", "aws.png", "mongo.png"],
