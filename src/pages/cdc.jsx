@@ -85,6 +85,14 @@ const CDC = () => {
                     those changes to other systems for immediate action or analysis.
                 </p>
 
+                <p className="mt-4 text-base sm:text-lg">
+                    Instead of periodically polling tables for modifications, CDC reads
+                    the database transaction log to capture inserts, updates and deletes
+                    as they happen. These events are propagated through a streaming
+                    platform so downstream services can react asynchronously without
+                    overloading the primary database.
+                </p>
+
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Key Concepts</h3>
                     <ul className="grid gap-4 sm:grid-cols-2">
@@ -131,6 +139,20 @@ const CDC = () => {
                             </li>
                         ))}
                     </ul>
+                </div>
+
+                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
+                    <h3 className="text-2xl font-semibold text-blue-600">
+                        Practical Example: E-commerce Orders
+                    </h3>
+                    <p>
+                        An online store streams order changes from its transactional
+                        database using Debezium and Kafka. Each new or updated order
+                        event is consumed by separate microservices to update the
+                        warehouse system, refresh search indexes and feed analytics
+                        dashboards in near real time without impacting the primary
+                        database.
+                    </p>
                 </div>
             </div>
         </motion.section>
