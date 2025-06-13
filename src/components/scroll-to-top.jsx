@@ -6,6 +6,9 @@ function ScrollToTop() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
+        document.querySelectorAll(".overflow-y-auto").forEach((el) => {
+            el.scrollTop = 0;
+        });
     }, [pathname]);
 
     return null;
