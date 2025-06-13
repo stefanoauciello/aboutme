@@ -22,7 +22,9 @@ function BackButton({ label = "Back", fallbackTo = "/", className = "" }) {
     };
 
     return (
-        <div className={`w-full flex justify-start mb-6 ${className}`}>
+        <div
+            className={`sticky top-0 z-20 flex justify-start w-full mb-6 backdrop-blur-sm bg-white/80 ${className}`}
+        >
             <button
                 type="button"
                 aria-label={label}
