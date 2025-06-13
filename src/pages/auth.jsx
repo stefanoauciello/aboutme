@@ -3,6 +3,7 @@ import {
     FaUser,
     FaServer,
     FaCheckCircle,
+    FaKey,
 } from "react-icons/fa";
 import containerVariants from "../components/utils";
 import BackButton from "../components/back-button.jsx";
@@ -25,6 +26,21 @@ const bestPractices = [
     "Short‑lived tokens: 5–15 min for users, 15–60 min for services.",
     "Centralise policy (OPA, Cedar) and log sub, act & jti.",
     "Prefer workload identity (IAM, SPIFFE) over static secrets.",
+];
+
+const tokenTypes = [
+    {
+        label: "ID Token",
+        description: "Proof of authentication containing user profile claims.",
+    },
+    {
+        label: "Access Token",
+        description: "Authorizes API calls and conveys permissions to a service.",
+    },
+    {
+        label: "Refresh Token",
+        description: "Used to obtain new access tokens without reauthenticating.",
+    },
 ];
 
 const tokenExchange = `curl -X POST https://idp.example.com/oauth2/token \\
@@ -62,6 +78,14 @@ const Auth = () => {
                     security</strong>, <strong>least privilege</strong> and <strong>cleaner code </strong>
                     in modern architectures. Below you’ll find a side‑by‑side comparison, flow diagrams and
                     best practices.
+                </p>
+
+                <p className="mt-4 text-base sm:text-lg">
+                    User tokens are issued via the authorization code flow and identify the
+                    person through the <code>sub</code> claim. Machine-to-machine tokens typically
+                    come from client credentials or token exchange and may carry an
+                    <code>act</code> claim for the calling service. Keeping the two paths separate
+                    simplifies auditing and limits the blast radius of credential leaks.
                 </p>
 
                 <div className="mt-8 space-y-4 overflow-x-auto">
@@ -112,6 +136,20 @@ const Auth = () => {
                         <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>act = service‑a</code> (actor claim)</span></li>
                         <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>aud = service‑b</code></span></li>
                         <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>scope = payments.read</code></span></li>
+                    </ul>
+                </div>
+
+                <div className="mt-8 space-y-4">
+                    <h3 className="text-2xl font-semibold text-blue-600">Common Token Types</h3>
+                    <ul className="space-y-2">
+                        {tokenTypes.map((tok) => (
+                            <li key={tok.label} className="flex items-start">
+                                <FaKey className="text-primary-600 mr-2 mt-1" />
+                                <span>
+                                    <strong>{tok.label}</strong>: {tok.description}
+                                </span>
+                            </li>
+                        ))}
                     </ul>
                 </div>
 
