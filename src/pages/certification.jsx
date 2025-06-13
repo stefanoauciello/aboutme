@@ -62,8 +62,7 @@ const itemVariants = {
 function Certification() {
     return (
         <motion.section
-            className="min-h-screen
-                 p-6 md:p-12 text-blue-900
+            className="p-6 md:p-12 text-blue-900
                  bg-gradient-to-r from-blue-50 to-white
                  rounded-xl shadow-lg max-w-4xl mx-auto flex flex-col"
             variants={containerVariants}
