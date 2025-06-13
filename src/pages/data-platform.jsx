@@ -8,6 +8,7 @@ import {
     FaCheckCircle,
 } from "react-icons/fa";
 import containerVariants from "../components/utils";
+import BackButton from "../components/back-button.jsx";
 
 const keyComponents = [
     {
@@ -63,6 +64,7 @@ const DataPlatform = () => {
         >
 
             <div className="flex-grow px-4 md:px-8 text-left text-blue-700">
+                <BackButton fallbackTo="/devcorner" />
                 <h2 className="text-4xl font-semibold text-blue-600 text-center">
                     Data Platform
                 </h2>
