@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
  * @param {string} props.fallbackTo - Fallback route if history is empty
  * @param {string} props.className - Additional CSS classes
  */
-function BackButton({label = "Back", fallbackTo = "/", className = ""}) {
+function BackButton({ label = "Back", fallbackTo = "/", className = "" }) {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -22,19 +22,20 @@ function BackButton({label = "Back", fallbackTo = "/", className = ""}) {
     };
 
     return (
-        <div className={`w-full flex justify-start mb-4 ${className}`}>
+        <div className={`w-full flex justify-start mb-6 ${className}`}>
             <button
                 type="button"
                 aria-label={label}
                 onClick={handleClick}
-                className="inline-flex items-center
-                   px-4 py-2 rounded-md shadow-md
-                   text-blue-600 hover:text-blue-900 hover:bg-blue-100
-                   transition focus:outline-none
-                   focus-visible:ring-2 focus-visible:ring-blue-600"
+                className="group inline-flex items-center gap-2 px-4 py-2 rounded-full
+                       bg-white/80 backdrop-blur text-blue-700 border border-blue-200
+                       shadow-soft hover:bg-white hover:shadow-md transition-all"
             >
-                <FaArrowLeft className="mr-2" aria-hidden="true"/>
-                <span>{label}</span>
+                <FaArrowLeft
+                    className="text-blue-600 group-hover:-translate-x-1 transition-transform"
+                    aria-hidden="true"
+                />
+                <span className="font-medium">{label}</span>
             </button>
         </div>
     );
