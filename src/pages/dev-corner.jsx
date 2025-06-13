@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { FaBolt, FaDatabase, FaServer, FaUserShield } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import containerVariants from "../components/utils";
-import BackButton from "../components/back-button.jsx";
 
 const topics = [
     {
@@ -61,7 +60,6 @@ function DevCorner() {
             initial="hidden"
             animate="visible"
         >
-            <BackButton />
             <div className="relative mb-12">
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg blur-md opacity-20"></div>
                 <div className="relative bg-white/80 backdrop-blur-sm shadow-soft rounded-lg p-8 text-center">
