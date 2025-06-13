@@ -10,6 +10,26 @@ import {
 import containerVariants from "../components/utils";
 import BackButton from "../components/back-button.jsx";
 
+const technologies = [
+    {
+        label: "Apache Kafka",
+        description: "Stream ingestion and distributed event backbone.",
+    },
+    {
+        label: "Apache Airflow",
+        description: "Orchestrates complex data workflows.",
+    },
+    {
+        label: "Delta Lake / Snowflake",
+        description: "Reliable storage layer for analytics with ACID guarantees.",
+    },
+    {label: "dbt", description: "SQL-based transformations inside the warehouse."},
+    {
+        label: "Grafana or Power BI",
+        description: "Dashboards and metrics visualization for stakeholders.",
+    },
+];
+
 const keyComponents = [
     {
         icon: FaCloudUploadAlt,
@@ -48,6 +68,7 @@ const benefits = [
     "Supports both real-time and batch data workflows.",
     "Centralized control over data quality, access, and compliance.",
     "Accelerates decision-making with reliable and accessible data.",
+    "Improves collaboration through a shared, well-documented data catalog.",
 ];
 
 const DataPlatform = () => {
@@ -84,6 +105,15 @@ const DataPlatform = () => {
                     scalable, secure, and real-time access to information.
                 </p>
 
+                <p className="mt-4 text-base sm:text-lg">
+                    Modern platforms combine streaming and batch pipelines to consolidate
+                    data from microservices, IoT devices and third-party systems.
+                    Connectors feed raw events into a lake or warehouse where tools like
+                    Airflow and dbt apply transformations on a schedule. Metadata
+                    cataloging and fine-grained access controls ensure every dataset is
+                    trustworthy and easily discoverable across the organization.
+                </p>
+
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">
                         Key Components
@@ -113,6 +143,22 @@ const DataPlatform = () => {
                             <li key={benefit} className="flex items-start">
                                 <FaCheckCircle className="text-green-600 mr-2 mt-1" />
                                 <span>{benefit}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+
+                <div className="mt-8 space-y-4">
+                    <h3 className="text-2xl font-semibold text-blue-600">
+                        Recommended Technologies
+                    </h3>
+                    <ul className="grid gap-2 sm:grid-cols-2">
+                        {technologies.map((tech) => (
+                            <li key={tech.label} className="flex items-start">
+                                <FaDatabase className="text-primary-600 mr-2 mt-1" />
+                                <span>
+                                    <strong>{tech.label}</strong>: {tech.description}
+                                </span>
                             </li>
                         ))}
                     </ul>
