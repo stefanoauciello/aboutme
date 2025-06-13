@@ -92,6 +92,15 @@ const DatabaseVersioning = () => {
                     environments safely and consistently.
                 </p>
 
+                <p className="mt-4 text-base sm:text-lg">
+                    Each update to the schema is defined as a versioned
+                    <em>changeset</em> stored alongside your application code. Liquibase
+                    reads these changelogs to apply pending updates or roll back
+                    unwanted ones. Integrating Liquibase into your CI pipeline
+                    ensures databases in development, staging and production all
+                    evolve in lockstep, reducing the risk of drift.
+                </p>
+
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Key Concepts</h3>
                     <ul className="grid gap-4 sm:grid-cols-2">
@@ -151,6 +160,18 @@ const DatabaseVersioning = () => {
                         When you run Liquibase, this changeset will be executed and tracked
                         in the <code>DATABASECHANGELOG</code> table.
                     </p>
+                </div>
+
+                <div className="mt-8 space-y-4">
+                    <h3 className="text-2xl font-semibold text-blue-600">
+                        Recommended Workflow
+                    </h3>
+                    <ol className="list-decimal list-inside space-y-2">
+                        <li>Write and commit changesets describing schema updates.</li>
+                        <li>Store changelog files in the same repository as your application code.</li>
+                        <li>Execute Liquibase during each deployment to apply pending changes.</li>
+                        <li>Monitor the <code>DATABASECHANGELOG</code> table to verify successful runs.</li>
+                    </ol>
                 </div>
             </div>
         </motion.section>
