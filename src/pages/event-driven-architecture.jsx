@@ -96,6 +96,14 @@ const EventDrivenArchitecture = () => {
                     scalability and system responsiveness.
                 </p>
 
+                <p className="mt-4 text-base sm:text-lg">
+                    Each event represents a state change and is immutable once published.
+                    Producers send these events to a broker like SNS or Kafka, while
+                    consumers subscribe to relevant channels to react independently.
+                    This loose coupling lets services evolve autonomously and supports
+                    non-blocking workflows across your platform.
+                </p>
+
                 <div className="mt-8 space-y-4">
                     <h3 className="text-2xl font-semibold text-blue-600">Key Concepts</h3>
                     <ul className="grid gap-4 sm:grid-cols-2">
