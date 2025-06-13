@@ -38,7 +38,7 @@ const tokenExchange = `curl -X POST https://idp.example.com/oauth2/token \\
 const Auth = () => {
     return (
         <motion.section
-            className="h-[100dvh] md:h-auto overflow-y-auto p-6 md:p-12 text-blue-900 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-lg text-center max-w-4xl mx-auto flex flex-col"
+            className="min-h-screen p-6 md:p-12 text-blue-900 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-lg text-center max-w-4xl mx-auto flex flex-col"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
