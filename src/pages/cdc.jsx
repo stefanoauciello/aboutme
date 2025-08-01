@@ -155,6 +155,16 @@ const CDC = () => {
                     </p>
                 </div>
             </div>
+            <div className="mt-8 text-center">
+                <a
+                    href="https://github.com/stefanoauciello/e-commerce-cdc"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn-secondary"
+                >
+                    Check My Project on GitHub
+                </a>
+            </div>
         </motion.section>
     );
 };
