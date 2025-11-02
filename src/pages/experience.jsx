@@ -3,12 +3,20 @@ import containerVariants from "../components/utils";
 
 const experiences = [
     {
-        company: "Vodafone",
-        role: "Senior Software Engineer (May 2022 - Present)",
-        description: `Currently working at DXL as a Backend Developer and Data Engineer, focusing on consumer data systems. I work with Java, Node.js, Spring Boot, AWS, MongoDB Atlas, and Apache Kafka to build scalable and high-performance microservices. Recently, I improved our real-time Change Data Capture (CDC) architecture using AWS Lambda and event-driven microservices, enhancing data consistency and minimizing latency across systems that serve millions of users.`,
+        company: "Generali",
+        role: "Senior Software Engineer (October 2025 - Present)",
+        description: ``,
         secondrole: "",
         seconddescription: "",
-        images: ["java.png", "kafka.png", "node.png", "aws.png", "mongo.png"],
+        images: ["java.png", "spring.png", "aws.png", "lambda.png"],
+    },
+    {
+        company: "Vodafone",
+        role: "Senior Software Engineer (May 2022 - October 2025)",
+        description: `I worked at DXL as a Java/Node.js Backend Developer and Data Engineer, focusing on consumer data. I led the migration of our Java Spring Boot microservices stack from OpenShift to AWS EKS, including data migration from MongoDB to MongoDB Atlas and optimization of Kafka systems. I prioritized performance, scalability, and capacity planning to support millions of active customers. I also reengineered the real-time Change Data Capture (CDC) architecture using Node.js Lambda and Java microservices to ensure data updates with minimal latency.`,
+        secondrole: "",
+        seconddescription: "",
+        images: ["java.png", "spring.png", "kafka.png", "node.png", "aws.png", "mongo.png"],
     },
     {
         company: "Bandyer/Kaleyra",
