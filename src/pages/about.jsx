@@ -33,7 +33,6 @@ function About() {
       >
         {[
           `I'm a software engineer who loves delivering end‑to‑end solutions—writing clean code, shipping resilient services and keeping them running in production.`,
-          `At Vodafone I dived deep into Big‑Data and real‑time architectures, which ignited a passion for data platforms and streaming pipelines.`,
           `While working full‑time I'm also finishing my degree and collecting certifications. My goal: be the teammate who bridges business and tech, guiding the team from analysis to seamless delivery.`,
         ].map((text, idx) => (
           <motion.p 
