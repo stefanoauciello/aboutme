@@ -44,6 +44,14 @@ export default function MCP() {
                     Model Context Protocol (MCP)
                 </h2>
 
+                <div className="my-6 flex justify-center">
+                    <img
+                        src={`${import.meta.env.BASE_URL}mcp.png`}
+                        alt="MCP Diagram"
+                        className="w-full max-w-xs sm:max-w-sm md:max-w-md border-4 border-blue-300 shadow-lg rounded-lg"
+                    />
+                </div>
+
                 <p className="mt-6 text-base sm:text-lg">
                     The Model Context Protocol (MCP) is an open protocol that standardizes how
                     AI assistants (clients) discover and use external capabilities provided by
