@@ -40,6 +40,13 @@ const topics = [
         gradient: "from-red-500 to-red-700",
         link: "/devcorner/auth",
     },
+    {
+        title: "Model Context Protocol (MCP)",
+        description: "Practical guide to building a basic MCP server and client: project structure, minimal APIs, and local run instructions.",
+        icon: FaServer,
+        gradient: "from-accent-500 to-accent-700",
+        link: "/devcorner/mcp",
+    },
 ];
 
 const gridVariants = {

@@ -15,6 +15,7 @@ import EventDrivenArchitecture from "../pages/event-driven-architecture";
 import DataPlatform from "../pages/data-platform";
 import DatabaseVersioning from "../pages/database-versioning";
 import Auth from "../pages/auth";
+import MCP from "../pages/mcp";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -33,6 +34,7 @@ function AnimatedRoutes() {
                 <Route path="/devcorner/data-platform" element={<DataPlatform/>}/>
                 <Route path="/devcorner/database-versioning" element={<DatabaseVersioning/>}/>
                 <Route path="/devcorner/auth" element={<Auth/>}/>
+                <Route path="/devcorner/mcp" element={<MCP/>}/>
             </Routes>
         </AnimatePresence>
     );
