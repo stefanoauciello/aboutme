@@ -1,4 +1,4 @@
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import {
     FaFileAlt,
     FaCodeBranch,
@@ -138,12 +138,12 @@ const DatabaseVersioning = () => {
                         Practical Example: Adding a New Table
                     </h3>
                     <p>
-                        Here's how you can define a new <code>users</code> table in an XML
+                        Here&apos;s how you can define a new <code>users</code> table in an XML
                         changelog file:
                     </p>
                     <div className="overflow-x-auto">
-            <pre className="bg-gray-100 text-sm p-4 rounded-md whitespace-pre-wrap break-words">
-{`<changeSet id="1" author="developer">
+                        <pre className="bg-gray-100 text-sm p-4 rounded-md whitespace-pre-wrap break-words">
+                            {`<changeSet id="1" author="developer">
   <createTable tableName="users">
     <column name="id" type="int" autoIncrement="true">
       <constraints primaryKey="true" nullable="false"/>
@@ -154,7 +154,7 @@ const DatabaseVersioning = () => {
     <column name="email" type="varchar(100)"/>
   </createTable>
 </changeSet>`}
-            </pre>
+                        </pre>
                     </div>
                     <p>
                         When you run Liquibase, this changeset will be executed and tracked

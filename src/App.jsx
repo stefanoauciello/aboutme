@@ -1,4 +1,4 @@
-import React from "react";
+
 import { HashRouter as Router } from "react-router-dom";
 
 import Navbar from "./components/navbar.jsx";
@@ -10,7 +10,7 @@ export default function Portfolio() {
         <Router>
             <ScrollToTop />
             <div className="min-h-screen bg-gradient-to-br from-dark-50 via-primary-50 to-secondary-50">
-                <Navbar/>
+                <Navbar />
                 <main className="pt-16 sm:pt-24 min-h-screen relative">
                     {/* Decorative elements */}
                     <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -21,7 +21,7 @@ export default function Portfolio() {
 
                     {/* Content */}
                     <div className="relative z-10">
-                        <AnimatedRoutes/>
+                        <AnimatedRoutes />
                     </div>
                 </main>
 
