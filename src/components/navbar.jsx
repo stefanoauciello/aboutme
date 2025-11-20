@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -10,7 +10,10 @@ function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const location = useLocation();
 
-    useEffect(() => setOpen(false), [location.pathname]);
+    useEffect(() => {
+        const timer = setTimeout(() => setOpen(false), 0);
+        return () => clearTimeout(timer);
+    }, [location.pathname]);
 
     useEffect(() => {
         document.documentElement.classList.toggle("overflow-hidden", open);
@@ -32,18 +35,18 @@ function Navbar() {
                     <motion.div
                         key="backdrop"
                         className="fixed inset-0 z-[120] bg-dark-900/40 backdrop-blur-sm"
-                        initial={{opacity: 0}}
-                        animate={{opacity: 1}}
-                        exit={{opacity: 0}}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                     />
 
                     <motion.nav
                         key="drawer"
                         className="fixed inset-y-0 left-0 z-[130] w-[80vw] sm:w-64 bg-gradient-to-b from-primary-50 via-white to-secondary-50 shadow-card p-8 overflow-y-auto"
-                        initial={{x: "-100%"}}
-                        animate={{x: 0}}
-                        exit={{x: "-100%"}}
-                        transition={{type: "tween", duration: 0.3}}
+                        initial={{ x: "-100%" }}
+                        animate={{ x: 0 }}
+                        exit={{ x: "-100%" }}
+                        transition={{ type: "tween", duration: 0.3 }}
                     >
                         <div className="flex justify-between items-center mb-8">
                             <Link to="/" className="text-2xl font-display font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
@@ -64,11 +67,10 @@ function Navbar() {
                                     <NavLink
                                         to={l.to}
                                         end={l.to === "/"}
-                                        className={({isActive}) =>
-                                            `block rounded-lg px-4 py-3 font-medium transition-all duration-200 ${
-                                                isActive
-                                                    ? "bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-800 font-semibold"
-                                                    : "text-dark-700 hover:bg-dark-100/50"
+                                        className={({ isActive }) =>
+                                            `block rounded-lg px-4 py-3 font-medium transition-all duration-200 ${isActive
+                                                ? "bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-800 font-semibold"
+                                                : "text-dark-700 hover:bg-dark-100/50"
                                             }`
                                         }
                                     >
@@ -85,14 +87,13 @@ function Navbar() {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${
-                scrolled 
-                    ? "py-2 bg-white/80 backdrop-blur-md shadow-soft" 
-                    : "py-4 bg-transparent"
-            }`}>
+            <header className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${scrolled
+                ? "py-2 bg-white/80 backdrop-blur-md shadow-soft"
+                : "py-4 bg-transparent"
+                }`}>
                 <div className="mx-auto max-w-6xl flex items-center justify-between px-4 md:px-6">
-                    <Link 
-                        to="/" 
+                    <Link
+                        to="/"
                         className="text-2xl font-display font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"
                     >
                         SA
@@ -113,11 +114,10 @@ function Navbar() {
                                     <NavLink
                                         to={l.to}
                                         end={l.to === "/"}
-                                        className={({isActive}) =>
-                                            `px-4 py-2 rounded-full font-medium transition-all duration-200 whitespace-nowrap ${
-                                                isActive
-                                                    ? "bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-soft"
-                                                    : "text-dark-700 hover:bg-white/80 hover:shadow-soft"
+                                        className={({ isActive }) =>
+                                            `px-4 py-2 rounded-full font-medium transition-all duration-200 whitespace-nowrap ${isActive
+                                                ? "bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-soft"
+                                                : "text-dark-700 hover:bg-white/80 hover:shadow-soft"
                                             }`
                                         }
                                     >

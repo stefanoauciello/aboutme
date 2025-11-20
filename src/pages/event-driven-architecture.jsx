@@ -1,4 +1,4 @@
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import {
     FaBolt,
     FaBroadcastTower,
@@ -141,7 +141,7 @@ const EventDrivenArchitecture = () => {
                         Practical Example: User Registration Flow
                     </h3>
                     <p>
-                        Here's a real-world example of how an event-driven architecture
+                        Here&apos;s a real-world example of how an event-driven architecture
                         works using Amazon SNS, SQS, and SES:
                     </p>
                     <ul className="list-disc list-inside space-y-2">
@@ -173,8 +173,8 @@ const EventDrivenArchitecture = () => {
                         <strong>Event payload example:</strong>
                     </p>
                     <div className="overflow-x-auto">
-            <pre className="bg-gray-100 text-sm p-4 rounded-md w-full whitespace-pre-wrap break-words">
-{`{
+                        <pre className="bg-gray-100 text-sm p-4 rounded-md w-full whitespace-pre-wrap break-words">
+                            {`{
   "eventType": "UserRegistered",
   "timestamp": "2025-04-12T12:00:00Z",
   "payload": {
@@ -183,7 +183,7 @@ const EventDrivenArchitecture = () => {
     "name": "John Doe"
   }
 }`}
-            </pre>
+                        </pre>
                     </div>
                 </div>
             </div>

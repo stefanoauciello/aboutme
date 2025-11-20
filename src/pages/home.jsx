@@ -1,4 +1,4 @@
-import React from "react";
+
 import { motion } from "framer-motion";
 import containerVariants from "../components/utils";
 import { Link } from "react-router-dom";
@@ -37,7 +37,7 @@ function Home() {
 
                     <div className="flex justify-center space-x-4 pt-4">
                         {socialLinks.map((link) => (
-                            <a 
+                            <a
                                 key={link.label}
                                 href={link.href}
                                 target="_blank"
@@ -78,7 +78,7 @@ function Home() {
 
                                 <div className="flex justify-center md:justify-start space-x-4">
                                     {socialLinks.map((link) => (
-                                        <a 
+                                        <a
                                             key={link.label}
                                             href={link.href}
                                             target="_blank"

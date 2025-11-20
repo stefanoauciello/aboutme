@@ -35,9 +35,9 @@ function About() {
           `I'm a software engineer who loves delivering end‑to‑end solutions—writing clean code, shipping resilient services and keeping them running in production.`,
           `While working full‑time I'm also finishing my degree and collecting certifications. My goal: be the teammate who bridges business and tech, guiding the team from analysis to seamless delivery.`,
         ].map((text, idx) => (
-          <motion.p 
-            key={idx} 
-            custom={idx} 
+          <motion.p
+            key={idx}
+            custom={idx}
             variants={animations.itemVariants}
           >
             {text}
@@ -51,7 +51,7 @@ function About() {
         animate="visible"
         variants={animations.gridVariants}
       >
-        {skillCards.map((card, idx) => (
+        {skillCards.map((card) => (
           <SkillCard
             key={card.title}
             icon={card.icon}
