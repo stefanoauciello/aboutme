@@ -5,7 +5,7 @@ const experiences = [
     {
         company: "Generali",
         role: "Senior Software Engineer (October 2025 - Present)",
-        description: ``,
+        description: `Part of the Digital Center of Excellence team, focusing on large-scale cloud transformation. Actively re-architecting legacy mainframe systems by breaking down COBOL applications into scalable, resilient, and fully automated AWS serverless solutions.`,
         secondrole: "",
         seconddescription: "",
         images: ["java.png", "spring.png", "aws.png", "lambda.png"],
