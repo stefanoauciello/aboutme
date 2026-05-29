@@ -16,6 +16,7 @@ import DataPlatform from "../pages/data-platform";
 import DatabaseVersioning from "../pages/database-versioning";
 import Auth from "../pages/auth";
 import MCP from "../pages/mcp";
+import AgenticWorkflows from "../pages/agentic-workflows";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -35,6 +36,7 @@ function AnimatedRoutes() {
                 <Route path="/devcorner/database-versioning" element={<DatabaseVersioning />} />
                 <Route path="/devcorner/auth" element={<Auth />} />
                 <Route path="/devcorner/mcp" element={<MCP />} />
+                <Route path="/devcorner/agentic-workflows" element={<AgenticWorkflows />} />
             </Routes>
         </AnimatePresence>
     );

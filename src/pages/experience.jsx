@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import containerVariants from "../components/utils";
+import PageLayout from "../layouts/page-layout.jsx";
+import { animations } from "../styles/theme";
 
 const experiences = [
     {
@@ -54,86 +55,93 @@ const experiences = [
     },
 ];
 
-const listVariants = { visible: { transition: { staggerChildren: 0.15 } } };
-const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
-};
-
 function Experience() {
     return (
-        <motion.section
-            className="min-h-screen
-                 p-6 md:p-12 text-blue-900
-                 bg-gradient-to-r from-blue-50 to-white
-                 rounded-xl shadow-lg max-w-4xl mx-auto flex flex-col"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+        <PageLayout 
+            title="Experience" 
+            subtitle="My professional journey as a software developer and architect."
         >
-
-            <div className="flex-grow px-4 md:px-8">
-                <h2 className="text-4xl font-semibold text-blue-600 text-center">
-                    Experience
-                </h2>
+            <div className="relative mt-12 max-w-3xl mx-auto pl-6 md:pl-8">
+                {/* Timeline vertical track */}
+                <div className="absolute left-[7px] md:left-[11px] top-1.5 bottom-1.5 w-0.5 bg-slate-200 dark:bg-slate-800" />
 
                 <motion.ul
-                    className="mt-10 relative border-l-4 border-blue-200 pl-6 space-y-10"
+                    className="space-y-12"
                     initial="hidden"
                     animate="visible"
-                    variants={listVariants}
+                    variants={animations.gridVariants}
                 >
                     {experiences.map((job, idx) => (
-                        <motion.li key={job.company + idx} variants={itemVariants}>
-                            {/* dot */}
-                            <span className="absolute -left-3 top-2 w-5 h-5 rounded-full bg-blue-500"></span>
+                        <motion.li 
+                            key={job.company + idx} 
+                            variants={animations.cardVariants}
+                            className="relative"
+                        >
+                            {/* timeline node dot */}
+                            <span className="absolute -left-[24px] md:-left-[28px] top-2 w-4 h-4 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 ring-4 ring-slate-50 dark:ring-slate-950 shadow-sm" />
 
-                            {/* card */}
-                            <div
-                                className="bg-white/70 backdrop-blur px-6 py-6 rounded-lg
-                           shadow-md space-y-4"
-                            >
+                            {/* experience card */}
+                            <div className="glass-card p-6 space-y-4 hover:border-slate-300 dark:hover:border-slate-700">
                                 <div>
-                                    <h3 className="text-xl md:text-2xl font-bold text-blue-700">
-                                        {job.company}
-                                    </h3>
-                                    <p className="text-blue-700 font-semibold mt-1">
-                                        {job.role}
+                                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+                                        <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">
+                                            {job.company}
+                                        </h3>
+                                        <span className="text-xs font-semibold text-slate-550 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full w-fit">
+                                            {job.role.split("(")[1]?.replace(")", "") || ""}
+                                        </span>
+                                    </div>
+                                    
+                                    <p className="text-sm font-semibold text-primary-600 dark:text-primary-400 mt-1">
+                                        {job.role.split("(")[0]}
                                     </p>
-                                    <p className="text-blue-800 mt-2 leading-relaxed">
+                                    
+                                    <p className="text-sm sm:text-base text-slate-650 dark:text-slate-350 mt-3 leading-relaxed whitespace-pre-line">
                                         {job.description}
                                     </p>
 
                                     {job.secondrole && (
-                                        <>
-                                            <p className="text-blue-700 font-semibold mt-4">
-                                                {job.secondrole}
+                                        <div className="mt-6 pt-6 border-t border-slate-200/50 dark:border-slate-800/40">
+                                            <p className="text-sm font-semibold text-primary-600 dark:text-primary-400">
+                                                {job.secondrole.split("(")[0]}
                                             </p>
-                                            <p className="text-blue-800 mt-1 leading-relaxed">
+                                            <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">
+                                                {job.secondrole.split("(")[1]?.replace(")", "") || ""}
+                                            </p>
+                                            <p className="text-sm sm:text-base text-slate-650 dark:text-slate-350 mt-2 leading-relaxed">
                                                 {job.seconddescription}
                                             </p>
-                                        </>
+                                        </div>
                                     )}
                                 </div>
 
-                                <div className="flex flex-wrap justify-start gap-4">
-                                    {job.images.map((img) => (
-                                        <img
-                                            key={img}
-                                            src={`${import.meta.env.BASE_URL}${img}`}
-                                            alt={img.split(".")[0]}
-                                            className="w-14 sm:w-16 md:w-20 h-auto object-contain
-                                 rounded-md shadow"
-                                            loading="lazy"
-                                        />
-                                    ))}
+                                <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-200/40 dark:border-slate-800/20">
+                                    {job.images.map((img) => {
+                                        const name = img.split(".")[0];
+                                        return (
+                                            <div 
+                                                key={img} 
+                                                className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-slate-100/60 dark:bg-slate-800/60 border border-slate-200/30 dark:border-slate-700/30"
+                                            >
+                                                <img
+                                                    src={`${import.meta.env.BASE_URL}${img}`}
+                                                    alt={name}
+                                                    className="w-4 h-4 object-contain"
+                                                    loading="lazy"
+                                                />
+                                                <span className="text-xs font-semibold text-slate-600 dark:text-slate-350 uppercase">
+                                                    {name}
+                                                </span>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </motion.li>
                     ))}
                 </motion.ul>
             </div>
-        </motion.section>
+        </PageLayout>
     );
 }
 

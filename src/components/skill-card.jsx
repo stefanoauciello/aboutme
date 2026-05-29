@@ -25,34 +25,39 @@ function SkillCard({
   return (
     <motion.li
       variants={variants}
-      whileHover={{ scale: 1.04, translateY: -4 }}
+      whileHover={{ scale: 1.02 }}
       className={classes.card}
     >
-      {Icon && <Icon className="text-3xl text-blue-600 mb-3" aria-hidden />}
+      {Icon && <Icon className="text-3xl text-primary-500 dark:text-primary-400 mb-3" aria-hidden />}
 
       {imageSrc && (
         <img
           src={imageSrc}
           alt={imageAlt || title}
-          className="w-20 h-auto mb-4 object-contain"
+          className="w-14 h-14 mb-4 object-contain filter drop-shadow-sm dark:drop-shadow-[0_4px_6px_rgba(255,255,255,0.05)]"
           loading="lazy"
         />
       )}
 
-      <h3 className="font-semibold text-blue-700">{title}</h3>
+      <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">{title}</h3>
 
       {description && (
-        <p className="text-sm text-blue-800 mt-2 leading-relaxed">
+        <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
           {description}
         </p>
       )}
 
       {items.length > 0 && (
-        <ul className="text-sm text-blue-800 space-y-0.5 mt-2">
+        <div className="flex flex-wrap gap-1.5 justify-center mt-4">
           {items.map(item => (
-            <li key={item}>{item}</li>
+            <span 
+              key={item} 
+              className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700/50"
+            >
+              {item}
+            </span>
           ))}
-        </ul>
+        </div>
       )}
     </motion.li>
   );

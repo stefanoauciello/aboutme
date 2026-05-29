@@ -5,11 +5,11 @@ import {
     FaCheckCircle,
     FaKey,
 } from "react-icons/fa";
-import containerVariants from "../components/utils";
+import PageLayout from "../layouts/page-layout.jsx";
 import BackButton from "../components/back-button.jsx";
+import { animations } from "../styles/theme";
 
 const HERO_IMAGE = `${import.meta.env.BASE_URL}auth.png`;
-
 
 const comparisonRows = [
     ["Subject (sub)", "Human user (user‑id)", "Workload / client (service‑id)"],
@@ -22,24 +22,24 @@ const comparisonRows = [
 ];
 
 const bestPractices = [
-    "Always validate aud, exp, signature and rotate keys.",
-    "Short‑lived tokens: 5–15 min for users, 15–60 min for services.",
-    "Centralise policy (OPA, Cedar) and log sub, act & jti.",
-    "Prefer workload identity (IAM, SPIFFE) over static secrets.",
+    "Always validate aud, exp, signature, and rotate signing keys automatically.",
+    "Issue short-lived access tokens: 5–15 min for users, 15–60 min for services.",
+    "Decouple policy checks into central tools (OPA, Cedar) and log sub, act & jti values.",
+    "Prefer cryptographic workload identities (IAM, SPIFFE) over static clients secrets.",
 ];
 
 const tokenTypes = [
     {
         label: "ID Token",
-        description: "Proof of authentication containing user profile claims.",
+        description: "Cryptographic proof of authentication containing profile claims for user interfaces.",
     },
     {
         label: "Access Token",
-        description: "Authorizes API calls and conveys permissions to a service.",
+        description: "Authorizes resource server API calls, conveying permissions scope directly to a target service.",
     },
     {
         label: "Refresh Token",
-        description: "Used to obtain new access tokens without reauthenticating.",
+        description: "Long-lived credentials used to exchange and obtain new access tokens without requiring MFA prompt.",
     },
 ];
 
@@ -53,119 +53,186 @@ const tokenExchange = `curl -X POST https://idp.example.com/oauth2/token \\
 
 const Auth = () => {
     return (
-        <motion.section
-            className="min-h-screen p-6 md:p-12 text-blue-900 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-lg text-center max-w-4xl mx-auto flex flex-col"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+        <PageLayout 
+            title="User Auth vs Machine-to-Machine" 
+            subtitle="Understand differences in OIDC interactive login vs workload client credentials."
         >
-            <div className="flex-grow px-4 md:px-8 text-left text-blue-700">
-                <BackButton fallbackTo="/devcorner" />
-                <h2 className="text-4xl font-semibold text-blue-600 text-center">
-                    User Authentication vs Machine‑to‑Machine
-                </h2>
+            <div className="max-w-4xl mx-auto space-y-12">
+                <div>
+                    <BackButton fallbackTo="/devcorner" />
+                </div>
 
-                <div className="my-6 flex justify-center">
+                {/* Hero Diagram */}
+                <div className="glass-card p-4 sm:p-6 border border-slate-200/35 dark:border-slate-800/35 flex flex-col items-center">
                     <img
                         src={HERO_IMAGE}
-                        alt="User vs Machine‑to‑Machine diagram"
-                        className="w-full max-w-xs sm:max-w-sm md:max-w-md border-4 border-blue-300 shadow-lg rounded-lg"
+                        alt="User vs M2M Auth flow diagram"
+                        className="w-full max-w-xl object-contain bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200/50 dark:border-slate-800/50 p-2 shadow-inner"
                     />
+                    <p className="text-xs font-semibold text-slate-400 mt-3 uppercase tracking-wider text-center">
+                        Identity Providers Token Exchange & Client Credentials Routing
+                    </p>
                 </div>
 
-                <p className="text-base sm:text-lg">
-                    Separating human authentication from service authentication enables <strong>better
-                    security</strong>, <strong>least privilege</strong> and <strong>cleaner code </strong>
-                    in modern architectures. Below you’ll find a side‑by‑side comparison, flow diagrams and
-                    best practices.
-                </p>
-
-                <p className="mt-4 text-base sm:text-lg">
-                    User tokens are issued via the authorization code flow and identify the
-                    person through the <code>sub</code> claim. Machine-to-machine tokens typically
-                    come from client credentials or token exchange and may carry an
-                    <code>act</code> claim for the calling service. Keeping the two paths separate
-                    simplifies auditing and limits the blast radius of credential leaks.
-                </p>
-
-                <div className="mt-8 space-y-4 overflow-x-auto">
-                    <h3 className="text-2xl font-semibold text-blue-600">Quick Comparison</h3>
-                    <table className="min-w-[600px] w-full border border-blue-200 text-sm sm:text-base">
-                        <thead>
-                        <tr className="bg-blue-100">
-                            <th className="p-2 border border-blue-200"></th>
-                            <th className="p-2 border border-blue-200">
-                                <FaUser className="inline-block mr-1" /> User Auth (OIDC)
-                            </th>
-                            <th className="p-2 border border-blue-200">
-                                <FaServer className="inline-block mr-1" /> M2M Auth
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {comparisonRows.map(([label, user, m2m]) => (
-                            <tr key={label} className="odd:bg-white even:bg-blue-50">
-                                <td className="p-2 border border-blue-200 font-medium whitespace-nowrap">
-                                    {label}
-                                </td>
-                                <td className="p-2 border border-blue-200">{user}</td>
-                                <td className="p-2 border border-blue-200">{m2m}</td>
-                            </tr>
-                        ))}
-                        </tbody>
-                    </table>
+                {/* Main description */}
+                <div className="space-y-4 text-base sm:text-lg text-slate-650 dark:text-slate-350 leading-relaxed">
+                    <p>
+                        Separating user authentication from service-to-service communication enables granular <strong>least privilege policies</strong> and cleaner backend coding in microservices architectures.
+                    </p>
+                    <p>
+                        While users authorize applications via browser redirects and MFA checks, services authenticate autonomously in the background. Understanding how to manage tokens for both paths prevents credential leakage and simplifies compliance audits.
+                    </p>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">User flow: OIDC + PKCE</h3>
-                    <ol className="list-decimal list-inside space-y-1">
-                        <li>Browser is redirected to <code>/authorize</code> with <em>scope</em> & <em>code_challenge</em>.</li>
-                        <li>IdP authenticates user (password + MFA) and requests consent.</li>
-                        <li>App swaps the code + <em>code_verifier</em> for ID Token and Access Token.</li>
-                        <li>Access Token (Bearer) calls API (<code>aud=frontend-api</code>).</li>
+                {/* Table Section */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        Quick Comparison
+                    </h3>
+                    <div className="overflow-x-auto rounded-2xl border border-slate-250/40 dark:border-slate-800/40">
+                        <table className="min-w-[650px] w-full text-left border-collapse text-sm sm:text-base">
+                            <thead>
+                                <tr className="bg-slate-100/80 dark:bg-slate-900/60 border-b border-slate-200/50 dark:border-slate-800/50 text-slate-800 dark:text-slate-100">
+                                    <th className="p-3 font-bold">Property</th>
+                                    <th className="p-3 font-bold">
+                                        <FaUser className="inline mr-2 text-primary-500" size={14} /> User Auth (OIDC)
+                                    </th>
+                                    <th className="p-3 font-bold">
+                                        <FaServer className="inline mr-2 text-secondary-500" size={14} /> M2M Auth
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-slate-200/40 dark:divide-slate-850/20 text-slate-650 dark:text-slate-350">
+                                {comparisonRows.map(([label, user, m2m]) => (
+                                    <tr key={label} className="hover:bg-slate-100/20 dark:hover:bg-slate-800/10 transition-colors">
+                                        <td className="p-3 font-semibold text-slate-900 dark:text-white whitespace-nowrap bg-slate-50/20 dark:bg-slate-950/10">
+                                            {label}
+                                        </td>
+                                        <td className="p-3">{user}</td>
+                                        <td className="p-3">{m2m}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {/* Flow 1: User Auth */}
+                <div className="glass-card p-6 border border-slate-200/35 dark:border-slate-800/35 space-y-4">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 rounded-full bg-primary-500" /> User Flow: OIDC + PKCE
+                    </h3>
+                    <ol className="relative pl-6 border-l-2 border-slate-100 dark:border-slate-800 space-y-4 text-sm sm:text-base">
+                        <li>
+                            <strong className="text-slate-800 dark:text-slate-200 block">1. Redirect Challenge</strong>
+                            <span className="text-slate-600 dark:text-slate-450 block mt-0.5">
+                                User acts on a website. The client browser redirects to <code>/authorize</code> endpoint, presenting a hashed <em>code_challenge</em> query.
+                            </span>
+                        </li>
+                        <li>
+                            <strong className="text-slate-800 dark:text-slate-200 block">2. Identity Authentication</strong>
+                            <span className="text-slate-600 dark:text-slate-450 block mt-0.5">
+                                Identity Provider (IdP) prompts user credentials (and MFA keys), recording validation consent before redirecting back with a temporary authorization code.
+                            </span>
+                        </li>
+                        <li>
+                            <strong className="text-slate-800 dark:text-slate-200 block">3. Code-Verifying Swap</strong>
+                            <span className="text-slate-600 dark:text-slate-450 block mt-0.5">
+                                The client backend intercepts the code and calls the IdP token endpoint directly, presenting the original raw <em>code_verifier</em> to obtain access and ID tokens.
+                            </span>
+                        </li>
                     </ol>
                 </div>
 
-                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
-                    <h3 className="text-2xl font-semibold text-blue-600">M2M flow: Token Exchange</h3>
-                    <p><strong>Scenario:</strong> Service A receives a user JWT but needs a token limited to <kbd>service‑B</kbd>.</p>
-                    <pre className="bg-blue-50 p-4 rounded-md overflow-x-auto text-sm whitespace-pre-wrap"><code>{tokenExchange}</code></pre>
-                    <p>Authorization Server returns a new JWT with:</p>
-                    <ul className="space-y-1">
-                        <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>sub = user‑123</code></span></li>
-                        <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>act = service‑a</code> (actor claim)</span></li>
-                        <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>aud = service‑b</code></span></li>
-                        <li className="flex items-start"><FaCheckCircle className="text-green-600 mr-2 mt-1" /><span><code>scope = payments.read</code></span></li>
-                    </ul>
+                {/* Flow 2: Token Exchange */}
+                <div className="glass-card p-6 border border-slate-200/35 dark:border-slate-800/35 space-y-4">
+                    <div>
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <span className="w-2.5 h-2.5 rounded-full bg-secondary-500" /> M2M Flow: Token Exchange
+                        </h3>
+                        <p className="text-xs sm:text-sm text-slate-550 dark:text-slate-400 mt-1">
+                            Scenario: Service A receives a user JWT, but must invoke Service B with a token narrowed to payments scope.
+                        </p>
+                    </div>
+
+                    <div className="relative rounded-xl overflow-hidden bg-slate-950 border border-slate-900 shadow-inner font-mono text-xs sm:text-sm p-4 text-left">
+                        <pre className="text-violet-400 leading-relaxed">
+                            <span className="text-slate-405">curl -X POST</span> <span className="text-amber-300">https://idp.example.com/oauth2/token</span> <span className="text-slate-500">\\</span>
+                            <br />
+                            {`  `}
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">'grant_type=urn:ietf:params:oauth:grant-type:token-exchange'</span> <span className="text-slate-500">\\</span>
+                            <br />
+                            {`  `}
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">"subject_token=$USER_JWT"</span> <span className="text-slate-500">\\</span>
+                            <br />
+                            {`  `}
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">'requested_token_type=access_token'</span> <span className="text-slate-500">\\</span>
+                            <br />
+                            {`  `}
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">'audience=service-b'</span> <span className="text-slate-500">\\</span>
+                            <br />
+                            {`  `}
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">'scope=payments.read'</span> <span className="text-slate-500">\\</span>
+                            <br />
+                            {`  `}
+                            <span className="text-slate-405">-u</span> <span className="text-emerald-300">'service-a:&lt;client_secret&gt;'</span>
+                        </pre>
+                    </div>
+
+                    <div className="space-y-2 pt-2 text-sm sm:text-base text-slate-650 dark:text-slate-350">
+                        <p>The Authorization Server exchanges the payload and returns a token asserting:</p>
+                        <ul className="grid gap-2 sm:grid-cols-2 text-sm">
+                            <li className="flex items-center gap-2"><FaCheckCircle className="text-emerald-500 flex-shrink-0" size={14} /><span><code>sub = user‑123</code> (delegating subject)</span></li>
+                            <li className="flex items-center gap-2"><FaCheckCircle className="text-emerald-500 flex-shrink-0" size={14} /><span><code>act = service‑a</code> (delegating actor)</span></li>
+                            <li className="flex items-center gap-2"><FaCheckCircle className="text-emerald-500 flex-shrink-0" size={14} /><span><code>aud = service‑b</code> (restricted target)</span></li>
+                            <li className="flex items-center gap-2"><FaCheckCircle className="text-emerald-500 flex-shrink-0" size={14} /><span><code>scope = payments.read</code> (narrowed scope)</span></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">Common Token Types</h3>
-                    <ul className="space-y-2">
+                {/* Token Types */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        OAuth2 Token Types
+                    </h3>
+                    <div className="grid gap-4 sm:grid-cols-3">
                         {tokenTypes.map((tok) => (
-                            <li key={tok.label} className="flex items-start">
-                                <FaKey className="text-primary-600 mr-2 mt-1" />
-                                <span>
-                                    <strong>{tok.label}</strong>: {tok.description}
-                                </span>
-                            </li>
+                            <div 
+                                key={tok.label} 
+                                className="glass-card p-5 border border-slate-200/30 dark:border-slate-800/30 flex flex-col gap-3"
+                            >
+                                <div className="p-2.5 bg-primary-500/10 text-primary-500 dark:text-primary-400 rounded-xl w-fit">
+                                    <FaKey size={16} />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-slate-850 dark:text-slate-100 text-sm sm:text-base">
+                                        {tok.label}
+                                    </h4>
+                                    <p className="text-xs sm:text-sm text-slate-550 dark:text-slate-400 mt-1 leading-relaxed">
+                                        {tok.description}
+                                    </p>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">Best practices</h3>
-                    <ul className="space-y-2">
+                {/* Best Practices */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        Security Best Practices
+                    </h3>
+                    <ul className="grid gap-3 sm:grid-cols-2">
                         {bestPractices.map((item) => (
-                            <li key={item} className="flex items-start">
-                                <FaCheckCircle className="text-green-600 mr-2 mt-1" />
+                            <li key={item} className="flex items-start gap-2.5 text-sm sm:text-base text-slate-650 dark:text-slate-350">
+                                <FaCheckCircle className="text-emerald-500 dark:text-emerald-450 mt-1 flex-shrink-0" size={16} />
                                 <span>{item}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
             </div>
-        </motion.section>
+        </PageLayout>
     );
 };
 

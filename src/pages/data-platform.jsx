@@ -1,4 +1,4 @@
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import {
     FaCloudUploadAlt,
     FaDatabase,
@@ -7,8 +7,44 @@ import {
     FaChartLine,
     FaCheckCircle,
 } from "react-icons/fa";
-import containerVariants from "../components/utils";
+import PageLayout from "../layouts/page-layout.jsx";
 import BackButton from "../components/back-button.jsx";
+import { animations } from "../styles/theme";
+
+const keyComponents = [
+    {
+        icon: FaCloudUploadAlt,
+        title: "Data Ingestion",
+        description: "Efficiently collect streams and logs from various sources such as APIs, operational databases, IoT networks, and third-party files.",
+    },
+    {
+        icon: FaDatabase,
+        title: "Data Storage",
+        description: "Securely store structured, semi-structured, and raw unstructured files using highly elastic and searchable data lakehouses.",
+    },
+    {
+        icon: FaCogs,
+        title: "Data Processing",
+        description: "Clean, transform, and enrich datasets dynamically using batch schedules and real-time processing frameworks.",
+    },
+    {
+        icon: FaShieldAlt,
+        title: "Data Governance",
+        description: "Manage granular access rules, monitor data lineage, maintain data catalogs, and ensure compliance with regulatory standards.",
+    },
+    {
+        icon: FaChartLine,
+        title: "Analytics & Access",
+        description: "Expose clean query structures, BI dashboards, and metrics reporting to help teams query insights autonomously.",
+    },
+];
+
+const benefits = [
+    "Unifies disconnected datasets into a single source of truth.",
+    "Supports concurrent real-time streaming and high-volume batch processing.",
+    "Centralizes compliance auditing, access controls, and encryption keys.",
+    "Enables self-service reporting, accelerating business intelligence outputs.",
+];
 
 const technologies = [
     {
@@ -17,168 +53,144 @@ const technologies = [
     },
     {
         label: "Apache Airflow",
-        description: "Orchestrates complex data workflows.",
+        description: "DAG-based execution model to orchestrate complex data workflows.",
     },
     {
         label: "Delta Lake / Snowflake",
-        description: "Reliable storage layer for analytics with ACID guarantees.",
-    },
-    {label: "dbt", description: "SQL-based transformations inside the warehouse."},
-    {
-        label: "Grafana or Power BI",
-        description: "Dashboards and metrics visualization for stakeholders.",
-    },
-];
-
-const keyComponents = [
-    {
-        icon: FaCloudUploadAlt,
-        title: "Data Ingestion",
-        description:
-            "Efficiently collect data from various sources such as APIs, databases, streaming services, and files.",
+        description: "Unified analytical warehouse layers supporting ACID compliance and time-travel.",
     },
     {
-        icon: FaDatabase,
-        title: "Data Storage",
-        description:
-            "Securely store structured, semi-structured, and unstructured data using scalable storage solutions.",
+        label: "dbt (data build tool)",
+        description: "Applies modular transformation modeling on top of data warehouses.",
     },
     {
-        icon: FaCogs,
-        title: "Data Processing",
-        description:
-            "Transform, clean, and enrich data through batch and real-time processing pipelines.",
+        label: "Grafana / Power BI",
+        description: "Visualizes analytical reports, system metrics, and business dashboards.",
     },
-    {
-        icon: FaShieldAlt,
-        title: "Data Governance",
-        description:
-            "Maintain data quality, enforce security policies, and ensure regulatory compliance.",
-    },
-    {
-        icon: FaChartLine,
-        title: "Data Access & Analytics",
-        description:
-            "Enable self-service analytics, dashboards, and insights for business users and data scientists.",
-    },
-];
-
-const benefits = [
-    "Modular and scalable architecture adaptable to any business size.",
-    "Supports both real-time and batch data workflows.",
-    "Centralized control over data quality, access, and compliance.",
-    "Accelerates decision-making with reliable and accessible data.",
-    "Improves collaboration through a shared, well-documented data catalog.",
 ];
 
 const DataPlatform = () => {
     return (
-        <motion.section
-            className="min-h-screen
-                 p-6 md:p-12 text-blue-900
-                 bg-gradient-to-r from-blue-50 to-white
-                 rounded-xl shadow-lg text-center
-                 max-w-4xl mx-auto flex flex-col"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+        <PageLayout 
+            title="Data Platform Architecture" 
+            subtitle="Consolidate ingestion, warehouse storage, transformations, and governance."
         >
-
-            <div className="flex-grow px-4 md:px-8 text-left text-blue-700">
-                <BackButton fallbackTo="/devcorner" />
-                <h2 className="text-4xl font-semibold text-blue-600 text-center">
-                    Data Platform
-                </h2>
-
-                <div className="my-6 flex justify-center">
-                    <img
-                        src={`${import.meta.env.BASE_URL}data-platform.png`}
-                        alt="Data Platform Diagram"
-                        className="w-full max-w-xs sm:max-w-sm md:max-w-md border-4 border-blue-300 shadow-lg rounded-lg"
-                    />
+            <div className="max-w-4xl mx-auto space-y-12">
+                <div>
+                    <BackButton fallbackTo="/devcorner" />
                 </div>
 
-                <p className="mt-6 text-base sm:text-lg">
-                    A Data Platform is a unified infrastructure that allows organizations
-                    to ingest, store, process, govern, and analyze data efficiently. It
-                    forms the backbone of modern data-driven decision-making and enables
-                    scalable, secure, and real-time access to information.
-                </p>
+                {/* Diagram Section */}
+                <div className="glass-card p-4 sm:p-6 border border-slate-200/35 dark:border-slate-800/35 flex flex-col items-center">
+                    <img
+                        src={`${import.meta.env.BASE_URL}data-platform.png`}
+                        alt="Data Platform Architecture Diagram"
+                        className="w-full max-w-xl object-contain bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200/50 dark:border-slate-800/50 p-2 shadow-inner"
+                    />
+                    <p className="text-xs font-semibold text-slate-400 mt-3 uppercase tracking-wider text-center">
+                        Unified Data Lakehouse & Streaming Pipeline Blueprint
+                    </p>
+                </div>
 
-                <p className="mt-4 text-base sm:text-lg">
-                    Modern platforms combine streaming and batch pipelines to consolidate
-                    data from microservices, IoT devices and third-party systems.
-                    Connectors feed raw events into a lake or warehouse where tools like
-                    Airflow and dbt apply transformations on a schedule. Metadata
-                    cataloging and fine-grained access controls ensure every dataset is
-                    trustworthy and easily discoverable across the organization.
-                </p>
+                {/* Main description */}
+                <div className="space-y-4 text-base sm:text-lg text-slate-650 dark:text-slate-350 leading-relaxed">
+                    <p>
+                        A modern Data Platform acts as a unified central repository and execution suite. It enables organizations to aggregate operational transactional databases, logs, and telemetry into clean, structured tables for querying.
+                    </p>
+                    <p>
+                        By combining high-speed streaming ingestion (for near-instant analytics) with batch pipelines (for high-volume historical aggregations), the platform consolidates data silos. It handles transformations, manages schema drift, and applies fine-grained security filters to provide teams with consistent, trustworthy data.
+                    </p>
+                </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">
-                        Key Components
+                {/* Key Components Grid */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        Core Pillars
                     </h3>
-                    <ul className="grid gap-4 sm:grid-cols-2">
+                    <motion.div 
+                        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                        variants={animations.gridVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         {keyComponents.map((component) => {
                             const Icon = component.icon;
                             return (
-                                <li
+                                <motion.div
                                     key={component.title}
-                                    className="flex items-start bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm"
+                                    variants={animations.cardVariants}
+                                    className="glass-card p-5 border border-slate-200/30 dark:border-slate-800/30 flex flex-col gap-3"
                                 >
-                                    <Icon className="text-xl text-primary-600 mr-3 mt-1" />
-                                    <span>
-                                        <strong>{component.title}:</strong> {component.description}
-                                    </span>
-                                </li>
+                                    <div className="p-2.5 bg-primary-500/10 text-primary-500 dark:text-primary-400 rounded-xl w-fit">
+                                        <Icon size={18} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-slate-850 dark:text-slate-100 text-sm sm:text-base leading-snug">
+                                            {component.title}
+                                        </h4>
+                                        <p className="text-xs sm:text-sm text-slate-550 dark:text-slate-400 mt-1 leading-relaxed">
+                                            {component.description}
+                                        </p>
+                                    </div>
+                                </motion.div>
                             );
                         })}
-                    </ul>
+                    </motion.div>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">Benefits</h3>
-                    <ul className="space-y-2">
+                {/* Benefits */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        Platform Benefits
+                    </h3>
+                    <ul className="grid gap-3 sm:grid-cols-2">
                         {benefits.map((benefit) => (
-                            <li key={benefit} className="flex items-start">
-                                <FaCheckCircle className="text-green-600 mr-2 mt-1" />
+                            <li key={benefit} className="flex items-start gap-2.5 text-sm sm:text-base text-slate-650 dark:text-slate-350">
+                                <FaCheckCircle className="text-emerald-500 dark:text-emerald-450 mt-1 flex-shrink-0" size={16} />
                                 <span>{benefit}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">
-                        Recommended Technologies
+                {/* Recommended Technologies */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        Ecosystem Technologies
                     </h3>
-                    <ul className="grid gap-2 sm:grid-cols-2">
+                    <div className="grid gap-4 sm:grid-cols-2">
                         {technologies.map((tech) => (
-                            <li key={tech.label} className="flex items-start">
-                                <FaDatabase className="text-primary-600 mr-2 mt-1" />
-                                <span>
-                                    <strong>{tech.label}</strong>: {tech.description}
-                                </span>
-                            </li>
+                            <div 
+                                key={tech.label} 
+                                className="glass-card p-5 border border-slate-200/30 dark:border-slate-800/30 flex items-start gap-3.5"
+                            >
+                                <div className="p-2 bg-secondary-500/10 text-secondary-500 dark:text-secondary-400 rounded-lg mt-0.5">
+                                    <FaDatabase size={14} />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-slate-850 dark:text-slate-100 text-sm sm:text-base">
+                                        {tech.label}
+                                    </h4>
+                                    <p className="text-xs sm:text-sm text-slate-550 dark:text-slate-400 mt-0.5 leading-relaxed">
+                                        {tech.description}
+                                    </p>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
 
-                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
-                    <h3 className="text-2xl font-semibold text-blue-600">
-                        Real-World Use Case
+                {/* Real-World Use Case */}
+                <div className="glass-card p-6 border border-slate-200/30 dark:border-slate-800/30 space-y-3 bg-slate-50/50 dark:bg-slate-900/30">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                        Real-World Application: Omni-channel Retail
                     </h3>
-                    <p>
-                        A large retail company uses a data platform to collect real-time
-                        sales data from physical stores and e-commerce systems. This data is
-                        ingested via streaming and batch pipelines, stored in a data lake,
-                        processed using Apache Spark, and visualized in tools like Power BI.
-                        Governance policies enforce access control and data quality,
-                        ensuring consistency across all business units.
+                    <p className="text-sm sm:text-base text-slate-650 dark:text-slate-350 leading-relaxed">
+                        A multinational retail brand collects streaming stock movements from local POS cash registers alongside online purchase logs. Ingested events flow into Delta Lake. Apache Airflow schedules daily dbt models to sanitize email registers, calculate regional profitability trends, and compute stock forecasts. This curated warehouse layer directly drives inventory ordering apps and executive metrics dashboards.
                     </p>
                 </div>
             </div>
-        </motion.section>
+        </PageLayout>
     );
 };
 
