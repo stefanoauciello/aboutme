@@ -6,59 +6,62 @@ import { animations, classes } from "../styles/theme";
 
 const skills = [
   {
-    src: "/spring.png",
+    src: "spring.png",
     alt: "Spring",
-    label: "Spring",
+    label: "Spring Ecosystem",
     description:
-      "Building microservices and REST APIs with Spring Boot, JPA/Hibernate, Kafka and other Spring ecosystem modules.",
+      "Designing scalable enterprise backends and REST APIs with Spring Boot, JPA/Hibernate, Kafka, and microservices configuration.",
   },
   {
-    src: "/node.png",
+    src: "node.png",
     alt: "Node.js",
-    label: "Node.js",
+    label: "Node.js & TypeScript",
     description:
-      "Authoring AWS Lambda functions and scalable back‑ends with Express / NestJS; designing serverless APIs on AWS.",
+      "Creating event-driven, high-performance backends and serverless API endpoints using Express, NestJS, and AWS Lambda.",
   },
   {
-    src: "/mongo.png",
+    src: "mongo.png",
     alt: "MongoDB",
     label: "MongoDB",
     description:
-      "Leveraging the flexibility of document databases for high‑performance, horizontally scalable apps.",
+      "Modeling document databases for performance, designing indexing strategies, and configuring horizontal scaling.",
   },
   {
-    src: "/oracle.png",
-    alt: "Oracle",
-    label: "Oracle",
+    src: "oracle.png",
+    alt: "Oracle DB & GoldenGate",
+    label: "Oracle SQL & GoldenGate",
     description:
-      "Query tuning and cost analysis; experience with Oracle GoldenGate for replication in distributed systems.",
+      "Relational schema modeling, query profiling, tuning execution plans, and replication pipelines via Oracle GoldenGate.",
   },
   {
-    src: "/aws.png",
+    src: "aws.png",
     alt: "AWS",
-    label: "AWS",
+    label: "Amazon Web Services",
     description:
-      "Serverless development with Lambda, SQS, SNS, EventBridge; data with Aurora & DynamoDB; containers on ECS & EKS.",
+      "Architecting infrastructure with Lambda, SQS, SNS, EventBridge, ECS/EKS containerization, and RDS/DynamoDB databases.",
   },
   {
-    src: "/kafka.png",
-    alt: "Kafka",
-    label: "Kafka",
+    src: "kafka.png",
+    alt: "Apache Kafka",
+    label: "Apache Kafka",
     description:
-      "Change‑Data‑Capture pipelines and event‑driven architectures for reliable, scalable stream processing.",
+      "Designing real-time event streaming architectures, change-data-capture (CDC) pipelines, and pub/sub streaming channels.",
   },
   {
-    src: "/mysql.png",
+    src: "mysql.png",
     alt: "MySQL",
     label: "MySQL",
     description:
-      "Personal projects: schema design, query optimisation and relational modelling best‑practices.",
+      "Writing optimized relational queries, managing schema migrations safely, and designing database relations.",
   },
 ];
 
 function Skill() {
   return (
-    <PageLayout title="Skills">
+    <PageLayout 
+      title="Skills" 
+      subtitle="My core technical competencies and tools for engineering backend applications."
+    >
       <motion.ul
         className={classes.cardGrid}
         variants={animations.gridVariants}

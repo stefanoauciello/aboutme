@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { createPortal } from "react-dom";
 import navLinks from "../config/nav-links.js";
+import ThemeToggle from "./theme-toggle.jsx";
 
 function Navbar() {
     const [open, setOpen] = useState(false);
@@ -22,7 +23,7 @@ function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 10);
+            setScrolled(window.scrollY > 15);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -32,53 +33,63 @@ function Navbar() {
         <AnimatePresence>
             {open && (
                 <>
+                    {/* Backdrop */}
                     <motion.div
                         key="backdrop"
-                        className="fixed inset-0 z-[120] bg-dark-900/40 backdrop-blur-sm"
+                        className="fixed inset-0 z-[120] bg-slate-900/60 dark:bg-black/60 backdrop-blur-sm"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
+                        onClick={() => setOpen(false)}
                     />
 
+                    {/* Drawer container */}
                     <motion.nav
                         key="drawer"
-                        className="fixed inset-y-0 left-0 z-[130] w-[80vw] sm:w-64 bg-gradient-to-b from-primary-50 via-white to-secondary-50 shadow-card p-8 overflow-y-auto"
+                        className="fixed inset-y-0 left-0 z-[130] w-[80vw] sm:w-72 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-r border-slate-200/50 dark:border-slate-800/50 p-6 flex flex-col justify-between"
                         initial={{ x: "-100%" }}
                         animate={{ x: 0 }}
                         exit={{ x: "-100%" }}
-                        transition={{ type: "tween", duration: 0.3 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     >
-                        <div className="flex justify-between items-center mb-8">
-                            <Link to="/" className="text-2xl font-display font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                                SA
-                            </Link>
-                            <button
-                                aria-label="Close navigation"
-                                onClick={() => setOpen(false)}
-                                className="text-dark-500 hover:text-dark-700 p-2"
-                            >
-                                <FaTimes />
-                            </button>
+                        <div>
+                            <div className="flex justify-between items-center mb-8">
+                                <Link to="/" className="text-2xl font-display font-extrabold bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent">
+                                    SA
+                                </Link>
+                                <button
+                                    aria-label="Close navigation"
+                                    onClick={() => setOpen(false)}
+                                    className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 p-2 cursor-pointer"
+                                >
+                                    <FaTimes size={18} />
+                                </button>
+                            </div>
+
+                            <ul className="space-y-2">
+                                {navLinks.map((l) => (
+                                    <li key={l.to}>
+                                        <NavLink
+                                            to={l.to}
+                                            end={l.to === "/"}
+                                            className={({ isActive }) =>
+                                                `block rounded-xl px-4 py-3 font-medium transition-all duration-200 ${isActive
+                                                    ? "bg-primary-500/10 text-primary-600 dark:text-primary-400 font-semibold"
+                                                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+                                                }`
+                                            }
+                                        >
+                                            {l.label}
+                                        </NavLink>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
 
-                        <ul className="space-y-3">
-                            {navLinks.map((l) => (
-                                <li key={l.to}>
-                                    <NavLink
-                                        to={l.to}
-                                        end={l.to === "/"}
-                                        className={({ isActive }) =>
-                                            `block rounded-lg px-4 py-3 font-medium transition-all duration-200 ${isActive
-                                                ? "bg-gradient-to-r from-primary-100 to-secondary-100 text-primary-800 font-semibold"
-                                                : "text-dark-700 hover:bg-dark-100/50"
-                                            }`
-                                        }
-                                    >
-                                        {l.label}
-                                    </NavLink>
-                                </li>
-                            ))}
-                        </ul>
+                        <div className="border-t border-slate-200/50 dark:border-slate-800/50 pt-4 flex items-center justify-between">
+                            <span className="text-sm text-slate-500 dark:text-slate-400 font-medium">Appearance</span>
+                            <ThemeToggle />
+                        </div>
                     </motion.nav>
                 </>
             )}
@@ -88,45 +99,63 @@ function Navbar() {
     return (
         <>
             <header className={`fixed top-0 left-0 w-full z-[100] transition-all duration-300 ${scrolled
-                ? "py-2 bg-white/80 backdrop-blur-md shadow-soft"
-                : "py-4 bg-transparent"
+                ? "py-3 bg-white/70 dark:bg-slate-950/70 backdrop-blur-md border-b border-slate-200/40 dark:border-slate-900/40 shadow-sm"
+                : "py-5 bg-transparent"
                 }`}>
                 <div className="mx-auto max-w-6xl flex items-center justify-between px-4 md:px-6">
                     <Link
                         to="/"
-                        className="text-2xl font-display font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent"
+                        className="text-2xl font-display font-extrabold bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent hover:scale-105 transition-transform"
                     >
                         SA
                     </Link>
 
-                    <button
-                        aria-label="Toggle navigation"
-                        onClick={() => setOpen((prev) => !prev)}
-                        className="md:hidden p-2 rounded-full bg-white/80 shadow-soft text-primary-600 hover:text-primary-700 transition-colors"
-                    >
-                        <FaBars />
-                    </button>
+                    {/* Right side options */}
+                    <div className="flex items-center space-x-3">
+                        {/* Desktop Nav Links */}
+                        <nav className="hidden md:block mr-2">
+                            <ul className="flex items-center space-x-1">
+                                {navLinks.map((l) => (
+                                    <li key={l.to} className="relative">
+                                        <NavLink
+                                            to={l.to}
+                                            end={l.to === "/"}
+                                            className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center relative"
+                                        >
+                                            {({ isActive }) => (
+                                                <>
+                                                    {isActive && (
+                                                        <motion.span
+                                                            layoutId="activeNavBackground"
+                                                            className="absolute inset-0 bg-slate-200/80 dark:bg-slate-800/80 rounded-full z-0"
+                                                            transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                                                        />
+                                                    )}
+                                                    <span className={`relative z-10 ${isActive ? "text-primary-600 dark:text-primary-400 font-semibold" : ""}`}>
+                                                        {l.label}
+                                                    </span>
+                                                </>
+                                            )}
+                                        </NavLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
 
-                    <nav className="hidden md:block">
-                        <ul className="flex space-x-1 lg:space-x-2">
-                            {navLinks.map((l) => (
-                                <li key={l.to}>
-                                    <NavLink
-                                        to={l.to}
-                                        end={l.to === "/"}
-                                        className={({ isActive }) =>
-                                            `px-4 py-2 rounded-full font-medium transition-all duration-200 whitespace-nowrap ${isActive
-                                                ? "bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-soft"
-                                                : "text-dark-700 hover:bg-white/80 hover:shadow-soft"
-                                            }`
-                                        }
-                                    >
-                                        {l.label}
-                                    </NavLink>
-                                </li>
-                            ))}
-                        </ul>
-                    </nav>
+                        {/* Theme switcher (Desktop/Mobile unified bar) */}
+                        <div className="hidden sm:block">
+                            <ThemeToggle />
+                        </div>
+
+                        {/* Mobile Drawer Trigger */}
+                        <button
+                            aria-label="Toggle navigation"
+                            onClick={() => setOpen((prev) => !prev)}
+                            className="md:hidden p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors cursor-pointer"
+                        >
+                            <FaBars size={16} />
+                        </button>
+                    </div>
                 </div>
             </header>
 

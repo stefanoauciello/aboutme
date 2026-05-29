@@ -7,50 +7,47 @@
 export const animations = {
   // Container animation for page transitions
   containerVariants: {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   },
   
   // Item animation with staggered children
   itemVariants: {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     visible: idx => ({
       opacity: 1,
       y: 0,
-      transition: { delay: idx * 0.15, duration: 0.45 },
+      transition: { delay: idx * 0.08, duration: 0.4, ease: "easeOut" },
     }),
   },
   
   // Grid animation with staggered children
   gridVariants: {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.12 } },
+    visible: { transition: { staggerChildren: 0.08 } },
   },
   
   // Card animation for grid items
   cardVariants: {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.45 } },
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
   },
 };
 
 // Common class combinations
 export const classes = {
   pageContainer: `
-    p-6 md:p-12 text-blue-900
-    bg-gradient-to-r from-blue-50 to-white
-    rounded-xl shadow-lg max-w-4xl mx-auto flex flex-col
+    w-full max-w-5xl mx-auto py-6 md:py-10 px-4 sm:px-6 relative z-10
   `,
   
-  pageTitle: "text-4xl font-semibold text-blue-600 text-center",
+  pageTitle: "text-4xl sm:text-5xl font-display font-extrabold bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent text-center tracking-tight mb-4",
   
-  contentContainer: "flex-grow px-4 md:px-8",
+  contentContainer: "mt-8",
   
-  cardGrid: "mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3",
+  cardGrid: "mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3",
   
   card: `
-    px-4 py-6 rounded-lg bg-white/70 backdrop-blur
-    shadow-md flex flex-col items-center text-center
-    transition
+    glass-card p-6 flex flex-col items-center text-center
+    hover:-translate-y-1.5 hover:shadow-lg dark:hover:shadow-primary-950/10 hover:border-primary-500/30 dark:hover:border-primary-500/20
   `,
 };

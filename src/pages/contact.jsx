@@ -1,92 +1,97 @@
 // src/pages/Contact.jsx
-import {motion} from "framer-motion";
-import {FaEnvelope, FaLinkedin, FaMapMarkerAlt} from "react-icons/fa";
-import containerVariants from "../components/utils";
+import { useState } from "react";
+import { FaEnvelope, FaLinkedin, FaMapMarkerAlt, FaCopy, FaCheck } from "react-icons/fa";
+import PageLayout from "../layouts/page-layout.jsx";
 
 const contactInfo = [
     {
         icon: FaEnvelope,
         label: "E‑mail",
         text: "auciellostefano1@gmail.com",
-        link: "mailto:auciellostefano1@gmail.com",
+        copyable: true,
     },
     {
         icon: FaMapMarkerAlt,
         label: "Location",
-        text: "Peschiera Borromeo (MI), Italy",
+        text: "Peschiera Borromeo (MI), Italy",
         link: "https://www.google.com/maps/search/?api=1&query=Peschiera+Borromeo+MI+Italy",
+        copyable: false,
     },
     {
         icon: FaLinkedin,
         label: "LinkedIn",
         text: "stefano‑auciello",
         link: "https://www.linkedin.com/in/stefano-auciello",
+        copyable: false,
     },
 ];
 
-const itemVariants = {
-    hidden: {opacity: 0, y: 20},
-    visible: i => ({
-        opacity: 1,
-        y: 0,
-        transition: {delay: i * 0.12, duration: 0.4},
-    }),
-};
-
 function Contact() {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = (text) => {
+        navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    };
+
     return (
-        <motion.section
-            className="p-6 md:p-12 text-blue-900
-                 bg-gradient-to-r from-blue-50 to-white
-                 rounded-xl shadow-lg max-w-4xl mx-auto flex flex-col"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+        <PageLayout 
+            title="Contact" 
+            subtitle="Let's connect! Get in touch via email or LinkedIn."
         >
-
-            <div className="flex-grow px-4 md:px-8">
-                <h2 className="text-4xl font-semibold text-blue-600 text-center">
-                    Contact
-                </h2>
-
-                <motion.ul
-                    className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                    initial="hidden"
-                    animate="visible"
-                >
-                    {contactInfo.map((item, idx) => {
+            <div className="max-w-2xl mx-auto mt-8">
+                <div className="flex flex-col gap-4">
+                    {contactInfo.map((item) => {
                         const Icon = item.icon;
                         return (
-                            <motion.li
+                            <div
                                 key={item.text}
-                                custom={idx}
-                                variants={itemVariants}
-                                whileHover={{scale: 1.05}}
-                                className="w-full px-4 py-6 rounded-lg bg-white/70 backdrop-blur
-                           shadow-md flex flex-col items-center text-center
-                           transition"
+                                className="glass-card p-5 flex items-start gap-4 hover:border-slate-300 dark:hover:border-slate-700 transition-all"
                             >
-                                <Icon className="text-3xl text-blue-600 mb-3" aria-hidden/>
-                                {item.link ? (
-                                    <a
-                                        href={item.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="font-medium text-blue-700 hover:text-blue-900
-                               focus:outline-none focus-visible:ring-2
-                               focus-visible:ring-blue-600 transition"
+                                <div className="p-3 bg-primary-500/10 text-primary-600 dark:text-primary-400 rounded-xl mt-1">
+                                    <Icon size={20} />
+                                </div>
+                                <div className="flex-grow min-w-0">
+                                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">
+                                        {item.label}
+                                    </span>
+                                    {item.link ? (
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="font-bold text-slate-800 dark:text-slate-100 hover:text-primary-600 dark:hover:text-primary-450 transition text-sm sm:text-base break-words block mt-1"
+                                        >
+                                            {item.text}
+                                        </a>
+                                    ) : (
+                                        <span className="font-bold text-slate-800 dark:text-slate-100 text-sm sm:text-base break-words block mt-1">
+                                            {item.text}
+                                        </span>
+                                    )}
+                                </div>
+                                {item.copyable && (
+                                    <button
+                                        onClick={() => handleCopy(item.text)}
+                                        className="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 rounded-lg transition self-center cursor-pointer"
+                                        title="Copy email to clipboard"
                                     >
-                                        {item.text}
-                                    </a>
-                                ) : (
-                                    <span className="font-medium text-blue-700">{item.text}</span>
+                                        {copied ? <FaCheck className="text-emerald-500" size={14} /> : <FaCopy size={14} />}
+                                    </button>
                                 )}
-                            </motion.li>
+                            </div>
                         );
                     })}
-                </motion.ul>
+                </div>
+                
+                <div className="mt-8 glass-card p-5 text-center bg-slate-50/50 dark:bg-slate-900/30">
+                    <p className="text-sm text-slate-550 dark:text-slate-400">
+                        Based in the Milan area, Italy. Available for remote collaboration and cloud transformation engineering roles.
+                    </p>
+                </div>
             </div>
-        </motion.section>
+        </PageLayout>
     );
 }
 

@@ -1,105 +1,122 @@
 // src/pages/Devcorner.jsx
 import { motion } from "framer-motion";
-import { FaBolt, FaDatabase, FaServer, FaUserShield } from "react-icons/fa";
+import { FaBolt, FaDatabase, FaServer, FaUserShield, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import containerVariants from "../components/utils";
+import PageLayout from "../layouts/page-layout.jsx";
+import { animations } from "../styles/theme";
 
 const topics = [
     {
-        title: "Change Data Capture",
-        description: "Capture real‑time changes in your database and stream them reliably.",
+        title: "Change Data Capture (CDC)",
+        description: "Capture real-time transactions directly from database logs and stream them to downstream targets reliably.",
         icon: FaDatabase,
-        gradient: "from-primary-500 to-primary-700",
+        color: "text-blue-500",
+        bg: "bg-blue-500/10",
+        border: "hover:border-blue-500/30",
+        tag: "Data Streaming",
         link: "/devcorner/cdc",
     },
     {
-        title: "Event‑Driven Architecture",
-        description: "Design scalable, loosely‑coupled systems with event‑based communication.",
+        title: "Event-Driven Architecture",
+        description: "Design decoupled, scalable microservices using asynchronous pub/sub messaging patterns and event schemas.",
         icon: FaBolt,
-        gradient: "from-accent-400 to-accent-600",
+        color: "text-amber-500",
+        bg: "bg-amber-500/10",
+        border: "hover:border-amber-500/30",
+        tag: "System Design",
         link: "/devcorner/event-driven-architecture",
     },
     {
         title: "Data Platform",
-        description: "Build a robust infrastructure for ingesting, processing and serving data.",
+        description: "Build robust infrastructure pipelines for ingesting, transforming, storing, and serving analytical data.",
         icon: FaServer,
-        gradient: "from-green-500 to-green-700",
+        color: "text-emerald-500",
+        bg: "bg-emerald-500/10",
+        border: "hover:border-emerald-500/30",
+        tag: "Big Data",
         link: "/devcorner/data-platform",
     },
     {
         title: "Database Versioning",
-        description: "Version your schema safely and repeatably across multiple environments.",
-        icon: FaServer,
-        gradient: "from-secondary-500 to-secondary-700",
+        description: "Version database schemas repeatably and safely across dev, staging, and production using migration pipelines.",
+        icon: FaDatabase,
+        color: "text-violet-500",
+        bg: "bg-violet-500/10",
+        border: "hover:border-violet-500/30",
+        tag: "DevOps / GitOps",
         link: "/devcorner/database-versioning",
     },
     {
         title: "User Auth vs Machine-to-Machine",
-        description: "Side-by-side guide to interactive user authentication (OIDC) and service-to-service flows (Client Credentials, Token Exchange). Diagrams, code and best practices.",
+        description: "A developer's guide to user authentication (OIDC, OAuth2) vs service-to-service credentials (mTLS, SPIFFE).",
         icon: FaUserShield,
-        gradient: "from-red-500 to-red-700",
+        color: "text-rose-500",
+        bg: "bg-rose-500/10",
+        border: "hover:border-rose-500/30",
+        tag: "Security",
         link: "/devcorner/auth",
     },
     {
         title: "Model Context Protocol (MCP)",
-        description: "Practical guide to building a basic MCP server and client: project structure, minimal APIs, and local run instructions.",
+        description: "Learn to build custom MCP servers and clients to extend LLM runtime engines with secure local tooling.",
         icon: FaServer,
-        gradient: "from-accent-500 to-accent-700",
+        color: "text-cyan-500",
+        bg: "bg-cyan-500/10",
+        border: "hover:border-cyan-500/30",
+        tag: "AI Engineering",
         link: "/devcorner/mcp",
+    },
+    {
+        title: "Agentic Workflows",
+        description: "Autonomous AI systems that plan, use tools, and reason through complex tasks in iterative loops.",
+        icon: FaBolt,
+        color: "text-orange-500",
+        bg: "bg-orange-500/10",
+        border: "hover:border-orange-500/30",
+        tag: "AI Engineering",
+        link: "/devcorner/agentic-workflows",
     },
 ];
 
-const gridVariants = {
-    hidden: {},
-    visible: { transition: { staggerChildren: 0.12 } },
-};
-
-const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-};
-
 function DevCorner() {
     return (
-        <motion.section
-            className="px-4 py-8 md:py-12 max-w-5xl mx-auto"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+        <PageLayout 
+            title="Dev Corner" 
+            subtitle="A curation of guides, architecture blueprints, and articles on system design."
         >
-            <div className="relative mb-12">
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg blur-md opacity-20"></div>
-                <div className="relative bg-white/80 backdrop-blur-sm shadow-soft rounded-lg p-8 text-center">
-                    <h2 className="text-4xl md:text-5xl font-display font-bold bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">
-                        Dev Corner
-                    </h2>
-                    <p className="text-dark-600 mt-6 text-lg max-w-2xl mx-auto">
-                        A space where I break down software architecture patterns, best practices and core tech concepts.
-                    </p>
-                </div>
-            </div>
-
             <motion.div
-                className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
-                variants={gridVariants}
+                className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-8"
+                variants={animations.gridVariants}
                 initial="hidden"
                 animate="visible"
             >
                 {topics.map((topic) => {
                     const Icon = topic.icon;
                     return (
-                        <motion.div key={topic.title} variants={cardVariants}>
+                        <motion.div key={topic.title} variants={animations.cardVariants}>
                             <Link
                                 to={topic.link}
-                                className="group block h-full rounded-xl bg-white shadow-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-hidden"
+                                className={`group flex flex-col justify-between h-full rounded-2xl glass-card p-6 border border-slate-200/35 dark:border-slate-800/35 hover:-translate-y-1.5 transition-all duration-300 ${topic.border}`}
                             >
-                                <div className={`h-2 bg-gradient-to-r ${topic.gradient}`}></div>
-                                <div className="p-6">
-                                    <div className={`w-14 h-14 rounded-lg bg-gradient-to-br ${topic.gradient} flex items-center justify-center text-white mb-4 shadow-sm group-hover:scale-110 transition-transform duration-300`}>
-                                        <Icon className="text-2xl" aria-hidden />
+                                <div>
+                                    <div className="flex items-center justify-between gap-4 mb-4">
+                                        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                            {topic.tag}
+                                        </span>
                                     </div>
-                                    <h3 className="text-xl font-display font-semibold text-dark-800 mb-2">{topic.title}</h3>
-                                    <p className="text-dark-600 leading-relaxed">{topic.description}</p>
+                                    <div className={`w-12 h-12 rounded-xl ${topic.bg} ${topic.color} flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300`}>
+                                        <Icon size={20} aria-hidden />
+                                    </div>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                                        {topic.title}
+                                    </h3>
+                                    <p className="text-sm text-slate-650 dark:text-slate-400 leading-relaxed">
+                                        {topic.description}
+                                    </p>
+                                </div>
+                                
+                                <div className="mt-6 pt-3 border-t border-slate-150/40 dark:border-slate-800/10 flex items-center text-xs font-semibold text-primary-600 dark:text-primary-400 group-hover:gap-1.5 gap-1 transition-all">
+                                    Read Article <span className="text-sm">→</span>
                                 </div>
                             </Link>
                         </motion.div>
@@ -107,18 +124,18 @@ function DevCorner() {
                 })}
             </motion.div>
 
-            <div className="mt-12 text-center">
-                <p className="text-dark-500 mb-4">Looking for more technical content?</p>
+            <div className="mt-16 text-center space-y-4">
+                <p className="text-sm text-slate-500 dark:text-slate-400">Looking for more source code and repositories?</p>
                 <a 
                     href="https://github.com/stefanoauciello" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="btn btn-secondary"
+                    className="btn btn-secondary gap-2 inline-flex"
                 >
-                    Check My GitHub
+                    <FaGithub size={14} /> Check My GitHub
                 </a>
             </div>
-        </motion.section>
+        </PageLayout>
     );
 }
 

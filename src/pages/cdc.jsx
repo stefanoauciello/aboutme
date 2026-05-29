@@ -1,171 +1,202 @@
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 import {
     FaFileAlt,
     FaBroadcastTower,
     FaProjectDiagram,
     FaCheckCircle,
     FaDatabase,
+    FaLink,
 } from "react-icons/fa";
-import containerVariants from "../components/utils";
+import PageLayout from "../layouts/page-layout.jsx";
 import BackButton from "../components/back-button.jsx";
+import { animations } from "../styles/theme";
 
 const keyConcepts = [
     {
         icon: FaFileAlt,
         title: "Transaction Logs",
-        description:
-            "Monitor low-level operations directly from database logs.",
+        description: "Monitor low-level operations directly from database logs, bypassing SQL query load.",
     },
     {
         icon: FaBroadcastTower,
         title: "Event Streaming",
-        description:
-            "Stream detected changes using tools like Debezium or GoldenGate.",
+        description: "Capture and publish events immediately using tools like Debezium or Oracle GoldenGate.",
     },
     {
         icon: FaProjectDiagram,
         title: "Downstream Processing",
-        description:
-            "Real-time reactions to changes for analytics, replication or alerting.",
+        description: "Deliver events to Kafka topics so search engines, caches, or analytical warehouses react instantly.",
     },
 ];
 
 const benefits = [
-    "Real-time data synchronization across multiple systems.",
-    "Minimized impact on source databases compared to polling.",
-    "Improved responsiveness and scalability of data pipelines.",
+    "Zero-impact, real-time data synchronization across microservices.",
+    "Minimized database CPU usage compared to polling with recurrent SELECT queries.",
+    "Sub-second data replication latency across distributed data meshes.",
+    "Immediate, event-driven cache invalidation and search index updates.",
 ];
 
 const technologies = [
     {
         label: "Oracle GoldenGate",
-        description: "Enterprise-grade, log-based CDC solution.",
+        description: "Enterprise log-based CDC engine with multi-platform replication.",
     },
-    {label: "Debezium", description: "Open-source, Kafka-native CDC engine."},
+    {
+        label: "Debezium",
+        description: "Kafka-native open-source source connectors tracking database transaction logs.",
+    },
     {
         label: "Apache Kafka",
-        description: "Distributed event streaming platform.",
+        description: "High-throughput distributed logs acting as the messaging channel.",
     },
     {
         label: "Kafka Connect",
-        description: "Integrates CDC sources with Kafka topics.",
+        description: "Framework managing source connectors and forwarding messages to topics.",
     },
-    {label: "AWS DMS", description: "Managed service supporting CDC in AWS environments."},
     {
-        label: "Apache Spark Structured Streaming",
-        description: "Real-time analytics and transformation of CDC streams.",
+        label: "AWS DMS",
+        description: "Managed Database Migration Service running CDC replicates to cloud storage.",
+    },
+    {
+        label: "Apache Spark",
+        description: "Engine providing real-time processing and analytical stream transformations.",
     },
 ];
 
 const CDC = () => {
     return (
-        <motion.section
-            className="min-h-screen p-6 md:p-12 text-blue-900 bg-gradient-to-r from-blue-50 to-white rounded-xl shadow-lg text-center max-w-4xl mx-auto flex flex-col"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+        <PageLayout 
+            title="Change Data Capture (CDC)" 
+            subtitle="Stream database modifications in real-time without polling overhead."
         >
-            <div className="flex-grow px-4 md:px-8 text-left text-blue-700">
-                <BackButton fallbackTo="/devcorner" />
-                <h2 className="text-4xl font-semibold text-blue-600 text-center">
-                    Change Data Capture (CDC)
-                </h2>
-
-                <div className="my-6 flex justify-center">
-                    <img
-                        src={`${import.meta.env.BASE_URL}CDC.png`}
-                        alt="CDC Diagram"
-                        className="w-full max-w-xs sm:max-w-sm md:max-w-md border-4 border-blue-300 shadow-lg rounded-lg"
-                    />
+            <div className="max-w-4xl mx-auto space-y-12">
+                <div>
+                    <BackButton fallbackTo="/devcorner" />
                 </div>
 
-                <p className="text-base sm:text-lg">
-                    Change Data Capture (CDC) is a data integration pattern that
-                    identifies and captures changes made to data in real time, and streams
-                    those changes to other systems for immediate action or analysis.
-                </p>
+                {/* Hero Diagram Card */}
+                <div className="glass-card p-4 sm:p-6 border border-slate-200/35 dark:border-slate-800/35 flex flex-col items-center">
+                    <img
+                        src={`${import.meta.env.BASE_URL}CDC.png`}
+                        alt="CDC Architecture Diagram"
+                        className="w-full max-w-xl object-contain bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200/50 dark:border-slate-800/50 p-2 shadow-inner"
+                    />
+                    <p className="text-xs font-semibold text-slate-400 mt-3 uppercase tracking-wider text-center">
+                        Transactional Log-based Data Pipeline Architecture
+                    </p>
+                </div>
 
-                <p className="mt-4 text-base sm:text-lg">
-                    Instead of periodically polling tables for modifications, CDC reads
-                    the database transaction log to capture inserts, updates and deletes
-                    as they happen. These events are propagated through a streaming
-                    platform so downstream services can react asynchronously without
-                    overloading the primary database.
-                </p>
+                {/* Main description */}
+                <div className="space-y-4 text-base sm:text-lg text-slate-650 dark:text-slate-350 leading-relaxed">
+                    <p>
+                        Change Data Capture (CDC) is a design pattern that identifies and captures insertions, updates, and deletions made to database tables, streaming those changes in real-time to external targets.
+                    </p>
+                    <p>
+                        Instead of running periodic database queries (polling) which introduce latency and degrade database performance, CDC intercepts write operations directly from the database's transaction log. By decoupling extraction from query engines, it guarantees consistent near-zero latency replication across search indexes, search caches, and microservices databases.
+                    </p>
+                </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">Key Concepts</h3>
-                    <ul className="grid gap-4 sm:grid-cols-2">
+                {/* Key Concepts Grid */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        Key Concepts
+                    </h3>
+                    <motion.div 
+                        className="grid gap-4 sm:grid-cols-3"
+                        variants={animations.gridVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         {keyConcepts.map((item) => {
                             const Icon = item.icon;
                             return (
-                                <li
+                                <motion.div
                                     key={item.title}
-                                    className="flex items-start bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm"
+                                    variants={animations.cardVariants}
+                                    className="glass-card p-5 border border-slate-200/30 dark:border-slate-800/30 flex flex-col gap-3"
                                 >
-                                    <Icon className="text-xl text-primary-600 mr-3 mt-1" />
-                                    <span>
-                                        <strong>{item.title}:</strong> {item.description}
-                                    </span>
-                                </li>
+                                    <div className="p-2.5 bg-primary-500/10 text-primary-500 dark:text-primary-400 rounded-xl w-fit">
+                                        <Icon size={18} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-slate-850 dark:text-slate-100 text-sm sm:text-base leading-snug">
+                                            {item.title}
+                                        </h4>
+                                        <p className="text-xs sm:text-sm text-slate-550 dark:text-slate-400 mt-1 leading-relaxed">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </motion.div>
                             );
                         })}
-                    </ul>
+                    </motion.div>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">Benefits</h3>
-                    <ul className="space-y-2">
+                {/* Benefits */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        Architecture Benefits
+                    </h3>
+                    <ul className="grid gap-3 sm:grid-cols-2">
                         {benefits.map((benefit) => (
-                            <li key={benefit} className="flex items-start">
-                                <FaCheckCircle className="text-green-600 mr-2 mt-1" />
+                            <li key={benefit} className="flex items-start gap-2.5 text-sm sm:text-base text-slate-650 dark:text-slate-350">
+                                <FaCheckCircle className="text-emerald-500 dark:text-emerald-450 mt-1 flex-shrink-0" size={16} />
                                 <span>{benefit}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">
+                {/* Recommended Technologies */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
                         Recommended Technologies
                     </h3>
-                    <ul className="grid gap-2 sm:grid-cols-2">
+                    <div className="grid gap-4 sm:grid-cols-2">
                         {technologies.map((tech) => (
-                            <li key={tech.label} className="flex items-start">
-                                <FaDatabase className="text-primary-600 mr-2 mt-1" />
-                                <span>
-                                    <strong>{tech.label}</strong>: {tech.description}
-                                </span>
-                            </li>
+                            <div 
+                                key={tech.label} 
+                                className="glass-card p-5 border border-slate-200/30 dark:border-slate-800/30 flex items-start gap-3.5"
+                            >
+                                <div className="p-2 bg-secondary-500/10 text-secondary-500 dark:text-secondary-400 rounded-lg mt-0.5">
+                                    <FaDatabase size={14} />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-slate-850 dark:text-slate-100 text-sm sm:text-base">
+                                        {tech.label}
+                                    </h4>
+                                    <p className="text-xs sm:text-sm text-slate-550 dark:text-slate-400 mt-0.5 leading-relaxed">
+                                        {tech.description}
+                                    </p>
+                                </div>
+                            </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>
 
-                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
-                    <h3 className="text-2xl font-semibold text-blue-600">
-                        Practical Example: E-commerce Orders
+                {/* Practical Example */}
+                <div className="glass-card p-6 border border-slate-200/30 dark:border-slate-800/30 space-y-3 bg-slate-50/50 dark:bg-slate-900/30">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                        Practical Use-Case: E-Commerce Inventory
                     </h3>
-                    <p>
-                        An online store streams order changes from its transactional
-                        database using Debezium and Kafka. Each new or updated order
-                        event is consumed by separate microservices to update the
-                        warehouse system, refresh search indexes and feed analytics
-                        dashboards in near real time without impacting the primary
-                        database.
+                    <p className="text-sm sm:text-base text-slate-650 dark:text-slate-350 leading-relaxed">
+                        An online retail service captures order logs from Oracle Database using GoldenGate. These change messages are pushed onto Apache Kafka. Separate microservices consume the topics asynchronously: the logistics application reserves warehouses, the search application updates catalog stock counts, and the analytics cluster recalculates revenue projections—all without placing a single extra query load on the transaction store.
                     </p>
                 </div>
+
+                {/* Call to action */}
+                <div className="pt-6 text-center">
+                    <a
+                        href="https://github.com/stefanoauciello/e-commerce-cdc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-secondary gap-2 inline-flex items-center"
+                    >
+                        <FaLink size={12} /> Check My Project on GitHub
+                    </a>
+                </div>
             </div>
-            <div className="mt-8 text-center">
-                <a
-                    href="https://github.com/stefanoauciello/e-commerce-cdc"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-secondary"
-                >
-                    Check My Project on GitHub
-                </a>
-            </div>
-        </motion.section>
+        </PageLayout>
     );
 };
 

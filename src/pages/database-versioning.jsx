@@ -8,173 +8,259 @@ import {
     FaCogs,
     FaCheckCircle,
 } from "react-icons/fa";
-import containerVariants from "../components/utils";
+import PageLayout from "../layouts/page-layout.jsx";
 import BackButton from "../components/back-button.jsx";
+import { animations } from "../styles/theme";
 
 const keyConcepts = [
     {
         icon: FaFileAlt,
         title: "Changelog",
-        description:
-            "A file that defines a sequence of database changes (changesets) to be applied in order.",
+        description: "The root configuration file defining a sequential chain of schema updates (changesets) to be applied.",
     },
     {
         icon: FaCodeBranch,
         title: "Changeset",
-        description:
-            "A single unit of change, such as creating a table or adding a column, identified by an ID and author.",
+        description: "A single, isolated transactional schema migration query, tagged by unique author and ID keys.",
     },
     {
         icon: FaTable,
-        title: "DATABASECHANGELOG Table",
-        description:
-            "A table maintained by Liquibase to track which changesets have been applied to the database.",
+        title: "Changelog Table",
+        description: "A tracking register inside the database instance documenting previously executed changesets to prevent re-execution.",
     },
     {
         icon: FaUndo,
-        title: "Rollback",
-        description:
-            "The ability to undo changes by reverting to a previous state defined in the changelog.",
+        title: "Rollbacks",
+        description: "The safety-net rollback queries stored alongside migrations to revert schemas to previous states during hotfixes.",
     },
     {
         icon: FaSearch,
-        title: "Diff & Drift Detection",
-        description:
-            "Liquibase can compare database schemas to detect differences and generate changelogs accordingly.",
+        title: "Drift Detection",
+        description: "Auditing capabilities comparing environment catalogs to detect unexpected out-of-band schema changes.",
     },
     {
         icon: FaCogs,
         title: "CI/CD Integration",
-        description:
-            "Liquibase can be integrated into CI/CD pipelines to automate database migrations alongside application deployments.",
+        description: "Automated runners deploying schema migrations inside pipeline tasks before compiling the application binaries.",
     },
 ];
 
 const benefits = [
-    "Ensures consistent database schema across environments.",
-    "Tracks and documents all schema changes over time.",
-    "Facilitates collaboration among development teams.",
-    "Enables safe rollbacks in case of issues.",
-    "Integrates seamlessly with version control systems.",
-    "Supports automated deployments in CI/CD workflows.",
+    "Guarantees that databases in development, QA, and production remain in lockstep.",
+    "Documents all historic schema mutations directly in version control.",
+    "Allows parallel development across feature branches without query conflicts.",
+    "Mitigates execution errors through automatic checksum comparisons.",
 ];
 
 const DatabaseVersioning = () => {
     return (
-        <motion.section
-            className="min-h-screen
-                 p-6 md:p-12 text-blue-900
-                 bg-gradient-to-r from-blue-50 to-white
-                 rounded-xl shadow-lg text-center
-                 max-w-4xl mx-auto flex flex-col"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
+        <PageLayout 
+            title="Database Versioning with Liquibase" 
+            subtitle="Track and manage database schema modifications alongside application code."
         >
-            <div className="flex-grow px-4 md:px-8 text-left text-blue-700">
-                <BackButton fallbackTo="/devcorner" />
-                <h2 className="text-4xl font-semibold text-blue-600 text-center">
-                    Database Versioning with Liquibase
-                </h2>
+            <div className="max-w-4xl mx-auto space-y-12">
+                <div>
+                    <BackButton fallbackTo="/devcorner" />
+                </div>
 
-                <div className="my-6 flex justify-center">
+                {/* Diagram Section */}
+                <div className="glass-card p-4 sm:p-6 border border-slate-200/35 dark:border-slate-800/35 flex flex-col items-center">
                     <img
                         src={`${import.meta.env.BASE_URL}liqui_base.png`}
                         alt="Liquibase Workflow Diagram"
-                        className="w-full max-w-xs sm:max-w-sm md:max-w-md border-4 border-blue-300 shadow-lg rounded-lg"
+                        className="w-full max-w-xl object-contain bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200/50 dark:border-slate-800/50 p-2 shadow-inner"
                     />
+                    <p className="text-xs font-semibold text-slate-400 mt-3 uppercase tracking-wider text-center">
+                        Declarative Schema Versioning CI/CD Lifecycle
+                    </p>
                 </div>
 
-                <p className="text-lg">
-                    Database versioning is the practice of tracking and managing changes
-                    to a database schema over time in a structured, auditable, and
-                    repeatable way. Liquibase helps teams manage these changes across
-                    environments safely and consistently.
-                </p>
+                {/* Main description */}
+                <div className="space-y-4 text-base sm:text-lg text-slate-650 dark:text-slate-350 leading-relaxed">
+                    <p>
+                        Database versioning treats schema DDL and DML operations exactly like source code. By tracking database migrations in version-controlled configuration sets, engineering teams can apply repeatable, automated schema updates safely across all environments.
+                    </p>
+                    <p>
+                        Liquibase reads XML, YAML, JSON, or formatted SQL migration logs, checking the database's internal tracking registry to determine which changesets are pending. When deployed via CI/CD, database migrations run alongside microservices updates, virtually eliminating drift-related deployment incidents.
+                    </p>
+                </div>
 
-                <p className="mt-4 text-base sm:text-lg">
-                    Each update to the schema is defined as a versioned
-                    <em>changeset</em> stored alongside your application code. Liquibase
-                    reads these changelogs to apply pending updates or roll back
-                    unwanted ones. Integrating Liquibase into your CI pipeline
-                    ensures databases in development, staging and production all
-                    evolve in lockstep, reducing the risk of drift.
-                </p>
-
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">Key Concepts</h3>
-                    <ul className="grid gap-4 sm:grid-cols-2">
+                {/* Key Concepts Grid */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        Core Concepts
+                    </h3>
+                    <motion.div 
+                        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                        variants={animations.gridVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
                         {keyConcepts.map((item) => {
                             const Icon = item.icon;
                             return (
-                                <li
+                                <motion.div
                                     key={item.title}
-                                    className="flex items-start bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm"
+                                    variants={animations.cardVariants}
+                                    className="glass-card p-5 border border-slate-200/30 dark:border-slate-800/30 flex flex-col gap-3"
                                 >
-                                    <Icon className="text-xl text-primary-600 mr-3 mt-1" />
-                                    <span>
-                                        <strong>{item.title}:</strong> {item.description}
-                                    </span>
-                                </li>
+                                    <div className="p-2.5 bg-primary-500/10 text-primary-500 dark:text-primary-400 rounded-xl w-fit">
+                                        <Icon size={18} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-slate-850 dark:text-slate-100 text-sm sm:text-base leading-snug">
+                                            {item.title}
+                                        </h4>
+                                        <p className="text-xs sm:text-sm text-slate-550 dark:text-slate-400 mt-1 leading-relaxed">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </motion.div>
                             );
                         })}
-                    </ul>
+                    </motion.div>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">Benefits</h3>
-                    <ul className="space-y-2">
+                {/* Benefits */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        Operational Benefits
+                    </h3>
+                    <ul className="grid gap-3 sm:grid-cols-2">
                         {benefits.map((benefit) => (
-                            <li key={benefit} className="flex items-start">
-                                <FaCheckCircle className="text-green-600 mr-2 mt-1" />
+                            <li key={benefit} className="flex items-start gap-2.5 text-sm sm:text-base text-slate-650 dark:text-slate-350">
+                                <FaCheckCircle className="text-emerald-500 dark:text-emerald-450 mt-1 flex-shrink-0" size={16} />
                                 <span>{benefit}</span>
                             </li>
                         ))}
                     </ul>
                 </div>
 
-                <div className="mt-8 space-y-4 bg-white/70 backdrop-blur p-4 rounded-lg shadow-sm">
-                    <h3 className="text-2xl font-semibold text-blue-600">
-                        Practical Example: Adding a New Table
-                    </h3>
-                    <p>
-                        Here&apos;s how you can define a new <code>users</code> table in an XML
-                        changelog file:
-                    </p>
-                    <div className="overflow-x-auto">
-                        <pre className="bg-gray-100 text-sm p-4 rounded-md whitespace-pre-wrap break-words">
-                            {`<changeSet id="1" author="developer">
-  <createTable tableName="users">
-    <column name="id" type="int" autoIncrement="true">
-      <constraints primaryKey="true" nullable="false"/>
-    </column>
-    <column name="username" type="varchar(50)">
-      <constraints nullable="false"/>
-    </column>
-    <column name="email" type="varchar(100)"/>
-  </createTable>
-</changeSet>`}
+                {/* Practical Example */}
+                <div className="glass-card p-6 border border-slate-200/30 dark:border-slate-800/30 space-y-4">
+                    <div>
+                        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+                            Practical Example: Schema Migration
+                        </h3>
+                        <p className="text-sm text-slate-550 dark:text-slate-400 mt-1">
+                            An XML changeset definition adding a relational <code>users</code> table.
+                        </p>
+                    </div>
+
+                    <div className="relative rounded-xl overflow-hidden bg-slate-950 border border-slate-900 shadow-inner font-mono text-xs sm:text-sm p-4 text-left">
+                        <pre className="text-emerald-400 leading-relaxed">
+                            <span className="text-slate-500">&lt;</span>
+                            <span className="text-violet-400">changeSet</span>{" "}
+                            <span className="text-amber-300">id</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"1"</span>{" "}
+                            <span className="text-amber-300">author</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"stefano"</span>
+                            <span className="text-slate-500">&gt;</span>
+                            <br />
+                            {`  `}
+                            <span className="text-slate-500">&lt;</span>
+                            <span className="text-violet-400">createTable</span>{" "}
+                            <span className="text-amber-300">tableName</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"users"</span>
+                            <span className="text-slate-500">&gt;</span>
+                            <br />
+                            {`    `}
+                            <span className="text-slate-500">&lt;</span>
+                            <span className="text-violet-400">column</span>{" "}
+                            <span className="text-amber-300">name</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"id"</span>{" "}
+                            <span className="text-amber-300">type</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"int"</span>{" "}
+                            <span className="text-amber-300">autoIncrement</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"true"</span>
+                            <span className="text-slate-500">&gt;</span>
+                            <br />
+                            {`      `}
+                            <span className="text-slate-500">&lt;</span>
+                            <span className="text-violet-400">constraints</span>{" "}
+                            <span className="text-amber-300">primaryKey</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"true"</span>{" "}
+                            <span className="text-amber-300">nullable</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"false"</span>
+                            <span className="text-slate-500">/&gt;</span>
+                            <br />
+                            {`    `}
+                            <span className="text-slate-500">&lt;/</span>
+                            <span className="text-violet-400">column</span>
+                            <span className="text-slate-500">&gt;</span>
+                            <br />
+                            {`    `}
+                            <span className="text-slate-500">&lt;</span>
+                            <span className="text-violet-400">column</span>{" "}
+                            <span className="text-amber-300">name</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"username"</span>{" "}
+                            <span className="text-amber-300">type</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"varchar(50)"</span>
+                            <span className="text-slate-500">&gt;</span>
+                            <br />
+                            {`      `}
+                            <span className="text-slate-500">&lt;</span>
+                            <span className="text-violet-400">constraints</span>{" "}
+                            <span className="text-amber-300">nullable</span>
+                            <span className="text-slate-450">=</span>
+                            <span className="text-emerald-300">"false"</span>
+                            <span className="text-slate-500">/&gt;</span>
+                            <br />
+                            {`    `}
+                            <span className="text-slate-500">&lt;/</span>
+                            <span className="text-violet-400">column</span>
+                            <span className="text-slate-500">&gt;</span>
+                            <br />
+                            {`  `}
+                            <span className="text-slate-500">&lt;/</span>
+                            <span className="text-violet-400">createTable</span>
+                            <span className="text-slate-500">&gt;</span>
+                            <br />
+                            <span className="text-slate-500">&lt;/</span>
+                            <span className="text-violet-400">changeSet</span>
+                            <span className="text-slate-500">&gt;</span>
                         </pre>
                     </div>
-                    <p>
-                        When you run Liquibase, this changeset will be executed and tracked
-                        in the <code>DATABASECHANGELOG</code> table.
+
+                    <p className="text-sm text-slate-650 dark:text-slate-350">
+                        When the Liquibase job runs, it checks whether changeset <code>id="1"</code> exists in the target database changelog table. If missing, it applies the create table logic and appends an execution record.
                     </p>
                 </div>
 
-                <div className="mt-8 space-y-4">
-                    <h3 className="text-2xl font-semibold text-blue-600">
-                        Recommended Workflow
+                {/* Recommended Workflow */}
+                <div className="space-y-4">
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                        CI/CD Execution Workflow
                     </h3>
-                    <ol className="list-decimal list-inside space-y-2">
-                        <li>Write and commit changesets describing schema updates.</li>
-                        <li>Store changelog files in the same repository as your application code.</li>
-                        <li>Execute Liquibase during each deployment to apply pending changes.</li>
-                        <li>Monitor the <code>DATABASECHANGELOG</code> table to verify successful runs.</li>
-                    </ol>
+                    <div className="grid gap-4 sm:grid-cols-4 text-center">
+                        {[
+                            { step: "1", title: "Write changeset", text: "Commit DDL scripts in version control." },
+                            { step: "2", title: "Branch Pull", text: "Validate files during peer code review." },
+                            { step: "3", title: "CI Deployment", text: "Automate dry runs on staging databases." },
+                            { step: "4", title: "App Release", text: "Apply updates before service initialization." },
+                        ].map((w) => (
+                            <div key={w.step} className="glass-card p-5 border border-slate-200/35 dark:border-slate-800/35 flex flex-col items-center">
+                                <span className="w-8 h-8 rounded-full bg-primary-500 text-white font-bold flex items-center justify-center text-sm shadow-md mb-3">
+                                    {w.step}
+                                </span>
+                                <h4 className="font-bold text-slate-850 dark:text-slate-100 text-sm">{w.title}</h4>
+                                <p className="text-xs text-slate-500 dark:text-slate-405 mt-1 leading-normal">{w.text}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
-        </motion.section>
+        </PageLayout>
     );
 };
 
