@@ -92,7 +92,7 @@ const CDC = () => {
                         Change Data Capture (CDC) is a design pattern that identifies and captures insertions, updates, and deletions made to database tables, streaming those changes in real-time to external targets.
                     </p>
                     <p>
-                        Instead of running periodic database queries (polling) which introduce latency and degrade database performance, CDC intercepts write operations directly from the database's transaction log. By decoupling extraction from query engines, it guarantees consistent near-zero latency replication across search indexes, search caches, and microservices databases.
+                        Instead of running periodic database queries (polling) which introduce latency and degrade database performance, CDC intercepts write operations directly from the database&apos;s transaction log. By decoupling extraction from query engines, it guarantees consistent near-zero latency replication across search indexes, search caches, and microservices databases.
                     </p>
                 </div>
 

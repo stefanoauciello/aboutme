@@ -40,7 +40,7 @@ function Home() {
                         </motion.span>
 
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold leading-tight text-slate-900 dark:text-white">
-                            Ciao, I'm <br className="hidden sm:inline" />
+                            Ciao, I&apos;m <br className="hidden sm:inline" />
                             <span className="bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent">
                                 Stefano Auciello
                             </span>

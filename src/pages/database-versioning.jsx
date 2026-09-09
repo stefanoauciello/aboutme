@@ -81,7 +81,7 @@ const DatabaseVersioning = () => {
                         Database versioning treats schema DDL and DML operations exactly like source code. By tracking database migrations in version-controlled configuration sets, engineering teams can apply repeatable, automated schema updates safely across all environments.
                     </p>
                     <p>
-                        Liquibase reads XML, YAML, JSON, or formatted SQL migration logs, checking the database's internal tracking registry to determine which changesets are pending. When deployed via CI/CD, database migrations run alongside microservices updates, virtually eliminating drift-related deployment incidents.
+                        Liquibase reads XML, YAML, JSON, or formatted SQL migration logs, checking the database&apos;s internal tracking registry to determine which changesets are pending. When deployed via CI/CD, database migrations run alongside microservices updates, virtually eliminating drift-related deployment incidents.
                     </p>
                 </div>
 
@@ -153,10 +153,10 @@ const DatabaseVersioning = () => {
                             <span className="text-violet-400">changeSet</span>{" "}
                             <span className="text-amber-300">id</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"1"</span>{" "}
+                            <span className="text-emerald-300">&quot;1&quot;</span>{" "}
                             <span className="text-amber-300">author</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"stefano"</span>
+                            <span className="text-emerald-300">&quot;stefano&quot;</span>
                             <span className="text-slate-500">&gt;</span>
                             <br />
                             {`  `}
@@ -164,7 +164,7 @@ const DatabaseVersioning = () => {
                             <span className="text-violet-400">createTable</span>{" "}
                             <span className="text-amber-300">tableName</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"users"</span>
+                            <span className="text-emerald-300">&quot;users&quot;</span>
                             <span className="text-slate-500">&gt;</span>
                             <br />
                             {`    `}
@@ -172,13 +172,13 @@ const DatabaseVersioning = () => {
                             <span className="text-violet-400">column</span>{" "}
                             <span className="text-amber-300">name</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"id"</span>{" "}
+                            <span className="text-emerald-300">&quot;id&quot;</span>{" "}
                             <span className="text-amber-300">type</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"int"</span>{" "}
+                            <span className="text-emerald-300">&quot;int&quot;</span>{" "}
                             <span className="text-amber-300">autoIncrement</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"true"</span>
+                            <span className="text-emerald-300">&quot;true&quot;</span>
                             <span className="text-slate-500">&gt;</span>
                             <br />
                             {`      `}
@@ -186,10 +186,10 @@ const DatabaseVersioning = () => {
                             <span className="text-violet-400">constraints</span>{" "}
                             <span className="text-amber-300">primaryKey</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"true"</span>{" "}
+                            <span className="text-emerald-300">&quot;true&quot;</span>{" "}
                             <span className="text-amber-300">nullable</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"false"</span>
+                            <span className="text-emerald-300">&quot;false&quot;</span>
                             <span className="text-slate-500">/&gt;</span>
                             <br />
                             {`    `}
@@ -202,10 +202,10 @@ const DatabaseVersioning = () => {
                             <span className="text-violet-400">column</span>{" "}
                             <span className="text-amber-300">name</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"username"</span>{" "}
+                            <span className="text-emerald-300">&quot;username&quot;</span>{" "}
                             <span className="text-amber-300">type</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"varchar(50)"</span>
+                            <span className="text-emerald-300">&quot;varchar(50)&quot;</span>
                             <span className="text-slate-500">&gt;</span>
                             <br />
                             {`      `}
@@ -213,7 +213,7 @@ const DatabaseVersioning = () => {
                             <span className="text-violet-400">constraints</span>{" "}
                             <span className="text-amber-300">nullable</span>
                             <span className="text-slate-450">=</span>
-                            <span className="text-emerald-300">"false"</span>
+                            <span className="text-emerald-300">&quot;false&quot;</span>
                             <span className="text-slate-500">/&gt;</span>
                             <br />
                             {`    `}
@@ -233,7 +233,7 @@ const DatabaseVersioning = () => {
                     </div>
 
                     <p className="text-sm text-slate-650 dark:text-slate-350">
-                        When the Liquibase job runs, it checks whether changeset <code>id="1"</code> exists in the target database changelog table. If missing, it applies the create table logic and appends an execution record.
+                        When the Liquibase job runs, it checks whether changeset <code>id=&quot;1&quot;</code> exists in the target database changelog table. If missing, it applies the create table logic and appends an execution record.
                     </p>
                 </div>
 

@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
     FaUser,
     FaServer,
@@ -7,7 +6,6 @@ import {
 } from "react-icons/fa";
 import PageLayout from "../layouts/page-layout.jsx";
 import BackButton from "../components/back-button.jsx";
-import { animations } from "../styles/theme";
 
 const HERO_IMAGE = `${import.meta.env.BASE_URL}auth.png`;
 
@@ -42,14 +40,6 @@ const tokenTypes = [
         description: "Long-lived credentials used to exchange and obtain new access tokens without requiring MFA prompt.",
     },
 ];
-
-const tokenExchange = `curl -X POST https://idp.example.com/oauth2/token \\
-  -d 'grant_type=urn:ietf:params:oauth:grant-type:token-exchange' \\
-  -d "subject_token=$USER_JWT" \\
-  -d 'requested_token_type=access_token' \\
-  -d 'audience=service-b' \\
-  -d 'scope=payments.read' \\
-  -u 'service-a:<client_secret>'`;
 
 const Auth = () => {
     return (
@@ -160,22 +150,22 @@ const Auth = () => {
                             <span className="text-slate-405">curl -X POST</span> <span className="text-amber-300">https://idp.example.com/oauth2/token</span> <span className="text-slate-500">\\</span>
                             <br />
                             {`  `}
-                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">'grant_type=urn:ietf:params:oauth:grant-type:token-exchange'</span> <span className="text-slate-500">\\</span>
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">&apos;grant_type=urn:ietf:params:oauth:grant-type:token-exchange&apos;</span> <span className="text-slate-500">\\</span>
                             <br />
                             {`  `}
-                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">"subject_token=$USER_JWT"</span> <span className="text-slate-500">\\</span>
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">&quot;subject_token=$USER_JWT&quot;</span> <span className="text-slate-500">\\</span>
                             <br />
                             {`  `}
-                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">'requested_token_type=access_token'</span> <span className="text-slate-500">\\</span>
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">&apos;requested_token_type=access_token&apos;</span> <span className="text-slate-500">\\</span>
                             <br />
                             {`  `}
-                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">'audience=service-b'</span> <span className="text-slate-500">\\</span>
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">&apos;audience=service-b&apos;</span> <span className="text-slate-500">\\</span>
                             <br />
                             {`  `}
-                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">'scope=payments.read'</span> <span className="text-slate-500">\\</span>
+                            <span className="text-slate-405">-d</span> <span className="text-emerald-300">&apos;scope=payments.read&apos;</span> <span className="text-slate-500">\\</span>
                             <br />
                             {`  `}
-                            <span className="text-slate-405">-u</span> <span className="text-emerald-300">'service-a:&lt;client_secret&gt;'</span>
+                            <span className="text-slate-405">-u</span> <span className="text-emerald-300">&apos;service-a:&lt;client_secret&gt;&apos;</span>
                         </pre>
                     </div>
 

@@ -183,38 +183,38 @@ const EventDrivenArchitecture = () => {
                                 <span className="text-slate-500">{`{`}</span>
                                 <br />
                                 {`  `}
-                                <span className="text-violet-400">"eventType"</span>
+                                <span className="text-violet-400">&quot;eventType&quot;</span>
                                 <span className="text-slate-400">:</span>{" "}
-                                <span className="text-amber-300">"UserRegistered"</span>
+                                <span className="text-amber-300">&quot;UserRegistered&quot;</span>
                                 <span className="text-slate-400">,</span>
                                 <br />
                                 {`  `}
-                                <span className="text-violet-400">"timestamp"</span>
+                                <span className="text-violet-400">&quot;timestamp&quot;</span>
                                 <span className="text-slate-400">:</span>{" "}
-                                <span className="text-amber-300">"2026-05-29T15:38:22Z"</span>
+                                <span className="text-amber-300">&quot;2026-05-29T15:38:22Z&quot;</span>
                                 <span className="text-slate-400">,</span>
                                 <br />
                                 {`  `}
-                                <span className="text-violet-400">"payload"</span>
+                                <span className="text-violet-400">&quot;payload&quot;</span>
                                 <span className="text-slate-400">:</span>{" "}
                                 <span className="text-slate-500">{`{`}</span>
                                 <br />
                                 {`    `}
-                                <span className="text-violet-400">"userId"</span>
+                                <span className="text-violet-400">&quot;userId&quot;</span>
                                 <span className="text-slate-400">:</span>{" "}
-                                <span className="text-amber-300">"usr_9x8e1a"</span>
+                                <span className="text-amber-300">&quot;usr_9x8e1a&quot;</span>
                                 <span className="text-slate-400">,</span>
                                 <br />
                                 {`    `}
-                                <span className="text-violet-400">"email"</span>
+                                <span className="text-violet-400">&quot;email&quot;</span>
                                 <span className="text-slate-400">:</span>{" "}
-                                <span className="text-amber-300">"stefano@example.com"</span>
+                                <span className="text-amber-300">&quot;stefano@example.com&quot;</span>
                                 <span className="text-slate-400">,</span>
                                 <br />
                                 {`    `}
-                                <span className="text-violet-400">"name"</span>
+                                <span className="text-violet-400">&quot;name&quot;</span>
                                 <span className="text-slate-400">:</span>{" "}
-                                <span className="text-amber-300">"Stefano Auciello"</span>
+                                <span className="text-amber-300">&quot;Stefano Auciello&quot;</span>
                                 <br />
                                 {`  `}
                                 <span className="text-slate-500">{`}`}</span>
