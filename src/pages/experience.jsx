@@ -5,6 +5,7 @@ import { animations } from "../styles/theme";
 const experiences = [
     {
         company: "Generali",
+        period: "October 2025 - Present",
         role: "Senior Software Engineer (October 2025 - Present)",
         description: `Part of the Digital Center of Excellence team, focusing on large-scale cloud transformation. Actively re-architecting legacy mainframe systems by breaking down COBOL applications into scalable, resilient, and fully automated AWS serverless solutions.`,
         secondrole: "",
@@ -13,6 +14,7 @@ const experiences = [
     },
     {
         company: "Vodafone",
+        period: "May 2022 - October 2025",
         role: "Senior Software Engineer (May 2022 - October 2025)",
         description: `I worked at DXL as a Java/Node.js Backend Developer and Data Engineer, focusing on consumer data. I led the migration of our Java Spring Boot microservices stack from OpenShift to AWS EKS, including data migration from MongoDB to MongoDB Atlas and optimization of Kafka systems. I prioritized performance, scalability, and capacity planning to support millions of active customers. I also reengineered the real-time Change Data Capture (CDC) architecture using Node.js Lambda and Java microservices to ensure data updates with minimal latency.`,
         secondrole: "",
@@ -21,6 +23,7 @@ const experiences = [
     },
     {
         company: "Bandyer/Kaleyra",
+        period: "May 2021 - May 2022",
         role: "Senior Associate Software Developer (May 2021 - May 2022)",
         description: `I was responsible for developing Node.js services using TypeScript and deploying them on AWS via GitLab CI/CD pipelines. I wrote unit and integration tests with Jest to ensure code quality and reliability. My work also involved managing Docker containers and leveraging various AWS services to enhance system scalability and efficiency. Additionally, I worked extensively with MongoDB and MySQL, implementing database changes through automated Liquibase pipelines to streamline deployment and maintain data integrity.`,
         secondrole: "",
@@ -29,6 +32,7 @@ const experiences = [
     },
     {
         company: "Dechit",
+        period: "March 2019 - May 2021",
         role: "Software Developer, consultant at Sky (March 2019 - May 2021)",
         description: `At Sky, I contributed to modernizing the backend systems powering Sky Sport, focusing on scalability, real-time responsiveness, and reliability through an event-driven, serverless architecture on AWS. I worked with technologies such as AWS Lambda, AppSync, Node.js, TypeScript, Java, and Amazon Aurora, while embracing Agile practices and Test-Driven Development (TDD) to ensure clean, maintainable code. My responsibilities included CI/CD with Jenkins and collaborative development via Git and pull request workflows.`,
         secondrole: "",
@@ -37,6 +41,7 @@ const experiences = [
     },
     {
         company: "ThinkOpen",
+        period: "July 2017 - March 2019",
         role: "Software Developer, consultant at Arlanis Reply (June 2018 - March 2019) ",
         description: `Developed backend applications using Node.js, deploying them on Heroku to ensure seamless scalability and accessibility. Emphasized Test-Driven Development (TDD) to maintain high code quality and reliability. Additionally, utilized Git and a pull request workflow to collaborate effectively and manage code versioning.`,
         secondrole:
@@ -47,6 +52,7 @@ const experiences = [
     },
     {
         company: "Spindox",
+        period: "October 2014 - June 2017",
         role: "Software Developer (October 2014 - June 2017) ",
         description: `Developed Java applications for Ferrari, working directly at their headquarters in Maranello, with a focus on the maintenance and enhancement of internal management systems. In addition to my work with Ferrari, I also contributed to various internal projects, handling technical analysis, development, and deployment of applications to improve operational efficiency across different business areas.`,
         secondrole: "",
@@ -88,25 +94,31 @@ function Experience() {
                                             {job.company}
                                         </h3>
                                         <span className="text-xs font-semibold text-slate-550 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-full w-fit">
-                                            {job.role.split("(")[1]?.replace(")", "") || ""}
+                                            {job.period || job.role.split("(")[1]?.replace(")", "").trim() || ""}
                                         </span>
                                     </div>
                                     
                                     <p className="text-sm font-semibold text-primary-600 dark:text-primary-400 mt-1">
-                                        {job.role.split("(")[0]}
+                                        {job.role.split("(")[0].trim()}
                                     </p>
                                     
-                                    <p className="text-sm sm:text-base text-slate-650 dark:text-slate-350 mt-3 leading-relaxed whitespace-pre-line">
+                                    {job.secondrole && (
+                                        <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">
+                                            {job.role.split("(")[1]?.replace(")", "").trim() || ""}
+                                        </p>
+                                    )}
+
+                                    <p className={`text-sm sm:text-base text-slate-650 dark:text-slate-350 ${job.secondrole ? "mt-2" : "mt-3"} leading-relaxed whitespace-pre-line`}>
                                         {job.description}
                                     </p>
 
                                     {job.secondrole && (
                                         <div className="mt-6 pt-6 border-t border-slate-200/50 dark:border-slate-800/40">
                                             <p className="text-sm font-semibold text-primary-600 dark:text-primary-400">
-                                                {job.secondrole.split("(")[0]}
+                                                {job.secondrole.split("(")[0].trim()}
                                             </p>
                                             <p className="text-xs font-medium text-slate-500 dark:text-slate-400 mt-0.5">
-                                                {job.secondrole.split("(")[1]?.replace(")", "") || ""}
+                                                {job.secondrole.split("(")[1]?.replace(")", "").trim() || ""}
                                             </p>
                                             <p className="text-sm sm:text-base text-slate-650 dark:text-slate-350 mt-2 leading-relaxed">
                                                 {job.seconddescription}
