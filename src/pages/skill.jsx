@@ -6,6 +6,13 @@ import { animations, classes } from "../styles/theme";
 
 const skills = [
   {
+    src: "java.png",
+    alt: "Java",
+    label: "Java",
+    description:
+      "Core enterprise Java development, modern language features (Java 8 to 21+), concurrency, OOP patterns, and JVM tuning.",
+  },
+  {
     src: "spring.png",
     alt: "Spring",
     label: "Spring Ecosystem",
@@ -46,6 +53,13 @@ const skills = [
     label: "Apache Kafka",
     description:
       "Designing real-time event streaming architectures, change-data-capture (CDC) pipelines, and pub/sub streaming channels.",
+  },
+  {
+    src: "docker.png",
+    alt: "Docker",
+    label: "Docker & Containers",
+    description:
+      "Containerizing services with multi-stage builds, managing container environments, and streamlining local and cloud workflows.",
   },
   {
     src: "mysql.png",
