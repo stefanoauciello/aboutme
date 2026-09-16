@@ -8,7 +8,8 @@ export const animations = {
   // Container animation for page transitions
   containerVariants: {
     hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+    exit: { opacity: 0, y: -10, transition: { duration: 0.2, ease: "easeIn" } },
   },
   
   // Item animation with staggered children
@@ -17,20 +18,23 @@ export const animations = {
     visible: idx => ({
       opacity: 1,
       y: 0,
-      transition: { delay: idx * 0.08, duration: 0.4, ease: "easeOut" },
+      transition: { delay: idx * 0.06, duration: 0.35, ease: [0.22, 1, 0.36, 1] },
     }),
+    exit: { opacity: 0, y: -8, transition: { duration: 0.15 } },
   },
   
   // Grid animation with staggered children
   gridVariants: {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.08 } },
+    visible: { transition: { staggerChildren: 0.06 } },
+    exit: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
   },
   
   // Card animation for grid items
   cardVariants: {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+    hidden: { opacity: 0, y: 18 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } },
+    exit: { opacity: 0, y: -8, transition: { duration: 0.15 } },
   },
 };
 

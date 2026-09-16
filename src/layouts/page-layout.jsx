@@ -17,19 +17,35 @@ function PageLayout({ children, title, subtitle, className = "" }) {
       variants={animations.containerVariants}
       initial="hidden"
       animate="visible"
+      exit="exit"
     >
       <div className={`${classes.contentContainer} ${className}`}>
         {title && (
           <div className="text-center mb-10 sm:mb-12 max-w-2xl mx-auto">
-            <h1 className={classes.pageTitle}>
+            <motion.h1 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className={classes.pageTitle}
+            >
               {title}
-            </h1>
+            </motion.h1>
             {subtitle && (
-              <p className="text-slate-600 dark:text-slate-400 mt-3 text-base md:text-lg leading-relaxed">
+              <motion.p 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.08, ease: "easeOut" }}
+                className="text-slate-600 dark:text-slate-400 mt-3 text-base md:text-lg leading-relaxed"
+              >
                 {subtitle}
-              </p>
+              </motion.p>
             )}
-            <div className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mt-5 rounded-full" />
+            <motion.div 
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 0.45, delay: 0.16, ease: "easeOut" }}
+              className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mt-5 rounded-full origin-center" 
+            />
           </div>
         )}
         {children}

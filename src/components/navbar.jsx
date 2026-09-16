@@ -9,6 +9,7 @@ import ThemeToggle from "./theme-toggle.jsx";
 function Navbar() {
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [hoveredPath, setHoveredPath] = useState(null);
     const location = useLocation();
 
     useEffect(() => {
@@ -47,7 +48,7 @@ function Navbar() {
                     <motion.nav
                         id="mobile-navigation"
                         key="drawer"
-                        className="fixed inset-y-0 left-0 z-[130] w-[80vw] sm:w-72 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-r border-slate-200/50 dark:border-slate-800/50 p-6 flex flex-col justify-between"
+                        className="fixed inset-y-0 left-0 z-[130] w-[80vw] sm:w-72 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-r border-slate-200/50 dark:border-slate-800/50 p-6 flex flex-col justify-between shadow-2xl"
                         initial={{ x: "-100%" }}
                         animate={{ x: 0 }}
                         exit={{ x: "-100%" }}
@@ -55,34 +56,66 @@ function Navbar() {
                     >
                         <div>
                             <div className="flex justify-between items-center mb-8">
-                                <Link to="/" className="text-2xl font-display font-extrabold bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent">
+                                <Link
+                                    to="/"
+                                    onClick={() => setOpen(false)}
+                                    className="text-2xl font-display font-extrabold bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent"
+                                >
                                     SA
                                 </Link>
-                                <button
+                                <motion.button
                                     aria-label="Close navigation"
                                     onClick={() => setOpen(false)}
-                                    className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 p-2 cursor-pointer"
+                                    whileHover={{ rotate: 90, scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className="text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 p-2 cursor-pointer rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
                                 >
                                     <FaTimes size={18} />
-                                </button>
+                                </motion.button>
                             </div>
 
                             <ul className="space-y-2">
-                                {navLinks.map((l) => (
-                                    <li key={l.to}>
+                                {navLinks.map((l, idx) => (
+                                    <motion.li
+                                        key={l.to}
+                                        initial={{ opacity: 0, x: -25 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{
+                                            delay: 0.05 + idx * 0.04,
+                                            type: "spring",
+                                            stiffness: 300,
+                                            damping: 24,
+                                        }}
+                                    >
                                         <NavLink
                                             to={l.to}
                                             end={l.to === "/"}
+                                            onClick={() => setOpen(false)}
                                             className={({ isActive }) =>
-                                                `block rounded-xl px-4 py-3 font-medium transition-all duration-200 ${isActive
-                                                    ? "bg-primary-500/10 text-primary-600 dark:text-primary-400 font-semibold"
+                                                `group flex items-center justify-between rounded-xl px-4 py-3 font-medium transition-all duration-200 ${isActive
+                                                    ? "bg-primary-500/10 text-primary-600 dark:text-primary-400 font-semibold shadow-sm"
                                                     : "text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
                                                 }`
                                             }
                                         >
-                                            {l.label}
+                                            {({ isActive }) => (
+                                                <>
+                                                    <span className="flex items-center gap-2.5">
+                                                        {isActive && (
+                                                            <motion.span
+                                                                layoutId="activeMobileIndicator"
+                                                                className="w-1.5 h-4 rounded-full bg-gradient-to-b from-primary-500 to-secondary-500"
+                                                            />
+                                                        )}
+                                                        <span>{l.label}</span>
+                                                    </span>
+                                                    <span className={`text-xs transition-transform duration-200 ${isActive ? "text-primary-500" : "text-slate-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1"}`}>
+                                                        →
+                                                    </span>
+                                                </>
+                                            )}
                                         </NavLink>
-                                    </li>
+                                    </motion.li>
                                 ))}
                             </ul>
                         </div>
@@ -106,35 +139,73 @@ function Navbar() {
                 <div className="mx-auto max-w-6xl flex items-center justify-between px-4 md:px-6">
                     <Link
                         to="/"
-                        className="text-2xl font-display font-extrabold bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent hover:scale-105 transition-transform"
+                        className="text-2xl font-display font-extrabold bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent inline-block"
                     >
-                        SA
+                        <motion.span
+                            className="inline-block"
+                            whileHover={{ scale: 1.1, rotate: [-1, 2, -1, 0] }}
+                            whileTap={{ scale: 0.92 }}
+                            transition={{ type: "spring", stiffness: 450, damping: 15 }}
+                        >
+                            SA
+                        </motion.span>
                     </Link>
 
                     {/* Right side options */}
                     <div className="flex items-center space-x-3">
                         {/* Desktop Nav Links */}
                         <nav className="hidden md:block mr-2">
-                            <ul className="flex items-center space-x-1">
+                            <ul
+                                className="flex items-center space-x-1"
+                                onMouseLeave={() => setHoveredPath(null)}
+                            >
                                 {navLinks.map((l) => (
-                                    <li key={l.to} className="relative">
+                                    <li
+                                        key={l.to}
+                                        className="relative"
+                                        onMouseEnter={() => setHoveredPath(l.to)}
+                                    >
                                         <NavLink
                                             to={l.to}
                                             end={l.to === "/"}
-                                            className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center relative"
+                                            className="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 whitespace-nowrap text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white flex items-center justify-center relative select-none"
                                         >
                                             {({ isActive }) => (
                                                 <>
-                                                    {isActive && (
+                                                    {/* Hover highlight pill (slides smoothly between non-active links) */}
+                                                    {hoveredPath === l.to && !isActive && (
                                                         <motion.span
-                                                            layoutId="activeNavBackground"
-                                                            className="absolute inset-0 bg-slate-200/80 dark:bg-slate-800/80 rounded-full z-0"
-                                                            transition={{ type: "spring", stiffness: 350, damping: 28 }}
+                                                            layoutId="hoverNavHighlight"
+                                                            className="absolute inset-0 bg-slate-200/60 dark:bg-slate-800/60 rounded-full z-0 pointer-events-none"
+                                                            initial={{ opacity: 0 }}
+                                                            animate={{ opacity: 1 }}
+                                                            exit={{ opacity: 0 }}
+                                                            transition={{ type: "spring", stiffness: 420, damping: 30 }}
                                                         />
                                                     )}
-                                                    <span className={`relative z-10 ${isActive ? "text-primary-600 dark:text-primary-400 font-semibold" : ""}`}>
+
+                                                    {/* Active link pill with glowing border & active dot */}
+                                                    {isActive && (
+                                                        <>
+                                                            <motion.span
+                                                                layoutId="activeNavBackground"
+                                                                className="absolute inset-0 bg-white/90 dark:bg-slate-800/90 rounded-full z-0 shadow-sm border border-primary-500/20 dark:border-primary-400/20"
+                                                                transition={{ type: "spring", stiffness: 360, damping: 28 }}
+                                                            />
+                                                            <motion.span
+                                                                layoutId="activeNavDot"
+                                                                className="absolute bottom-1 w-1 h-1 rounded-full bg-gradient-to-r from-primary-500 to-secondary-500 shadow-[0_0_6px_rgba(14,165,233,0.8)] z-10"
+                                                                transition={{ type: "spring", stiffness: 360, damping: 28 }}
+                                                            />
+                                                        </>
+                                                    )}
+
+                                                    <motion.span
+                                                        whileTap={{ scale: 0.94 }}
+                                                        className={`relative z-10 ${isActive ? "text-primary-600 dark:text-primary-400 font-semibold" : ""}`}
+                                                    >
                                                         {l.label}
-                                                    </span>
+                                                    </motion.span>
                                                 </>
                                             )}
                                         </NavLink>
@@ -149,15 +220,17 @@ function Navbar() {
                         </div>
 
                         {/* Mobile Drawer Trigger */}
-                        <button
+                        <motion.button
                             aria-label={open ? "Close navigation" : "Open navigation"}
                             aria-expanded={open}
                             aria-controls="mobile-navigation"
                             onClick={() => setOpen((prev) => !prev)}
+                            whileHover={{ scale: 1.08 }}
+                            whileTap={{ scale: 0.92 }}
                             className="md:hidden p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors cursor-pointer"
                         >
                             <FaBars size={16} />
-                        </button>
+                        </motion.button>
                     </div>
                 </div>
             </header>
