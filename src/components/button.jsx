@@ -1,7 +1,8 @@
+import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 
 /**
- * A reusable Button component with consistent variant styling
+ * A reusable Button component with consistent variant styling and motion effects
  * @param {Object} props - Component props
  * @param {React.ReactNode} props.children - Button label or contents
  * @param {Function} props.onClick - Click handler function
@@ -17,13 +18,15 @@ function Button({ children, onClick, type = "button", variant = "primary", class
             : "btn-accent";
 
     return (
-        <button
+        <motion.button
             type={type}
             onClick={onClick}
+            whileHover={{ scale: 1.02, y: -1 }}
+            whileTap={{ scale: 0.96 }}
             className={`btn ${variantClass} ${className}`}
         >
             {children}
-        </button>
+        </motion.button>
     );
 }
 

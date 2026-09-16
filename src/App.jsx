@@ -5,6 +5,8 @@ import Navbar from "./components/navbar.jsx";
 import AnimatedRoutes from "./components/animated-routes.jsx";
 import ScrollToTop from "./components/scroll-to-top.jsx";
 import GlowBackground from "./components/glow-background.jsx";
+import NavigationProgress from "./components/navigation-progress.jsx";
+import ScrollToTopButton from "./components/scroll-to-top-button.jsx";
 
 export default function Portfolio() {
     useEffect(() => {
@@ -21,6 +23,7 @@ export default function Portfolio() {
     return (
         <Router>
             <ScrollToTop />
+            <NavigationProgress />
             <div className="min-h-screen relative text-slate-800 dark:text-slate-100 transition-colors duration-300">
                 {/* Immersive animated canvas backdrop */}
                 <GlowBackground />
@@ -32,6 +35,9 @@ export default function Portfolio() {
                 <main className="pt-24 pb-16 min-h-screen relative z-10">
                     <AnimatedRoutes />
                 </main>
+
+                {/* Floating scroll to top button with circular progress */}
+                <ScrollToTopButton />
 
                 {/* Footer */}
                 <footer className="py-8 text-center text-slate-400 dark:text-slate-500 text-xs sm:text-sm border-t border-slate-200/20 dark:border-slate-800/10 backdrop-blur-[2px] relative z-10">

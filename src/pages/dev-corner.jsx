@@ -1,6 +1,6 @@
 // src/pages/Devcorner.jsx
 import { motion } from "framer-motion";
-import { FaBolt, FaDatabase, FaServer, FaUserShield, FaGithub, FaDraftingCompass } from "react-icons/fa";
+import { FaBolt, FaDatabase, FaServer, FaUserShield, FaGithub, FaDraftingCompass, FaCloud } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PageLayout from "../layouts/page-layout.jsx";
 import { animations } from "../styles/theme";
@@ -86,6 +86,16 @@ const topics = [
         tag: "AI Engineering",
         link: "/devcorner/spec-driven-development",
     },
+    {
+        title: "Infrastructure as Code (IaC)",
+        description: "Provision, version, and manage resilient cloud infrastructure declaratively using Terraform and AWS CDK.",
+        icon: FaCloud,
+        color: "text-sky-500",
+        bg: "bg-sky-500/10",
+        border: "hover:border-sky-500/30",
+        tag: "DevOps & Cloud",
+        link: "/devcorner/infrastructure-as-code",
+    },
 ];
 
 function DevCorner() {
@@ -103,18 +113,23 @@ function DevCorner() {
                 {topics.map((topic) => {
                     const Icon = topic.icon;
                     return (
-                        <motion.div key={topic.title} variants={animations.cardVariants}>
+                        <motion.div 
+                            key={topic.title} 
+                            variants={animations.cardVariants}
+                            whileHover={{ y: -6, transition: { duration: 0.22, ease: "easeOut" } }}
+                            whileTap={{ scale: 0.98 }}
+                        >
                             <Link
                                 to={topic.link}
-                                className={`group flex flex-col justify-between h-full rounded-2xl glass-card p-6 border border-slate-200/35 dark:border-slate-800/35 hover:-translate-y-1.5 transition-all duration-300 ${topic.border}`}
+                                className={`group flex flex-col justify-between h-full rounded-2xl glass-card p-6 border border-slate-200/35 dark:border-slate-800/35 transition-all duration-300 ${topic.border}`}
                             >
                                 <div>
                                     <div className="flex items-center justify-between gap-4 mb-4">
-                                        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                                        <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
                                             {topic.tag}
                                         </span>
                                     </div>
-                                    <div className={`w-12 h-12 rounded-xl ${topic.bg} ${topic.color} flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300`}>
+                                    <div className={`w-12 h-12 rounded-xl ${topic.bg} ${topic.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                                         <Icon size={20} aria-hidden />
                                     </div>
                                     <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 leading-snug group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
@@ -125,8 +140,9 @@ function DevCorner() {
                                     </p>
                                 </div>
                                 
-                                <div className="mt-6 pt-3 border-t border-slate-150/40 dark:border-slate-800/10 flex items-center text-xs font-semibold text-primary-600 dark:text-primary-400 group-hover:gap-1.5 gap-1 transition-all">
-                                    Read Article <span className="text-sm">→</span>
+                                <div className="mt-6 pt-3 border-t border-slate-150/40 dark:border-slate-800/10 flex items-center text-xs font-semibold text-primary-600 dark:text-primary-400 group-hover:gap-2 gap-1.5 transition-all">
+                                    <span>Read Article</span>
+                                    <span className="text-sm group-hover:translate-x-1 transition-transform duration-200">→</span>
                                 </div>
                             </Link>
                         </motion.div>

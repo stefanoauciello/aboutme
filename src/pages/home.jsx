@@ -22,6 +22,7 @@ function Home() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
+            exit="exit"
             className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16 relative z-10"
         >
             <div className="grid md:grid-cols-12 gap-8 md:gap-12 items-center">
@@ -57,27 +58,33 @@ function Home() {
                     {/* Social links */}
                     <div className="flex justify-center md:justify-start gap-4">
                         {socialLinks.map((link) => (
-                            <a
+                            <motion.a
                                 key={link.label}
                                 href={link.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`p-3 bg-white dark:bg-slate-900 rounded-full shadow-soft dark:shadow-md text-slate-500 dark:text-slate-400 ${link.color} transition-all border border-slate-200/40 dark:border-slate-800/40 hover:scale-110`}
+                                whileHover={{ scale: 1.15, y: -2 }}
+                                whileTap={{ scale: 0.92 }}
+                                className={`p-3 bg-white dark:bg-slate-900 rounded-full shadow-soft dark:shadow-md text-slate-500 dark:text-slate-400 ${link.color} transition-colors border border-slate-200/40 dark:border-slate-800/40`}
                                 aria-label={link.label}
                             >
                                 <link.icon size={20} />
-                            </a>
+                            </motion.a>
                         ))}
                     </div>
 
                     {/* CTAs */}
                     <div className="pt-2 flex flex-wrap gap-4 justify-center md:justify-start">
-                        <Link to="/about" className="btn btn-primary gap-2">
-                            About Me <FaArrowRight size={12} />
-                        </Link>
-                        <Link to="/experience" className="btn btn-secondary">
-                            My Experience
-                        </Link>
+                        <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}>
+                            <Link to="/about" className="btn btn-primary gap-2">
+                                About Me <FaArrowRight size={12} />
+                            </Link>
+                        </motion.div>
+                        <motion.div whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}>
+                            <Link to="/experience" className="btn btn-secondary">
+                                My Experience
+                            </Link>
+                        </motion.div>
                     </div>
                 </div>
 
@@ -109,6 +116,7 @@ function Home() {
                             key={pillar.title}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
+                            whileHover={{ y: -4, transition: { duration: 0.2 } }}
                             transition={{ delay: 0.3 + idx * 0.1, duration: 0.4 }}
                             className="glass-card p-6 flex flex-col items-center md:items-start text-center md:text-left gap-4"
                         >
