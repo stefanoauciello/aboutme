@@ -15,6 +15,7 @@ import {
     FaFileCode,
     FaLock,
     FaHistory,
+    FaLink,
 } from "react-icons/fa";
 import PageLayout from "../layouts/page-layout.jsx";
 import BackButton from "../components/back-button.jsx";
@@ -633,7 +634,7 @@ export default function DatabaseVersioning() {
                     </div>
                 </div>
 
-                {/* Takeaway Card */}
+                {/* Takeaway & Showcase Card */}
                 <div className="glass-card p-6 sm:p-8 border border-slate-200/35 dark:border-slate-800/35 space-y-4 text-center bg-gradient-to-b from-violet-500/5 to-transparent">
                     <div className="max-w-2xl mx-auto space-y-3">
                         <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
@@ -642,7 +643,7 @@ export default function DatabaseVersioning() {
                         <p className="text-sm text-slate-650 dark:text-slate-350 leading-relaxed">
                             Automating schema migrations through version-controlled changesets eliminates the manual DBA bottleneck, prevents catastrophic production downtime during rolling updates, and guarantees that every staging environment accurately reflects production truth.
                         </p>
-                        <div className="flex flex-wrap items-center justify-center gap-2 pt-1 pb-1">
+                        <div className="flex flex-wrap items-center justify-center gap-2 pt-1 pb-3">
                             {["Liquibase", "Flyway", "Testcontainers", "GitOps", "Expand/Contract", "Zero-Downtime DDL"].map((tag) => (
                                 <span 
                                     key={tag} 
@@ -652,6 +653,14 @@ export default function DatabaseVersioning() {
                                 </span>
                             ))}
                         </div>
+                        <a
+                            href="https://github.com/stefanoauciello/db-continuos-integration"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-primary gap-2 inline-flex items-center"
+                        >
+                            <FaLink size={12} /> View db-continuos-integration on GitHub
+                        </a>
                     </div>
                 </div>
             </div>
