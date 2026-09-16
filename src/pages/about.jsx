@@ -45,7 +45,7 @@ function About() {
   return (
     <PageLayout 
       title="About Me" 
-      subtitle="Passionate backend engineer, cloud architect, and Enthusiastic AI."
+      subtitle="Passionate backend engineer, cloud architect, and AI enthusiast."
     >
       {/* Intro section */}
       <div className="grid md:grid-cols-12 gap-8 items-start mt-8">

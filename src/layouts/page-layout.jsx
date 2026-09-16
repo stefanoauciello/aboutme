@@ -20,16 +20,16 @@ function PageLayout({ children, title, subtitle, className = "" }) {
     >
       <div className={`${classes.contentContainer} ${className}`}>
         {title && (
-          <div className="text-center mb-8 max-w-2xl mx-auto">
+          <div className="text-center mb-10 sm:mb-12 max-w-2xl mx-auto">
             <h1 className={classes.pageTitle}>
               {title}
             </h1>
             {subtitle && (
-              <p className="text-slate-600 dark:text-slate-400 mt-2 text-base md:text-lg">
+              <p className="text-slate-600 dark:text-slate-400 mt-3 text-base md:text-lg leading-relaxed">
                 {subtitle}
               </p>
             )}
-            <div className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mt-4 rounded-full" />
+            <div className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mt-5 rounded-full" />
           </div>
         )}
         {children}

@@ -46,7 +46,7 @@ function Home() {
                             </span>
                         </h1>
                         <p className="text-xl sm:text-2xl font-medium text-slate-700 dark:text-slate-300">
-                            Senior Software Engineer & Enthusiastic AI
+                            Senior Software Engineer & AI Enthusiast
                         </p>
                     </div>
 

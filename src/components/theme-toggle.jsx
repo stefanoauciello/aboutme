@@ -21,15 +21,36 @@ export default function ThemeToggle() {
     const root = window.document.documentElement;
     if (theme === "dark") {
       root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
+    }
+
+    const handleThemeChange = () => {
+      const current = localStorage.getItem("theme") || "dark";
+      setTheme(current);
+    };
+
+    window.addEventListener("theme-change", handleThemeChange);
+    window.addEventListener("storage", handleThemeChange);
+
+    return () => {
+      window.removeEventListener("theme-change", handleThemeChange);
+      window.removeEventListener("storage", handleThemeChange);
+    };
+  }, [theme]);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    setTheme(nextTheme);
+    const root = window.document.documentElement;
+    if (nextTheme === "dark") {
+      root.classList.add("dark");
       localStorage.setItem("theme", "dark");
     } else {
       root.classList.remove("dark");
       localStorage.setItem("theme", "light");
     }
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    window.dispatchEvent(new Event("theme-change"));
   };
 
   return (

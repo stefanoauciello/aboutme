@@ -45,6 +45,7 @@ function Navbar() {
 
                     {/* Drawer container */}
                     <motion.nav
+                        id="mobile-navigation"
                         key="drawer"
                         className="fixed inset-y-0 left-0 z-[130] w-[80vw] sm:w-72 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-r border-slate-200/50 dark:border-slate-800/50 p-6 flex flex-col justify-between"
                         initial={{ x: "-100%" }}
@@ -149,7 +150,9 @@ function Navbar() {
 
                         {/* Mobile Drawer Trigger */}
                         <button
-                            aria-label="Toggle navigation"
+                            aria-label={open ? "Close navigation" : "Open navigation"}
+                            aria-expanded={open}
+                            aria-controls="mobile-navigation"
                             onClick={() => setOpen((prev) => !prev)}
                             className="md:hidden p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-colors cursor-pointer"
                         >

@@ -40,7 +40,7 @@ export const classes = {
     w-full max-w-5xl mx-auto py-6 md:py-10 px-4 sm:px-6 relative z-10
   `,
   
-  pageTitle: "text-4xl sm:text-5xl font-display font-extrabold bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent text-center tracking-tight mb-4",
+  pageTitle: "text-4xl sm:text-5xl font-display font-extrabold leading-[1.25] sm:leading-[1.2] pb-2 bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent text-center tracking-tight mb-5",
   
   contentContainer: "mt-8",
   

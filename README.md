@@ -8,12 +8,12 @@ Live demo: https://stefanoauciello.github.io/aboutme
 
 ## 🧰 Tech Stack
 
-- ⚛️ React 19
-- 🧩 React Router
+- ⚛️ React 18
+- 🧩 React Router 6
 - 🎨 Tailwind CSS 3
 - 🎭 Framer Motion 12
-- ⚡ Vite 6
-- 🧹 ESLint
+- ⚡ Vite 8
+- 🧹 ESLint 9
 
 ---
 
