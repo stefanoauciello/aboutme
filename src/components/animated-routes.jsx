@@ -17,6 +17,7 @@ import DatabaseVersioning from "../pages/database-versioning";
 import Auth from "../pages/auth";
 import MCP from "../pages/mcp";
 import AgenticWorkflows from "../pages/agentic-workflows";
+import SpecDrivenDevelopment from "../pages/spec-driven-development";
 
 function AnimatedRoutes() {
     const location = useLocation();
@@ -37,6 +38,7 @@ function AnimatedRoutes() {
                 <Route path="/devcorner/auth" element={<Auth />} />
                 <Route path="/devcorner/mcp" element={<MCP />} />
                 <Route path="/devcorner/agentic-workflows" element={<AgenticWorkflows />} />
+                <Route path="/devcorner/spec-driven-development" element={<SpecDrivenDevelopment />} />
             </Routes>
         </AnimatePresence>
     );
