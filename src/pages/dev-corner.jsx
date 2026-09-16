@@ -1,6 +1,6 @@
 // src/pages/Devcorner.jsx
 import { motion } from "framer-motion";
-import { FaBolt, FaDatabase, FaServer, FaUserShield, FaGithub } from "react-icons/fa";
+import { FaBolt, FaDatabase, FaServer, FaUserShield, FaGithub, FaDraftingCompass } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import PageLayout from "../layouts/page-layout.jsx";
 import { animations } from "../styles/theme";
@@ -75,6 +75,16 @@ const topics = [
         border: "hover:border-orange-500/30",
         tag: "AI Engineering",
         link: "/devcorner/agentic-workflows",
+    },
+    {
+        title: "Spec-Driven Development (SDD)",
+        description: "Turn specifications into executable truth to steer AI agents, eliminate code drift, and automate full-cycle software delivery.",
+        icon: FaDraftingCompass,
+        color: "text-indigo-500",
+        bg: "bg-indigo-500/10",
+        border: "hover:border-indigo-500/30",
+        tag: "AI Engineering",
+        link: "/devcorner/spec-driven-development",
     },
 ];
 
