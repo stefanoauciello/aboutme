@@ -29,17 +29,6 @@ function Home() {
                 {/* Text Content Area */}
                 <div className="md:col-span-7 text-center md:text-left space-y-6 order-2 md:order-1">
                     <div className="space-y-3">
-                        {/* Status Tag */}
-                        <motion.span 
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.2 }}
-                            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary-500/10 text-primary-600 dark:text-primary-400 border border-primary-500/20"
-                        >
-                            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                            Open to new opportunities
-                        </motion.span>
-
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold leading-tight text-slate-900 dark:text-white">
                             Ciao, I&apos;m <br className="hidden sm:inline" />
                             <span className="bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 dark:from-primary-400 dark:via-secondary-400 dark:to-primary-400 bg-clip-text text-transparent">
