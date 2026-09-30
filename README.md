@@ -20,10 +20,12 @@ Live demo: https://stefanoauciello.github.io/aboutme
 ## ▶️ Run locally
 
 Prerequisites:
+
 - Node.js >= 18 (LTS recommended; check with `node -v`)
 - npm >= 9 (you can use pnpm/yarn, but this repo uses npm)
 
 Steps:
+
 1. Install dependencies
    - `npm install`
 2. Start the dev server
@@ -31,6 +33,7 @@ Steps:
 3. Open the URL printed in the terminal (typically http://localhost:5173)
 
 Notes:
+
 - If the default port is busy, Vite will automatically pick a free one and print it.
 - Hot Module Replacement is enabled: changes are reflected in real time.
 
@@ -59,6 +62,7 @@ This project is already configured to deploy to GitHub Pages using:
   - `deploy`: publishes the `dist` folder to the `gh-pages` branch
 
 How to deploy:
+
 1. Make sure you are authenticated with GitHub from your terminal (token or GitHub CLI).
 2. Run: `npm run deploy`
 3. Wait for GitHub Pages to update the site (it may take a couple of minutes).

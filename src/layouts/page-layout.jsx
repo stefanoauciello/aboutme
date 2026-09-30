@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import PropTypes from "prop-types";
-import { animations, classes } from "../styles/theme";
+import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
+import { animations, classes } from '../styles/theme';
 
 /**
  * A reusable page layout component with consistent styling and animations
@@ -10,7 +10,7 @@ import { animations, classes } from "../styles/theme";
  * @param {string} props.subtitle - Page subtitle
  * @param {string} props.className - Additional CSS classes for the content container
  */
-function PageLayout({ children, title, subtitle, className = "" }) {
+function PageLayout({ children, title, subtitle, className = '' }) {
   return (
     <motion.section
       className={classes.pageContainer}
@@ -22,29 +22,29 @@ function PageLayout({ children, title, subtitle, className = "" }) {
       <div className={`${classes.contentContainer} ${className}`}>
         {title && (
           <div className="text-center mb-10 sm:mb-12 max-w-2xl mx-auto">
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
               className={classes.pageTitle}
             >
               {title}
             </motion.h1>
             {subtitle && (
-              <motion.p 
+              <motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.08, ease: "easeOut" }}
+                transition={{ duration: 0.4, delay: 0.08, ease: 'easeOut' }}
                 className="text-slate-600 dark:text-slate-400 mt-3 text-base md:text-lg leading-relaxed"
               >
                 {subtitle}
               </motion.p>
             )}
-            <motion.div 
+            <motion.div
               initial={{ scaleX: 0, opacity: 0 }}
               animate={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 0.45, delay: 0.16, ease: "easeOut" }}
-              className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mt-5 rounded-full origin-center" 
+              transition={{ duration: 0.45, delay: 0.16, ease: 'easeOut' }}
+              className="w-12 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mt-5 rounded-full origin-center"
             />
           </div>
         )}

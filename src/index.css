@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-@import "tailwindcss";
+@import 'tailwindcss';
 @config "../tailwind.config.js";
 
 @layer base {
@@ -12,7 +12,12 @@
     @apply font-sans text-dark-800 dark:text-dark-100 bg-slate-50 dark:bg-slate-950 min-h-screen transition-colors duration-300;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-display font-bold tracking-tight text-slate-900 dark:text-white;
   }
 
@@ -49,7 +54,8 @@
     @apply bg-accent-500 hover:bg-accent-600 text-white shadow-accent-500/20 hover:shadow-lg hover:shadow-accent-500/30;
   }
 
-  .glass-card, .card {
+  .glass-card,
+  .card {
     @apply bg-white/70 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/40 dark:border-slate-800/45 rounded-2xl shadow-soft dark:shadow-2xl dark:shadow-black/25 transition-all duration-300;
   }
 

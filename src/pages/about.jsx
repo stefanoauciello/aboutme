@@ -1,50 +1,57 @@
 // src/pages/About.jsx
-import { motion } from "framer-motion";
-import { FaCloud, FaCode, FaDatabase, FaLightbulb, FaRocket, FaUserCheck } from "react-icons/fa";
-import PageLayout from "../layouts/page-layout.jsx";
-import SkillCard from "../components/skill-card.jsx";
-import { animations } from "../styles/theme";
+import { motion } from 'framer-motion';
+import {
+  FaCloud,
+  FaCode,
+  FaDatabase,
+  FaLightbulb,
+  FaRocket,
+  FaUserCheck,
+} from 'react-icons/fa';
+import PageLayout from '../layouts/page-layout.jsx';
+import SkillCard from '../components/skill-card.jsx';
+import { animations } from '../styles/theme';
 
 const skillCards = [
   {
     icon: FaCode,
-    title: "Frameworks & Runtime",
-    items: ["Spring Boot", "Node.js", "Express", "TypeScript"],
+    title: 'Frameworks & Runtime',
+    items: ['Spring Boot', 'Node.js', 'Express', 'TypeScript'],
   },
   {
     icon: FaDatabase,
-    title: "Databases",
-    items: ["MongoDB", "Oracle", "MySQL", "DynamoDB"],
+    title: 'Databases',
+    items: ['MongoDB', 'Oracle', 'MySQL', 'DynamoDB'],
   },
   {
     icon: FaCloud,
-    title: "Cloud & Streaming",
-    items: ["AWS", "Apache Kafka", "Docker", "Kubernetes"],
+    title: 'Cloud & Streaming',
+    items: ['AWS', 'Apache Kafka', 'Docker', 'Kubernetes'],
   },
 ];
 
 const pillars = [
   {
     icon: FaRocket,
-    title: "Resilient Architecture",
-    text: "Building distributed services engineered to scale, handle traffic spikes, and recover gracefully from failures.",
+    title: 'Resilient Architecture',
+    text: 'Building distributed services engineered to scale, handle traffic spikes, and recover gracefully from failures.',
   },
   {
     icon: FaLightbulb,
-    title: "Continuous Learning",
-    text: "Keeping tech skills sharp through academic pursuits, industry certifications, and experimenting with new tech.",
+    title: 'Continuous Learning',
+    text: 'Keeping tech skills sharp through academic pursuits, industry certifications, and experimenting with new tech.',
   },
   {
     icon: FaUserCheck,
-    title: "Collaborative Leadership",
-    text: "Bridging the gap between code and business objectives, helping mentor teams, and delivering high quality.",
+    title: 'Collaborative Leadership',
+    text: 'Bridging the gap between code and business objectives, helping mentor teams, and delivering high quality.',
   },
 ];
 
 function About() {
   return (
-    <PageLayout 
-      title="About Me" 
+    <PageLayout
+      title="About Me"
       subtitle="Passionate backend engineer, cloud architect, and AI enthusiast."
     >
       {/* Intro section */}
@@ -57,7 +64,7 @@ function About() {
           {[
             `I am a Senior Software Engineer with a deep passion for building robust distributed systems, implementing event-driven architectures, and driving cloud transformations. Over my career, I've designed and automated microservices stacks supporting millions of customers, re-engineered database versioning controls, and successfully migrated monolithic platforms to AWS cloud-native configurations.`,
             `Currently, at Generali's Digital Center of Excellence, I focus on decomposing legacy systems into scalable, fully-automated AWS serverless products. I believe that engineering is not just about writing code, but about designing solutions that last, scale, and deliver real value to the business and its end-users.`,
-            `While working full-time, I continue to expand my academic knowledge and technical certifications. My ultimate goal is to act as a catalyst for technical innovation in any team I join, guiding products from initial business analysis all the way to production delivery.`
+            `While working full-time, I continue to expand my academic knowledge and technical certifications. My ultimate goal is to act as a catalyst for technical innovation in any team I join, guiding products from initial business analysis all the way to production delivery.`,
           ].map((text, idx) => (
             <motion.p
               key={idx}
@@ -76,7 +83,14 @@ function About() {
             My Focus Areas
           </h3>
           <ul className="space-y-2">
-            {["System Re-Architecting", "Serverless Solutions", "Change Data Capture (CDC)", "Database Migration", "CI/CD Pipelines Automation", "Java & JavaScript Ecosystems"].map((item, idx) => (
+            {[
+              'System Re-Architecting',
+              'Serverless Solutions',
+              'Change Data Capture (CDC)',
+              'Database Migration',
+              'CI/CD Pipelines Automation',
+              'Java & JavaScript Ecosystems',
+            ].map((item, idx) => (
               <motion.li
                 key={item}
                 initial={{ opacity: 0, x: 10 }}
@@ -111,8 +125,12 @@ function About() {
                 <div className="p-3 bg-secondary-500/10 text-secondary-500 dark:text-secondary-400 rounded-xl">
                   <Icon size={20} />
                 </div>
-                <h4 className="font-bold text-slate-850 dark:text-slate-150 text-base">{item.title}</h4>
-                <p className="text-xs sm:text-sm text-slate-550 dark:text-slate-400 leading-relaxed">{item.text}</p>
+                <h4 className="font-bold text-slate-850 dark:text-slate-150 text-base">
+                  {item.title}
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-550 dark:text-slate-400 leading-relaxed">
+                  {item.text}
+                </p>
               </motion.div>
             );
           })}

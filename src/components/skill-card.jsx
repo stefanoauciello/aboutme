@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import PropTypes from "prop-types";
-import { classes } from "../styles/theme";
+import { motion } from 'framer-motion';
+import PropTypes from 'prop-types';
+import { classes } from '../styles/theme';
 
 /**
  * A reusable card component for displaying skills
@@ -13,14 +13,14 @@ import { classes } from "../styles/theme";
  * @param {string} props.imageAlt - Optional image alt text
  * @param {Object} props.variants - Framer Motion variants for animations
  */
-function SkillCard({ 
-  icon: Icon, 
-  title, 
-  items = [], 
-  description, 
-  imageSrc, 
+function SkillCard({
+  icon: Icon,
+  title,
+  items = [],
+  description,
+  imageSrc,
   imageAlt,
-  variants 
+  variants,
 }) {
   return (
     <motion.li
@@ -28,7 +28,12 @@ function SkillCard({
       whileHover={{ scale: 1.02 }}
       className={classes.card}
     >
-      {Icon && <Icon className="text-3xl text-primary-500 dark:text-primary-400 mb-3" aria-hidden />}
+      {Icon && (
+        <Icon
+          className="text-3xl text-primary-500 dark:text-primary-400 mb-3"
+          aria-hidden
+        />
+      )}
 
       {imageSrc && (
         <img
@@ -39,7 +44,9 @@ function SkillCard({
         />
       )}
 
-      <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">{title}</h3>
+      <h3 className="font-bold text-slate-800 dark:text-slate-100 text-lg">
+        {title}
+      </h3>
 
       {description && (
         <p className="text-sm text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">
@@ -49,9 +56,9 @@ function SkillCard({
 
       {items.length > 0 && (
         <div className="flex flex-wrap gap-1.5 justify-center mt-4">
-          {items.map(item => (
-            <span 
-              key={item} 
+          {items.map((item) => (
+            <span
+              key={item}
               className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100/80 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border border-slate-200/50 dark:border-slate-700/50"
             >
               {item}
@@ -70,7 +77,7 @@ SkillCard.propTypes = {
   description: PropTypes.string,
   imageSrc: PropTypes.string,
   imageAlt: PropTypes.string,
-  variants: PropTypes.object
+  variants: PropTypes.object,
 };
 
 export default SkillCard;

@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 function ScrollToTop() {
-    useEffect(() => {
-        if ("scrollRestoration" in window.history) {
-            window.history.scrollRestoration = "manual";
-        }
-    }, []);
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
 
-    return null;
+  return null;
 }
 
 export default ScrollToTop;

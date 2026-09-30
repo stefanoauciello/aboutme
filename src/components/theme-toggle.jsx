@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { FaSun, FaMoon } from "react-icons/fa";
+import { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 /**
  * Animated light/dark theme switcher.
@@ -8,49 +8,49 @@ import { FaSun, FaMoon } from "react-icons/fa";
  */
 export default function ThemeToggle() {
   const [theme, setTheme] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("theme");
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
       if (saved) return saved;
       // Default to dark theme for premium developer feel
-      return "dark";
+      return 'dark';
     }
-    return "dark";
+    return 'dark';
   });
 
   useEffect(() => {
     const root = window.document.documentElement;
-    if (theme === "dark") {
-      root.classList.add("dark");
+    if (theme === 'dark') {
+      root.classList.add('dark');
     } else {
-      root.classList.remove("dark");
+      root.classList.remove('dark');
     }
 
     const handleThemeChange = () => {
-      const current = localStorage.getItem("theme") || "dark";
+      const current = localStorage.getItem('theme') || 'dark';
       setTheme(current);
     };
 
-    window.addEventListener("theme-change", handleThemeChange);
-    window.addEventListener("storage", handleThemeChange);
+    window.addEventListener('theme-change', handleThemeChange);
+    window.addEventListener('storage', handleThemeChange);
 
     return () => {
-      window.removeEventListener("theme-change", handleThemeChange);
-      window.removeEventListener("storage", handleThemeChange);
+      window.removeEventListener('theme-change', handleThemeChange);
+      window.removeEventListener('storage', handleThemeChange);
     };
   }, [theme]);
 
   const toggleTheme = () => {
-    const nextTheme = theme === "dark" ? "light" : "dark";
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
     const root = window.document.documentElement;
-    if (nextTheme === "dark") {
-      root.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+    if (nextTheme === 'dark') {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      root.classList.remove("dark");
-      localStorage.setItem("theme", "light");
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
     }
-    window.dispatchEvent(new Event("theme-change"));
+    window.dispatchEvent(new Event('theme-change'));
   };
 
   return (
@@ -60,7 +60,7 @@ export default function ThemeToggle() {
       aria-label="Toggle visual theme"
     >
       <AnimatePresence mode="wait" initial={false}>
-        {theme === "dark" ? (
+        {theme === 'dark' ? (
           <motion.div
             key="moon"
             initial={{ y: 10, opacity: 0, rotate: -40 }}
