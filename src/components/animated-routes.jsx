@@ -17,6 +17,7 @@ const EventDrivenArchitecture = lazy(
 const DataPlatform = lazy(() => import('../pages/data-platform'));
 const DatabaseVersioning = lazy(() => import('../pages/database-versioning'));
 const Auth = lazy(() => import('../pages/auth'));
+const Cryptography = lazy(() => import('../pages/cryptography'));
 const MCP = lazy(() => import('../pages/mcp'));
 const AgenticWorkflows = lazy(() => import('../pages/agentic-workflows'));
 const SpecDrivenDevelopment = lazy(
@@ -72,6 +73,7 @@ function AnimatedRoutes() {
               element={<DatabaseVersioning />}
             />
             <Route path="/devcorner/auth" element={<Auth />} />
+            <Route path="/devcorner/cryptography" element={<Cryptography />} />
             <Route path="/devcorner/mcp" element={<MCP />} />
             <Route
               path="/devcorner/agentic-workflows"

@@ -8,6 +8,7 @@ import {
   FaGithub,
   FaDraftingCompass,
   FaCloud,
+  FaKey,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import PageLayout from '../layouts/page-layout.jsx';
@@ -68,6 +69,17 @@ const topics = [
     border: 'hover:border-rose-500/30',
     tag: 'Security',
     link: '/devcorner/auth',
+  },
+  {
+    title: 'Cryptography',
+    description:
+      'Explore hashes, symmetric encryption, digital signatures, and integrity through practical examples and interactive demos.',
+    icon: FaKey,
+    color: 'text-fuchsia-500',
+    bg: 'bg-fuchsia-500/10',
+    border: 'hover:border-fuchsia-500/30',
+    tag: 'Security & Cryptography',
+    link: '/devcorner/cryptography',
   },
   {
     title: 'Model Context Protocol (MCP)',
