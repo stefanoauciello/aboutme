@@ -361,7 +361,10 @@ export default function MCP() {
           <BackButton fallbackTo="/devcorner" />
         </div>
 
-        {/* Hero / Interactive Architecture Pipeline Visualizer */}
+        <details className="space-y-4">
+          <summary className="cursor-pointer rounded-xl border border-slate-200/35 dark:border-slate-800/35 px-4 py-3 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:border-primary-500/40">
+            Show interactive overview
+          </summary>
         <div className="glass-card p-6 sm:p-8 border border-slate-200/35 dark:border-slate-800/35 space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200/40 dark:border-slate-800/40 pb-4">
             <div>
@@ -481,6 +484,7 @@ export default function MCP() {
             </motion.div>
           </AnimatePresence>
         </div>
+        </details>
 
         {/* Main Narrative */}
         <div className="space-y-4 text-base sm:text-lg text-slate-650 dark:text-slate-350 leading-relaxed">

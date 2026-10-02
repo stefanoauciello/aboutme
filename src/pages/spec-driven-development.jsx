@@ -152,7 +152,10 @@ export default function SpecDrivenDevelopment() {
           <BackButton fallbackTo="/devcorner" />
         </div>
 
-        {/* Interactive Workflow Diagram / Visual Flow */}
+        <details className="space-y-4">
+          <summary className="cursor-pointer rounded-xl border border-slate-200/35 dark:border-slate-800/35 px-4 py-3 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:border-primary-500/40">
+            Show interactive lifecycle overview
+          </summary>
         <div className="glass-card p-6 sm:p-8 border border-slate-200/35 dark:border-slate-800/35">
           <div className="text-center mb-6">
             <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
@@ -207,6 +210,7 @@ export default function SpecDrivenDevelopment() {
             re-evaluation until all specification contracts pass.
           </p>
         </div>
+        </details>
 
         {/* Main Narrative / Introduction */}
         <div className="space-y-4 text-base sm:text-lg text-slate-650 dark:text-slate-350 leading-relaxed">

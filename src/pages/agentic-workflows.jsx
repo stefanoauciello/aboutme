@@ -335,7 +335,10 @@ export default function AgenticWorkflows() {
           <BackButton fallbackTo="/devcorner" />
         </div>
 
-        {/* ── 1. Interactive ReAct Loop ── */}
+        <details className="space-y-4">
+          <summary className="cursor-pointer rounded-xl border border-slate-200/35 dark:border-slate-800/35 px-4 py-3 text-sm font-semibold text-slate-600 dark:text-slate-300 hover:border-primary-500/40">
+            Show interactive workflow overview
+          </summary>
         <div className="space-y-4">
           <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
             ReAct Loop Topology
@@ -425,6 +428,7 @@ export default function AgenticWorkflows() {
             </motion.div>
           </AnimatePresence>
         </div>
+        </details>
 
         {/* ── 2. Comparison matrix ── */}
         <div className="space-y-4">
