@@ -8,7 +8,7 @@ const experiences = [
     company: 'Generali',
     period: 'October 2025 - Present',
     role: 'Senior Software Engineer (October 2025 - Present)',
-    description: `Part of the Digital Center of Excellence team, focusing on large-scale cloud transformation. Actively re-architecting legacy mainframe systems by breaking down COBOL applications into scalable, resilient, and fully automated AWS serverless solutions.`,
+    description: `Part of the Digital Center of Excellence team, leading large-scale cloud transformations through AI-augmented engineering. I spearhead the end-to-end re-architecting of legacy mainframe systems into scalable, resilient AWS serverless architectures — leveraging AI coding agents, agentic workflows, and LLM-driven static analysis to automate the reverse engineering, translation, and modernization of complex COBOL applications.`,
     secondrole: '',
     seconddescription: '',
     technologies: ['java', 'spring', 'aws', 'lambda'],
@@ -80,9 +80,9 @@ function Experience() {
           animate="visible"
           variants={animations.gridVariants}
         >
-          {experiences.map((job, idx) => (
+          {experiences.map((job) => (
             <motion.li
-              key={job.company + idx}
+              key={job.company}
               variants={animations.cardVariants}
               className="relative"
             >

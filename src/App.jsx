@@ -8,6 +8,8 @@ import GlowBackground from './components/glow-background.jsx';
 import NavigationProgress from './components/navigation-progress.jsx';
 import ScrollToTopButton from './components/scroll-to-top-button.jsx';
 
+const currentYear = new Date().getFullYear();
+
 export default function Portfolio() {
   useEffect(() => {
     // Initialize theme class from localStorage or system preference
@@ -42,10 +44,7 @@ export default function Portfolio() {
         {/* Footer */}
         <footer className="py-8 text-center text-slate-400 dark:text-slate-500 text-xs sm:text-sm border-t border-slate-200/20 dark:border-slate-800/10 backdrop-blur-[2px] relative z-10">
           <div className="max-w-7xl mx-auto px-4">
-            <p>
-              © {new Date().getFullYear()} Stefano Auciello. All rights
-              reserved.
-            </p>
+            <p>© {currentYear} Stefano Auciello. All rights reserved.</p>
           </div>
         </footer>
       </div>

@@ -65,10 +65,9 @@ function About() {
             `I am a Senior Software Engineer with a deep passion for building robust distributed systems, implementing event-driven architectures, and driving cloud transformations. Over my career, I've designed and automated microservices stacks supporting millions of customers, re-engineered database versioning controls, and successfully migrated monolithic platforms to AWS cloud-native configurations.`,
             `Currently, at Generali's Digital Center of Excellence, I focus on decomposing legacy systems into scalable, fully-automated AWS serverless products. I believe that engineering is not just about writing code, but about designing solutions that last, scale, and deliver real value to the business and its end-users.`,
             `While working full-time, I continue to expand my academic knowledge and technical certifications. My ultimate goal is to act as a catalyst for technical innovation in any team I join, guiding products from initial business analysis all the way to production delivery.`,
-          ].map((text, idx) => (
+          ].map((text) => (
             <motion.p
-              key={idx}
-              custom={idx}
+              key={text}
               variants={animations.itemVariants}
               className="leading-relaxed"
             >
