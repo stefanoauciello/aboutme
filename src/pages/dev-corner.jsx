@@ -17,6 +17,8 @@ import {
   FaIdCard,
   FaSitemap,
   FaSearch,
+  FaBroadcastTower,
+  FaBrain,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import PageLayout from '../layouts/page-layout.jsx';
@@ -132,6 +134,39 @@ const topics = [
     border: 'hover:border-sky-500/30',
     tag: 'DevOps & Cloud',
     link: '/devcorner/infrastructure-as-code',
+  },
+  {
+    title: 'Vagrant: Reproducible Development Environments',
+    description:
+      'Create a repeatable Elementary OS virtual machine with Vagrant, VirtualBox, and Ansible provisioning.',
+    icon: FaCloud,
+    color: 'text-sky-500',
+    bg: 'bg-sky-500/10',
+    border: 'hover:border-sky-500/30',
+    tag: 'Virtualization & DevOps',
+    link: '/devcorner/vagrant',
+  },
+  {
+    title: 'Apache Kafka: Event Streaming in Practice',
+    description:
+      'Learn how Kafka topics, partitions, producers, and consumer groups work, with a hands-on Spring Boot example.',
+    icon: FaBroadcastTower,
+    color: 'text-orange-500',
+    bg: 'bg-orange-500/10',
+    border: 'hover:border-orange-500/30',
+    tag: 'Messaging & Data Streaming',
+    link: '/devcorner/kafka',
+  },
+  {
+    title: 'Retrieval-Augmented Generation (RAG)',
+    description:
+      'Learn how document chunking, vector search, and language models work together to answer questions from your files.',
+    icon: FaBrain,
+    color: 'text-fuchsia-500',
+    bg: 'bg-fuchsia-500/10',
+    border: 'hover:border-fuchsia-500/30',
+    tag: 'AI Engineering',
+    link: '/devcorner/rag',
   },
 ];
 

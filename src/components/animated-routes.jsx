@@ -26,6 +26,9 @@ const SpecDrivenDevelopment = lazy(
 const InfrastructureAsCode = lazy(
   () => import('../pages/infrastructure-as-code')
 );
+const Vagrant = lazy(() => import('../pages/vagrant'));
+const Kafka = lazy(() => import('../pages/kafka'));
+const RAG = lazy(() => import('../pages/rag'));
 const NotFound = lazy(() => import('../pages/not-found.jsx'));
 
 function PageLoader() {
@@ -87,6 +90,9 @@ function AnimatedRoutes() {
               path="/devcorner/infrastructure-as-code"
               element={<InfrastructureAsCode />}
             />
+            <Route path="/devcorner/vagrant" element={<Vagrant />} />
+            <Route path="/devcorner/kafka" element={<Kafka />} />
+            <Route path="/devcorner/rag" element={<RAG />} />
             <Route
               path="/devcorner/iac"
               element={
