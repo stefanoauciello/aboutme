@@ -5,7 +5,6 @@ const navLinks = [
   { to: '/certification', label: 'Certification' },
   { to: '/skill', label: 'Skills' },
   { to: '/contact', label: 'Contact' },
-  { to: '/devcorner', label: 'Dev Corner' },
 ];
 
 export default navLinks;

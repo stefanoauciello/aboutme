@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FaHome, FaCompass, FaCodeBranch } from 'react-icons/fa';
+import { FaHome, FaCompass } from 'react-icons/fa';
 import PageLayout from '../layouts/page-layout.jsx';
 
 export default function NotFound() {
@@ -24,23 +24,16 @@ export default function NotFound() {
             Lost in Cyberspace?
           </h2>
           <p className="text-sm text-slate-650 dark:text-slate-400 leading-relaxed">
-            Don&apos;t worry! You can return to the homepage or explore
-            engineering articles in Dev Corner.
+            Don&apos;t worry! You can return to the homepage.
           </p>
         </div>
 
-        <div className="pt-2 flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="pt-2 flex justify-center">
           <Link
             to="/"
             className="btn btn-primary gap-2 inline-flex items-center justify-center"
           >
             <FaHome size={14} /> Back to Home
-          </Link>
-          <Link
-            to="/devcorner"
-            className="btn btn-secondary gap-2 inline-flex items-center justify-center"
-          >
-            <FaCodeBranch size={14} /> Dev Corner
           </Link>
         </div>
       </motion.div>
