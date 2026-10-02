@@ -8,10 +8,10 @@ Live demo: https://stefanoauciello.github.io/aboutme
 
 ## 🧰 Tech Stack
 
-- ⚛️ React 18
-- 🧩 React Router 6
-- 🎨 Tailwind CSS 3
-- 🎭 Framer Motion 12
+- ⚛️ React 19
+- 🧩 React Router 7
+- 🎨 Tailwind CSS 4
+- 🎭 Framer Motion 13
 - ⚡ Vite 8
 - 🧹 ESLint 9
 
@@ -75,7 +75,7 @@ How to deploy:
 - `npm run build` — Production build
 - `npm run preview` — Preview the local production build
 - `npm run lint` — Lint the codebase
-- `npm run deploy` — Deploy to GitHub Pages (runs `predeploy` → `build`)
+- `npm run deploy` — Deploy to GitHub Pages (runs `predeploy`, which builds the project)
 
 ---
 
