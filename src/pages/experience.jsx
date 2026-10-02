@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import PageLayout from '../layouts/page-layout.jsx';
 import { animations } from '../styles/theme';
+import { technologyIcons } from '../config/technology-icons.js';
 
 const experiences = [
   {
@@ -10,7 +11,8 @@ const experiences = [
     description: `Part of the Digital Center of Excellence team, focusing on large-scale cloud transformation. Actively re-architecting legacy mainframe systems by breaking down COBOL applications into scalable, resilient, and fully automated AWS serverless solutions.`,
     secondrole: '',
     seconddescription: '',
-    images: ['java.png', 'spring.png', 'aws.png', 'lambda.png'],
+    technologies: ['java', 'spring', 'aws', 'lambda'],
+    items: ['AI-Assisted Development'],
   },
   {
     company: 'Vodafone',
@@ -19,14 +21,8 @@ const experiences = [
     description: `I worked at DXL as a Java/Node.js Backend Developer and Data Engineer, focusing on consumer data. I led the migration of our Java Spring Boot microservices stack from OpenShift to AWS EKS, including data migration from MongoDB to MongoDB Atlas and optimization of Kafka systems. I prioritized performance, scalability, and capacity planning to support millions of active customers. I also reengineered the real-time Change Data Capture (CDC) architecture using Node.js Lambda and Java microservices to ensure data updates with minimal latency.`,
     secondrole: '',
     seconddescription: '',
-    images: [
-      'java.png',
-      'spring.png',
-      'kafka.png',
-      'node.png',
-      'aws.png',
-      'mongo.png',
-    ],
+    technologies: ['java', 'spring', 'kafka', 'node', 'aws', 'mongo'],
+    items: ['AI-Assisted Development'],
   },
   {
     company: 'Bandyer/Kaleyra',
@@ -35,7 +31,7 @@ const experiences = [
     description: `I was responsible for developing Node.js services using TypeScript and deploying them on AWS via GitLab CI/CD pipelines. I wrote unit and integration tests with Jest to ensure code quality and reliability. My work also involved managing Docker containers and leveraging various AWS services to enhance system scalability and efficiency. Additionally, I worked extensively with MongoDB and MySQL, implementing database changes through automated Liquibase pipelines to streamline deployment and maintain data integrity.`,
     secondrole: '',
     seconddescription: '',
-    images: ['node.png', 'aws.png', 'mongo.png'],
+    technologies: ['node', 'aws', 'mongo', 'mysql'],
   },
   {
     company: 'Dechit',
@@ -44,7 +40,7 @@ const experiences = [
     description: `At Sky, I contributed to modernizing the backend systems powering Sky Sport, focusing on scalability, real-time responsiveness, and reliability through an event-driven, serverless architecture on AWS. I worked with technologies such as AWS Lambda, AppSync, Node.js, TypeScript, Java, and Amazon Aurora, while embracing Agile practices and Test-Driven Development (TDD) to ensure clean, maintainable code. My responsibilities included CI/CD with Jenkins and collaborative development via Git and pull request workflows.`,
     secondrole: '',
     seconddescription: '',
-    images: ['java.png', 'node.png', 'aws.png', 'lambda.png'],
+    technologies: ['java', 'node', 'aws', 'lambda'],
   },
   {
     company: 'ThinkOpen',
@@ -55,7 +51,7 @@ const experiences = [
       'Software Developer, consultant at Unicredit Services Spa (July 2017 - June 2018) ',
     seconddescription:
       'Developed Java Spring applications within Docker environments, utilizing CI/CD pipelines via Go Server to automate deployment. Managed virtual machines using Vagrant and Ansible for efficient automation, and followed Test-Driven Development (TDD) practices to uphold code quality. Collaborated in an Agile setting, leveraging Git and a pull request workflow for seamless version control and team coordination.',
-    images: ['spring.png', 'node.png', 'docker.png', 'heroku.png'],
+    technologies: ['spring', 'node', 'docker', 'heroku', 'vagrant', 'ansible'],
   },
   {
     company: 'Spindox',
@@ -64,7 +60,7 @@ const experiences = [
     description: `Developed Java applications for Ferrari, working directly at their headquarters in Maranello, with a focus on the maintenance and enhancement of internal management systems. In addition to my work with Ferrari, I also contributed to various internal projects, handling technical analysis, development, and deployment of applications to improve operational efficiency across different business areas.`,
     secondrole: '',
     seconddescription: '',
-    images: ['java.png'],
+    technologies: ['java'],
   },
 ];
 
@@ -142,25 +138,31 @@ function Experience() {
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-200/40 dark:border-slate-800/20">
-                  {job.images.map((img) => {
-                    const name = img.split('.')[0];
+                  {job.technologies.map((technology) => {
+                    const { Icon, label } = technologyIcons[technology];
                     return (
                       <div
-                        key={img}
+                        key={technology}
                         className="inline-flex items-center gap-1.5 px-2 py-1 rounded-lg bg-slate-100/60 dark:bg-slate-800/60 border border-slate-200/30 dark:border-slate-700/30"
                       >
-                        <img
-                          src={`${import.meta.env.BASE_URL}${img}`}
-                          alt={name}
+                        <Icon
+                          aria-hidden="true"
                           className="w-4 h-4 object-contain"
-                          loading="lazy"
                         />
-                        <span className="text-xs font-semibold text-slate-600 dark:text-slate-350 uppercase">
-                          {name}
+                        <span className="text-xs font-semibold text-slate-600 dark:text-slate-350">
+                          {label}
                         </span>
                       </div>
                     );
                   })}
+                  {job.items?.map((item) => (
+                    <span
+                      key={item}
+                      className="inline-flex items-center px-2 py-1 rounded-lg bg-primary-50/70 dark:bg-primary-900/20 border border-primary-200/40 dark:border-primary-700/30 text-xs font-semibold text-primary-700 dark:text-primary-300"
+                    >
+                      {item}
+                    </span>
+                  ))}
                 </div>
               </div>
             </motion.li>
