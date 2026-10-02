@@ -53,5 +53,4 @@
   .glass-card {
     @apply bg-white/70 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/40 dark:border-slate-800/45 rounded-2xl shadow-soft dark:shadow-2xl dark:shadow-black/25 transition-all duration-300;
   }
-
 }
